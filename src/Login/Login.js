@@ -5,6 +5,8 @@ import ErrorModal from '../Error/ErrorModal';
 import './Login.css';
 import Failure from "../images/cancel.png";
 import Succes1 from "../images/check.png";
+import { Link } from 'react-router-dom';
+import Register from '../Student/Register';
 
 
 import axios from '../api/axios';
@@ -22,6 +24,7 @@ const Login = () => {
     const [success, setSuccess] = useState(false);
 
     const [error, setError] = useState();
+    const [register, setRegister] = useState(0);
 
     /*const dugmeHandler = () => {
         async function fetchData() {
@@ -47,6 +50,11 @@ const Login = () => {
 
     const errorHandler = () => {
         setError(null);
+    }
+    
+    const registerHandler= ()=>
+    {
+        setRegister(1);
     }
 
 
@@ -111,7 +119,7 @@ const Login = () => {
                             slika: Failure
                         }
                     )
-                    console.log("muda");
+
                 } else {
                     console.error(err);
                 }
@@ -126,36 +134,51 @@ const Login = () => {
             setPwd('');
         }
 
-
+       
     }
 
     return (
-        <div>
-            {error && <ErrorModal title={error.title} message={error.message} slika={error.slika} ugasiProzor={errorHandler} />}
 
-            <form className="login-form" onSubmit={handlerSubmit}>
-                <img className="index" src={Slika}></img>
-                <h1>Welcome to E-index</h1>
-                <h2>Login</h2>
+        <>
+        { register===0 && (<div>
+                
+                {error && <ErrorModal title={error.title} message={error.message} slika={error.slika} ugasiProzor={errorHandler} />}
 
-                <label htmlFor="username">Username</label>
-                <input
-                    id="username"
-                    type="text"
-                    value={user}
-                    onChange={userHandler}
-                />
-                <label htmlFor="pwd"> Password</label>
-                <input
-                    id="password"
-                    type="password"
-                    value={pwd}
-                    onChange={passwordHandler}
-                />
-                <button type="submit"> Login</button>
-            </form>
+                <form className="login-form" onSubmit={handlerSubmit}>
+                    <img className="index" src={Slika}></img>
+                    <h1>Welcome to E-index</h1>
+                    <h2>Login</h2>
 
-        </div>
+                    <label htmlFor="username">Username</label>
+                    <input
+                        id="username"
+                        type="text"
+                        value={user}
+                        onChange={userHandler}
+                    />
+                    <label htmlFor="pwd"> Password</label>
+                    <input
+                        id="password"
+                        type="password"
+                        value={pwd}
+                        onChange={passwordHandler}
+                    />
+                    <button type="submit"> Login</button>
+
+                        <label  id="register"  onClick={registerHandler}> Register now </label>
+
+
+
+
+                </form>
+
+            
+            </div>) }
+            {
+                register===1 &&   ( <Register> </Register> )    
+            }
+        
+            </>
     );
 }
 
