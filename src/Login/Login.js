@@ -6,6 +6,7 @@ import './Login.css';
 import Failure from "../images/cancel.png";
 import Succes1 from "../images/check.png";
 
+
 import axios from '../api/axios';
 
 const LOGIN_URL = '/auth';
@@ -20,7 +21,7 @@ const Login = () => {
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
-    const [error,setError] =useState();
+    const [error, setError] = useState();
 
     /*const dugmeHandler = () => {
         async function fetchData() {
@@ -36,111 +37,106 @@ const Login = () => {
     }*/
 
 
-    const userHandler=(event)=>
-    {
+    const userHandler = (event) => {
         setUser(event.target.value);
     }
-    const passwordHandler=(event)=>
-    {
+    const passwordHandler = (event) => {
         setPwd(event.target.value);
 
     }
 
-    const errorHandler = ()=>
-    {
+    const errorHandler = () => {
         setError(null);
     }
 
-  
 
-    const handlerSubmit =  async (e) => {
+
+    const handlerSubmit = async (e) => {
         e.preventDefault();
 
-        if(user.trim().length===0 && pwd.trim().length===0 )
-        {
+        if (user.trim().length === 0 && pwd.trim().length === 0) {
             setError(
                 {
                     title: 'Invalid input',
                     message: 'Please enter a valid username and password ',
-                    slika : Failure
+                    slika: Failure
                 }
             )
         }
-        if(user.trim().length!=0 && pwd.trim().length===0)
-        {
+        if (user.trim().length != 0 && pwd.trim().length === 0) {
             setError(
                 {
                     title: 'Invalid input',
                     message: 'Please enter a password',
-                    slika : Failure
+                    slika: Failure
                 }
             )
         }
-        if(user.trim().length===0 && pwd.trim().length!=0)
-        {
+        if (user.trim().length === 0 && pwd.trim().length != 0) {
             setError(
                 {
                     title: 'Invalid input',
                     message: 'Please enter a Username',
-                    slika : Failure
+                    slika: Failure
                 }
             )
         }
-        if(user.trim().length!=0 && pwd.trim().length!=0)
-        {
-            
-           
+        if (user.trim().length != 0 && pwd.trim().length != 0) {
+
+
 
             try {
-                const response = await axios.get( `/student/loginStudent/${user}/${pwd}`);
-                if(response.status===200){
+                const response = await axios.get(`/student/loginStudent/${user}/${pwd}`);
+                const { id, ime, prezime, brojIndeksa, prosek, username, password } = response.data;
+                console.log(ime);
+
+                if (response.status === 200) {
                     console.log(response.data);
                     setError(
                         {
                             title: 'Uspesno ste prijavili ',
                             message: '',
-                            slika : Succes1
+                            slika: Succes1
                         }
                     )
                 }
-                
+
             }
             catch (err) {
-                if(err.response && err.response.status===500)
-                {
+                if (err.response && err.response.status === 500) {
                     setError(
                         {
                             title: 'Invalid input',
                             message: 'Please enter valid  Username or password',
-                            slika : Failure
+                            slika: Failure
                         }
                     )
                     console.log("muda");
-                }else{
-                console.error(err);
+                } else {
+                    console.error(err);
                 }
             }
 
 
-            const userName=user;
-            const pass= pwd;
-            
+            const userName = user;
+            const pass = pwd;
+
             console.log(userName, pass);
             setUser('');
             setPwd('');
         }
 
-        
+
     }
 
     return (
         <div>
-        { error && <ErrorModal   title={error.title} message={error.message} slika={error.slika}  ugasiProzor={errorHandler}/> }
-       
+            {error && <ErrorModal title={error.title} message={error.message} slika={error.slika} ugasiProzor={errorHandler} />}
+
             <form className="login-form" onSubmit={handlerSubmit}>
-                    <img className="index" src={Slika}></img>
-                    <h1>Welcome to E-index</h1>
-                    <h2>Login</h2>
+                <img className="index" src={Slika}></img>
+                <h1>Welcome to E-index</h1>
+                <h2>Login</h2>
 
                 <label htmlFor="username">Username</label>
                 <input
@@ -158,7 +154,7 @@ const Login = () => {
                 />
                 <button type="submit"> Login</button>
             </form>
-        
+
         </div>
     );
 }
