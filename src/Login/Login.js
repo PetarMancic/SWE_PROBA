@@ -22,7 +22,7 @@ const Login = () => {
 
     const [error,setError] =useState();
 
-    const dugmeHandler = () => {
+    /*const dugmeHandler = () => {
         async function fetchData() {
             try {
                 const response = await axios.get('https://localhost:3000/student/loginStudent/mihajlomadic@gmail.com/mixa');
@@ -33,7 +33,7 @@ const Login = () => {
             }
 
         }
-    }
+    }*/
 
 
     const userHandler=(event)=>
@@ -89,21 +89,36 @@ const Login = () => {
         if(user.trim().length!=0 && pwd.trim().length!=0)
         {
             
-            setError(
-                {
-                    title: 'Uspesno ste prijavili ',
-                    message: '',
-                    slika : Succes1
-                }
-            )
+           
 
             try {
                 const response = await axios.get( `/student/loginStudent/${user}/${pwd}`);
-               // response.data;
-                console.log(response.data);
+                if(response.status===200){
+                    console.log(response.data);
+                    setError(
+                        {
+                            title: 'Uspesno ste prijavili ',
+                            message: '',
+                            slika : Succes1
+                        }
+                    )
+                }
+                
             }
             catch (err) {
+                if(err.response && err.response.status===500)
+                {
+                    setError(
+                        {
+                            title: 'Invalid input',
+                            message: 'Please enter valid  Username or password',
+                            slika : Failure
+                        }
+                    )
+                    console.log("muda");
+                }else{
                 console.error(err);
+                }
             }
 
 
