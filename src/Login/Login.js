@@ -15,6 +15,8 @@ const Login = () => {
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
+    const [error,setError] =useState();
+
     const dugmeHandler = () => {
         async function fetchData() {
             try {
@@ -39,6 +41,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if(user.trim.length===0 && pwd.trim.length===0 )
         try {
             const response = await axios.post(LOGIN_URL,
                 JSON.stringify({ user, pwd }),
