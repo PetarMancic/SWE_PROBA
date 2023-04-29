@@ -1,8 +1,13 @@
 import { useRef, useState, useEffect, useContext } from 'react';
 import AuthContext from "../context/AuthProvider";
 import Slika from "../images/index1.png";
+import ErrorModal from '../Error/ErrorModal';
+import './Login.css';
+import Failure from "../images/cancel.png";
+import Succes1 from "../images/check.png";
 
 import axios from '../api/axios';
+
 const LOGIN_URL = '/auth';
 
 const Login = () => {
@@ -30,92 +35,112 @@ const Login = () => {
         }
     }
 
-    useEffect(() => {
+
+    const userHandler=(event)=>
+    {
+        setUser(event.target.value);
+    }
+    const passwordHandler=(event)=>
+    {
+        setPwd(event.target.value);
+    }
+
+    const errorHandler = ()=>
+    {
+        setError(null);
+    }
+
+   /* useEffect(() => {
         userRef.current.focus();
     }, [])
 
     useEffect(() => {
         setErrMsg('');
     }, [user, pwd])
+    */
 
-    const handleSubmit = async (e) => {
+    const handlerSubmit =  (e) => {
         e.preventDefault();
 
-        if(user.trim.length===0 && pwd.trim.length===0 )
-        try {
-            const response = await axios.post(LOGIN_URL,
-                JSON.stringify({ user, pwd }),
+        if(user.trim().length===0 && pwd.trim().length===0 )
+        {
+            setError(
                 {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
+                    title: 'Invalid input',
+                    message: 'Please enter a valid username and password ',
+                    slika : Failure
                 }
-            );
-            console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
-            const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.roles;
-            setAuth({ user, pwd, roles, accessToken });
+            )
+        }
+        if(user.trim().length!=0 && pwd.trim().length===0)
+        {
+            setError(
+                {
+                    title: 'Invalid input',
+                    message: 'Please enter a password',
+                    slika : Failure
+                }
+            )
+        }
+        if(user.trim().length===0 && pwd.trim().length!=0)
+        {
+            setError(
+                {
+                    title: 'Invalid input',
+                    message: 'Please enter a Username',
+                    slika : Failure
+                }
+            )
+        }
+        if(user.trim().length!=0 && pwd.trim().length!=0)
+        {
+            
+            setError(
+                {
+                    title: 'Uspesno ste prijavili ',
+                    message: '',
+                    slika : Succes1
+                }
+            )
+            const userName=user;
+            const pass= pwd;
+            
+            console.log(userName, pass);
             setUser('');
             setPwd('');
-            setSuccess(true);
-        } catch (err) {
-            if (!err?.response) {
-                setErrMsg('No Server Response');
-            } else if (err.response?.status === 400) {
-                setErrMsg('Missing Username or Password');
-            } else if (err.response?.status === 401) {
-                setErrMsg('Unauthorized');
-            } else {
-                setErrMsg('Login Failed');
-            }
-            errRef.current.focus();
         }
+
+        
     }
 
     return (
-        <>
-            {success ? (
-                <section>
-                    <h1>You are logged in!</h1>
-                    <br />
-                    <p>
-                        <a href="#">Go to Home</a>
-                    </p>
-                </section>
-            ) : (
-                <section>
-                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+        <div>
+        { error && <ErrorModal   title={error.title} message={error.message} slika={error.slika}  ugasiProzor={errorHandler}/> }
+       
+            <form className="login-form" onSubmit={handlerSubmit}>
                     <img className="index" src={Slika}></img>
                     <h1>Welcome to E-index</h1>
-                    <h2>Sign In</h2>
-                    <form onSubmit={handleSubmit}>
-                        <label htmlFor="username">Username:</label>
-                        <input
-                            type="text"
-                            id="username"
-                            ref={userRef}
-                            autoComplete="off"
-                            onChange={(e) => setUser(e.target.value)}
-                            value={user}
-                            required
-                        />
+                    <h2>Login</h2>
 
-                        <label htmlFor="password">Password:</label>
-                        <input
-                            type="password"
-                            id="password"
-                            onChange={(e) => setPwd(e.target.value)}
-                            value={pwd}
-                            required
-                        />
-                        <button onClick={dugmeHandler}>Sign In</button>
-
-                    </form>
-
-                </section>
-            )}
-        </>
-    )
+                <label htmlFor="username">Username</label>
+                <input
+                    id="username"
+                    type="text"
+                    value={user}
+                    onChange={userHandler}
+                />
+                <label htmlFor="pwd"> Password</label>
+                <input
+                    id="password"
+                    type="password"
+                    value={pwd}
+                    onChange={passwordHandler}
+                />
+                <button type="submit"> Login</button>
+            </form>
+        
+        </div>
+    );
 }
 
 export default Login

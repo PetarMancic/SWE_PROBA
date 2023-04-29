@@ -1,0 +1,27 @@
+.login-form {
+    background-color: rgba(0, 0, 0, 0.4); /* transparentna crna pozadina */
+    color: white; /* bela boja slova */
+    padding: 20px;
+  }
+  
+  /* stil za input polja i dugme */
+  .login-form input,
+  .login-form button {
+    background-color: white; /* bela pozadina */
+    color: black; /* crna boja slova */
+    padding: 5px;
+    border: none;
+    margin-right: 10px;
+  }
+  
+  /* stil za dugme za prijavu */
+  .login-form button {
+    background-color: white; /* plava pozadina */
+    color: rgb(37, 33, 33); /* bela boja slova */
+    cursor: pointer;
+  }
+  
+  .login-form button:hover {
+    background-color: rgb(37, 33, 33);
+    color: white;
+  }
