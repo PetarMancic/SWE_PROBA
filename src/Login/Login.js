@@ -15,6 +15,19 @@ const Login = () => {
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
+    const dugmeHandler = () => {
+        async function fetchData() {
+            try {
+                const response = await axios.get('https://localhost:3000/student/loginStudent/mihajlomadic@gmail.com/mixa');
+                console.log(response.data);
+            }
+            catch (err) {
+                console.error(err);
+            }
+
+        }
+    }
+
     useEffect(() => {
         userRef.current.focus();
     }, [])
@@ -92,7 +105,7 @@ const Login = () => {
                             value={pwd}
                             required
                         />
-                        <button>Sign In</button>
+                        <button onClick={dugmeHandler}>Sign In</button>
 
                     </form>
 
