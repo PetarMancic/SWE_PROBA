@@ -43,6 +43,7 @@ const Login = () => {
     const passwordHandler=(event)=>
     {
         setPwd(event.target.value);
+
     }
 
     const errorHandler = ()=>
@@ -50,16 +51,9 @@ const Login = () => {
         setError(null);
     }
 
-   /* useEffect(() => {
-        userRef.current.focus();
-    }, [])
+  
 
-    useEffect(() => {
-        setErrMsg('');
-    }, [user, pwd])
-    */
-
-    const handlerSubmit =  (e) => {
+    const handlerSubmit =  async (e) => {
         e.preventDefault();
 
         if(user.trim().length===0 && pwd.trim().length===0 )
@@ -102,6 +96,17 @@ const Login = () => {
                     slika : Succes1
                 }
             )
+
+            try {
+                const response = await axios.get( `/student/loginStudent/${user}/${pwd}`);
+               // response.data;
+                console.log(response.data);
+            }
+            catch (err) {
+                console.error(err);
+            }
+
+
             const userName=user;
             const pass= pwd;
             
