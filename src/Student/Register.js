@@ -80,7 +80,9 @@ axios.post('/student', JSON.stringify(data), config)
                 {
                     console.log(error);
                 })
-            */
+        
+       
+         */  
     }
 
 
