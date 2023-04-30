@@ -39,30 +39,37 @@ const Register = (props) => {
 
     const clickHandler= (e)=>
     {
-
-        e.preventDefault();
-        console.log( 
-            `${ime}
-            ${prezime} 
-            ${brojIndeksa}
-            ${user} 
-            ${pass} 
-           
-           `
-
-        );
-
-       /* axios.post ('/student',
+        const data={
+            ime: ime.toString(),
+            prezime: prezime.toString(),
+            brojIndexa: parseInt(brojIndeksa),
+            prosek: 7,
+            username: user.toString(),
+            password: pass.toString()
+        }
+        const config = {
+            headers: {
+               'Content-Type': 'application/json'
+            }
+         };
+         
+axios.post('/student', JSON.stringify(data), config)
+.then(response => console.log(response))
+.catch(error => console.log(error));
+       /*axios.post ('/student',
         {
-            ime:`${ime}`,
-            prezime:`${prezime}`,
-            brojIndeksa:`${brojIndeksa}`,
-            prosek: 10,
-            username:`${user}`,
-            password:`${pass}`
-
-            //dq23sdas
-            
+            "ime":ime.toString(),
+            "prezime":prezime.toString(),
+            "brojIndexa":parseInt(brojIndeksa),
+            "prosek": 7,
+            "username":user.toString(),
+            "password":pass.toString()
+            /*"ime":"Vladan",
+            "prezime":"Vasic",
+            "brojIndexa":1290,
+            "prosek":10,
+            "username":"vladanvasic@gmail.com",
+            "password":"vaske"
             
         })
         .then(response=>
