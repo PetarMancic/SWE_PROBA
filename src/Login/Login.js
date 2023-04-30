@@ -26,6 +26,8 @@ const Login = () => {
     const [error, setError] = useState();
     const [register, setRegister] = useState(0);
 
+    const [token,setToken]=useState('');
+
     /*const dugmeHandler = () => {
         async function fetchData() {
             try {
@@ -97,6 +99,9 @@ const Login = () => {
                 const response = await axios.get(`/student/loginStudent/${user}/${pwd}`);
                 const { id, ime, prezime, brojIndeksa, prosek, username, password } = response.data;
                 console.log(ime);
+
+                const token=response.data.token;
+                setToken(token);
 
                 if (response.status === 200) {
                     console.log(response.data);

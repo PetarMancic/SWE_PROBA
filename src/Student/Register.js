@@ -1,64 +1,118 @@
 import React,{useState} from "react";
 import Slika from "../images/index1.png";
 import './Register.css';
+import axios from "../api/axios";
+
+
+
 
 
 const Register = (props) => {
+
+    const [ime,setIme]=useState('');
+    const [prezime,setprezime]=useState('');
+    const [brojIndeksa,setbrojIndeksa]=useState(1);
+    const [user,setuser]=useState('');
+    const [pass,setpass]=useState('');
+
+
+    const imeHandler=(event)=>
+    {
+        setIme(event.target.value);
+    }
+    const prezimeHandler=(event)=>
+    {
+        setprezime(event.target.value);
+    }
+    const brojIndeksaHandler=(event)=>
+    {
+        setbrojIndeksa(event.target.value);
+    }
+    const userHandler=(event)=>
+    {
+        setuser(event.target.value);
+    }
+    const passHandler=(event)=>
+    {
+        setpass(event.target.value);
+    }
+
+    const clickHandler= ()=>
+    {
+        axios.post ('/student',
+        {
+            ime:`${ime}`,
+            prezime:`${prezime}`,
+            brojIndeksa:`${brojIndeksa}`,
+            prosek: 10,
+            username:`${user}`,
+            password:`${pass}`
+            
+        })
+        .then(response=>
+            {
+                console.log(response);
+            })
+            .catch(error=>
+                {
+                    console.log(error);
+                })
+            
+    }
+
+
     return (
         <form className="login-form" >
         <img className="index" src={Slika}></img>
         <h1>Register to E-index</h1>
         <h2>Please enter your data</h2>
 
-        <label htmlFor="index">Index</label>
+        <label htmlFor="ime">IME</label>
         <input
-            id="index"
-            type="number"
-        
+            id="ime"
+            type="text"
+            onChange={imeHandler}
             className="inpuT"
             
           
         />
-        <label htmlFor="jmbg"> JMBG</label>
+        <label htmlFor="prezime"> PREZIME</label>
         <input
-            id="jmbg"
-            type="number"
+            id="prezime"
+            type="text"
+            onChange={prezimeHandler}
             className="inpuT"
+        />
+
+        <label htmlFor="brojIndeksa">BROJ INDEKSA</label>
+        <input
+            id="alternative"
+            type="number"
+            onChange={brojIndeksaHandler}
+            className="inpuT"
+           
         />
         <label htmlFor="username"> Username</label>
         <input
             id="username"
-            type="text"
-            className="inpuT"
-           
-        />
-        <label htmlFor="alternative"> Alternative E-mail</label>
-        <input
-            id="alternative"
             type="email"
+            onChange={userHandler}
             className="inpuT"
            
         />
+       
         <label htmlFor="pwd"> Password</label>
         <input
             id="password"
             type="password"
+            onChange={passHandler}
             className="inpuT"
            
         />
-        <label htmlFor="pwd"> Confirm your password</label>
-        <input
-            id="password"
-            type="password"
-            className="inpuT"
-           
-        />
+       
         
         
-        
-        
-
-        <button type="submit"> Register now</button>
+        <button onClick={clickHandler}> Register now</button>
 
 
 
