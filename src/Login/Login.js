@@ -168,7 +168,12 @@ const Login = () => {
                         value={pwd}
                         onChange={passwordHandler}
                     />
-                    <button type="submit"> Login</button>
+<div>
+                <button type="submit" class="btn btn-primary btn-lg">Login as student</button>
+                <button type="button" class="btn btn-secondary btn-lg">Login as professor</button>
+ </div>
+
+                  
 
                         <label  id="register"  onClick={registerHandler}> Register now </label>
 
@@ -187,4 +192,5 @@ const Login = () => {
     );
 }
 
+//<button type="submit"> Login</button>
 export default Login

@@ -37,9 +37,22 @@ const Register = (props) => {
         setpass(event.target.value);
     }
 
-    const clickHandler= ()=>
+    const clickHandler= (e)=>
     {
-        axios.post ('/student',
+
+        e.preventDefault();
+        console.log( 
+            `${ime}
+            ${prezime} 
+            ${brojIndeksa}
+            ${user} 
+            ${pass} 
+           
+           `
+
+        );
+
+       /* axios.post ('/student',
         {
             ime:`${ime}`,
             prezime:`${prezime}`,
@@ -47,6 +60,9 @@ const Register = (props) => {
             prosek: 10,
             username:`${user}`,
             password:`${pass}`
+
+            //dq23sdas
+            
             
         })
         .then(response=>
@@ -57,7 +73,7 @@ const Register = (props) => {
                 {
                     console.log(error);
                 })
-            
+            */
     }
 
 
