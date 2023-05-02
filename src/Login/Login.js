@@ -10,7 +10,8 @@ import Register from '../Student/Register';
 import Home from '../Student/Home';
 
 import axios from '../api/axios';
-import Navbar from '../UI/Navbar/Navbar';
+import NavbarStudent from '../UI/Navbar/NavbarStudent';
+import NavbarProfesor from '../UI/Navbar/NavbarProfesor';
 import HomeP from '../Profesor/HomeP';
 //Komentar
 const LOGIN_URL = '/auth';
@@ -363,7 +364,7 @@ const Login = () => {
                 register===0 && login===1 && (
                 <>
                 <Home />
-                <Navbar/>
+                <NavbarStudent/>
                 </>
                 )
             }
@@ -371,7 +372,7 @@ const Login = () => {
                 register===0 && login===2 && (
                     <>
                     <HomeP />
-                    <Navbar />
+                    <NavbarProfesor />
                     </>
                 )
             }
