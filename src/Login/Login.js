@@ -61,12 +61,171 @@ const Login = () => {
         setRegister(1);
     }
     const [login,setLogin]=useState(0);
-    const studentHandler=()=>{
-        setLogin(1);
+
+    const studentHandler= async (e)=>{
+        
+
+        e.preventDefault();
+
+        if (user.trim().length === 0 && pwd.trim().length === 0) {
+            setError(
+                {
+                    title: 'Invalid input',
+                    message: 'Please enter a valid username and password ',
+                    slika: Failure
+                }
+            )
+        }
+        if (user.trim().length != 0 && pwd.trim().length === 0) {
+            setError(
+                {
+                    title: 'Invalid input',
+                    message: 'Please enter a password',
+                    slika: Failure
+                }
+            )
+        }
+        if (user.trim().length === 0 && pwd.trim().length != 0) {
+            setError(
+                {
+                    title: 'Invalid input',
+                    message: 'Please enter a Username',
+                    slika: Failure
+                }
+            )
+        }
+        if (user.trim().length != 0 && pwd.trim().length != 0) {
+
+
+
+            try {
+                const response = await axios.get(`/student/loginStudent/${user}/${pwd}`);
+                const { id, ime, prezime, brojIndeksa, prosek, username, password } = response.data;
+                console.log(ime);
+
+                const token=response.data.token;
+                setToken(token);
+
+                if (response.status === 200) {
+                    setLogin(1);
+                    console.log(response.data);
+                    setError(
+                        {
+                            title: 'Uspesno ste prijavili ',
+                            message: '',
+                            slika: Succes1
+                        }
+                    )
+                }
+
+            }
+            catch (err) {
+                if (err.response && err.response.status === 500) {
+                    setError(
+                        {
+                            title: 'Invalid input',
+                            message: 'Please enter valid  Username or password',
+                            slika: Failure
+                        }
+                    )
+
+                } else {
+                    console.error(err);
+                }
+            }
+
+
+            const userName = user;
+            const pass = pwd;
+
+            console.log(userName, pass);
+            setUser('');
+            setPwd('');
+        }
+
 
     }
-    const profesorHandler=()=>{
-        setLogin(2);
+    const profesorHandler= async (e)=>{
+        e.preventDefault();
+
+        if (user.trim().length === 0 && pwd.trim().length === 0) {
+            setError(
+                {
+                    title: 'Invalid input',
+                    message: 'Please enter a valid username and password ',
+                    slika: Failure
+                }
+            )
+        }
+        if (user.trim().length != 0 && pwd.trim().length === 0) {
+            setError(
+                {
+                    title: 'Invalid input',
+                    message: 'Please enter a password',
+                    slika: Failure
+                }
+            )
+        }
+        if (user.trim().length === 0 && pwd.trim().length != 0) {
+            setError(
+                {
+                    title: 'Invalid input',
+                    message: 'Please enter a Username',
+                    slika: Failure
+                }
+            )
+        }
+        if (user.trim().length != 0 && pwd.trim().length != 0) {
+
+
+
+            try {
+                const response = await axios.get(`/profesor/loginProfesor/${user}/${pwd}`);
+                const { id, ime, prezime, brojIndeksa, prosek, username, password } = response.data;
+                console.log(ime);
+
+                const token=response.data.token;
+                setToken(token);
+
+                if (response.status === 200) {
+                    setLogin(2);
+                    console.log(response.data);
+                    setError(
+                        {
+                            title: 'Uspesno ste prijavili ',
+                            message: '',
+                            slika: Succes1
+                        }
+                    )
+                }
+
+            }
+            catch (err) {
+                if (err.response && err.response.status === 500) {
+                    setError(
+                        {
+                            title: 'Invalid input',
+                            message: 'Please enter valid  Username or password',
+                            slika: Failure
+                        }
+                    )
+
+                } else {
+                    console.error(err);
+                }
+            }
+
+
+            const userName = user;
+            const pass = pwd;
+
+            console.log(userName, pass);
+            setUser('');
+            setPwd('');
+        }
+
+
+       
     }
 
 
