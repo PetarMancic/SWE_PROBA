@@ -15,6 +15,14 @@ const RegisterStudent = (props) => {
     const [user, setuser] = useState('');
     const [pass, setpass] = useState('');
 
+    let imeinput,prezimeinput,brojIndeksainput,usernameinput,passwordinput;
+    imeinput=false;
+    prezimeinput=false;
+    brojIndeksainput=false;
+    usernameinput=false;
+    passwordinput=false;
+
+
 
     const imeHandler = (event) => {
         setIme(event.target.value);
@@ -34,6 +42,17 @@ const RegisterStudent = (props) => {
 
     const clickHandler = (e) => {
         e.preventDefault();
+
+        console.log(imeinput);
+
+       if( ime.trim().length===0)
+        {
+            imeinput=true;
+            
+        }
+        console.log(imeinput);
+
+        
 
         const obj = {
             ime: ime,
@@ -72,6 +91,12 @@ const RegisterStudent = (props) => {
 
             <label htmlFor="ime">IME</label>
             <input
+            style=
+            {
+                {
+                    background:  imeinput? 'red': 'blue'
+                }
+            }
                 id="ime"
                 type="text"
                 onChange={imeHandler}

@@ -30,8 +30,11 @@ const Login = () => {
 
     const [error, setError] = useState();
     const [register, setRegister] = useState(0);
+
+
     const goBack=(value)=>{
-        setRegister(value);
+        setRegister(value);  // metoda koja nam sluzi da promeni vrednost za register promenljivu
+        // ukoliko je register ===0 koja se postavlja u  RegisterStudent, onda ce da se vrati na pocetnu 
     }
 
     const [token,setToken]=useState('');
