@@ -14,10 +14,14 @@ const RegisterStudent = (props) => {
     const [brojIndeksa, setbrojIndeksa] = useState(1);
     const [user, setuser] = useState('');
     const [pass, setpass] = useState('');
-
+    
+    const [valid,setValid]=useState(true);
 
     const imeHandler = (event) => {
         setIme(event.target.value);
+        if(ime.trim().length>0){
+        setValid(true);
+        }
     }
     const prezimeHandler = (event) => {
         setprezime(event.target.value);
@@ -35,6 +39,31 @@ const RegisterStudent = (props) => {
     const clickHandler = (e) => {
         e.preventDefault();
 
+        if(ime.trim().length===0){
+            setValid(false);
+            console.log(`${valid}`);
+            return;
+         }
+        // if(prezime.trim().length===0){
+        //     valid[1]=false;
+        //     return;
+        // }
+        // if(brojIndeksa.trim().length===0){
+        //     valid[2]=false;
+        //     return;
+        // }
+        // if(prosek.trim().length===0){
+        //     valid[3]=false;
+        //     return;
+        // }
+        // if(user.trim().length===0){
+        //     valid[3]=false;
+        //     return;
+        // }
+        // if(pass.trim().length===0){
+        //     valid[4]=false;
+        //     return;
+        // }
         const obj = {
             ime: ime,
             prezime: prezime,
@@ -75,7 +104,8 @@ const RegisterStudent = (props) => {
                 id="ime"
                 type="text"
                 onChange={imeHandler}
-                className="inpuT"
+                className={`inpuT ${!valid ? 'pozadina' : ''}`}
+                
 
 
             />
