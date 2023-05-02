@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Slika from "../images/index1.png";
 import './Register.css';
 import axios from "../api/axios";
-
+import Login from "../Login/Login";
 
 
 
@@ -59,6 +59,9 @@ const Register = (props) => {
             })
 
     }
+    const Nazad=()=>{
+        props.onNazad(0);
+    }
 
 
     return (
@@ -113,6 +116,7 @@ const Register = (props) => {
 
 
             <button onClick={clickHandler}> Register now</button>
+            <label onClick={Nazad}>Exit</label>
 
 
 

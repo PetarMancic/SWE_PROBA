@@ -27,6 +27,9 @@ const Login = () => {
 
     const [error, setError] = useState();
     const [register, setRegister] = useState(0);
+    const goBack=(value)=>{
+        setRegister(value);
+    }
 
     const [token,setToken]=useState('');
 
@@ -310,6 +313,7 @@ const Login = () => {
        
     }
 
+
     return (
 
         <>
@@ -353,7 +357,7 @@ const Login = () => {
             
             </div>) }
             {
-                register===1 &&   ( <Register> </Register> )    
+                register===1 &&   ( <Register onNazad={goBack}> </Register> )    
             }
             {
                 register===0 && login===1 && (
