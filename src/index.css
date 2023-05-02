@@ -16,7 +16,7 @@ body {
   min-height: 100vh;
   background: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%);
 
-  background-image: url("./images/backgrnd.jpg");
+  background-image: url("./images/background2.jpg");
 }
 
 .App {

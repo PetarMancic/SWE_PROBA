@@ -116,7 +116,7 @@ const Register = (props) => {
 
 
             <button onClick={clickHandler}> Register now</button>
-            <label onClick={Nazad}>Exit</label>
+            <label id="goBackLabel" onClick={Nazad}>GO BACK</label>
 
 
 

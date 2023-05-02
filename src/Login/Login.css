@@ -24,9 +24,11 @@
 .login-form button:hover {
   background-color: rgb(37, 33, 33);
   color: white;
+  
 }
 
 #register:hover {
   text-decoration: underline;
-  color: rgb(37, 33, 33);
+  
+  font-size : 120%;
 }
