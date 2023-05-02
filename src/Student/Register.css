@@ -39,3 +39,8 @@
 .inpuT.pozadina{
   background-color: red;
 }
+
+.border
+{
+  border-radius: 10px;
+}

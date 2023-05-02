@@ -14,76 +14,88 @@ const RegisterStudent = (props) => {
     const [brojIndeksa, setbrojIndeksa] = useState(1);
     const [user, setuser] = useState('');
     const [pass, setpass] = useState('');
-    
-    const [valid,setValid]=useState(true);
 
-    let imeinput,prezimeinput,brojIndeksainput,usernameinput,passwordinput;
-    imeinput=false;
-    prezimeinput=false;
-    brojIndeksainput=false;
-    usernameinput=false;
-    passwordinput=false;
+    const [imeInput, setImeInput] = useState(true);
+    const [prezimeInput, setprezimeInput] = useState(true);
+    const [brojIndeksaInput, setbrojIndeksaInput] = useState(true);
+    const [userInput, setuserInput] = useState(true);
+    const [passInput, setpassInput] = useState(true);
 
 
 
     const imeHandler = (event) => {
         setIme(event.target.value);
-        if(ime.trim().length>0){
-        setValid(true);
+
+        if (ime.trim().length >= 0) {
+            setImeInput(true);
         }
     }
+
     const prezimeHandler = (event) => {
         setprezime(event.target.value);
+
+        console.log(prezime.trim().length);
+        if (prezime.trim().length >= 0) {
+            setprezimeInput(true);
+        }
     }
     const brojIndeksaHandler = (event) => {
         setbrojIndeksa(event.target.value);
+
+        if (brojIndeksa.length >= 0) {
+            setbrojIndeksaInput(true);
+        }
+
     }
     const userHandler = (event) => {
         setuser(event.target.value);
+
+        if (prezime.trim().length >= 0) {
+            setuserInput(true);
+        }
     }
     const passHandler = (event) => {
         setpass(event.target.value);
+
+        if (pass.trim().length >= 0) {
+            setpassInput(true);
+        }
     }
 
     const clickHandler = (e) => {
         e.preventDefault();
 
-        console.log(imeinput);
+        if (ime.trim().length === 0) {
+            setImeInput(false);
 
-       if( ime.trim().length===0)
-        {
-            imeinput=true;
-            
+
         }
-        console.log(imeinput);
 
-        
+        if (prezime.trim().length === 0) {
+            setprezimeInput(false);
 
-        if(ime.trim().length===0){
-            setValid(false);
-            console.log(`${valid}`);
-            return;
-         }
-        // if(prezime.trim().length===0){
-        //     valid[1]=false;
-        //     return;
-        // }
-        // if(brojIndeksa.trim().length===0){
-        //     valid[2]=false;
-        //     return;
-        // }
-        // if(prosek.trim().length===0){
-        //     valid[3]=false;
-        //     return;
-        // }
-        // if(user.trim().length===0){
-        //     valid[3]=false;
-        //     return;
-        // }
-        // if(pass.trim().length===0){
-        //     valid[4]=false;
-        //     return;
-        // }
+
+        }
+
+        let brojInd = document.getElementById("alternative");
+        if (brojInd.value.toString().length === 0) {
+            setbrojIndeksaInput(false)
+
+
+        }
+
+        if (user.trim().length === 0) {
+            setuserInput(false);
+
+
+        }
+
+        if (pass.trim().length === 0) {
+            setpassInput(false);
+
+
+        }
+
         const obj = {
             ime: ime,
             prezime: prezime,
@@ -108,7 +120,7 @@ const RegisterStudent = (props) => {
             })
 
     }
-    const Nazad=()=>{
+    const Nazad = () => {
         props.onNazad(0);
     }
 
@@ -121,17 +133,11 @@ const RegisterStudent = (props) => {
 
             <label htmlFor="ime">IME</label>
             <input
-            style=
-            {
-                {
-                    background:  imeinput? 'red': 'blue'
-                }
-            }
                 id="ime"
                 type="text"
                 onChange={imeHandler}
-                className={`inpuT ${!valid ? 'pozadina' : ''}`}
-                
+                className={`inpuT ${!imeInput ? 'pozadina' : ''}`}
+
 
 
             />
@@ -140,7 +146,7 @@ const RegisterStudent = (props) => {
                 id="prezime"
                 type="text"
                 onChange={prezimeHandler}
-                className="inpuT"
+                className={`inpuT ${!prezimeInput ? 'pozadina' : ''}`}
             />
 
             <label htmlFor="brojIndeksa">BROJ INDEKSA</label>
@@ -148,15 +154,16 @@ const RegisterStudent = (props) => {
                 id="alternative"
                 type="number"
                 onChange={brojIndeksaHandler}
-                className="inpuT"
+                className={`inpuT ${!brojIndeksaInput ? 'pozadina' : ''}`}
 
             />
             <label htmlFor="username"> Username</label>
             <input
                 id="username"
+                
                 type="email"
                 onChange={userHandler}
-                className="inpuT"
+                className={` border inpuT ${!userInput ? 'pozadina' : ''}`}
 
             />
 
@@ -165,7 +172,7 @@ const RegisterStudent = (props) => {
                 id="password"
                 type="password"
                 onChange={passHandler}
-                className="inpuT"
+                className={`inpuT ${!passInput ? 'pozadina' : ''}`}
 
             />
 

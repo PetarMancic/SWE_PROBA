@@ -3,6 +3,7 @@ import Slika from "../images/index1.png";
 import '../Student/Register.css';
 import axios from "../api/axios";
 import Login from "../Login/Login";
+import './Profesor.css';
 
 
 
@@ -16,24 +17,86 @@ const RegisterProfesor = (props) => {
     const [pass, setpass] = useState('');
 
 
+    const [imeInput, setImeInput] = useState(true);
+    const [prezimeInput, setprezimeInput] = useState(true);
+    const [idBrojKartice, setidBrojKartice] = useState(true);
+    const [userInput, setuserInput] = useState(true);
+    const [passInput, setpassInput] = useState(true);
+
+
+
+
     const imeHandler = (event) => {
         setIme(event.target.value);
+
+        if (ime.trim().length >= 0) {
+            setImeInput(true);
+        }
+
     }
     const prezimeHandler = (event) => {
         setprezime(event.target.value);
+
+        if (prezime.trim().length >= 0) {
+            setprezimeInput(true);
+        }
     }
-    const brojIndeksaHandler = (event) => {
+    const brojIndeksaHandler = (event) => { // ovo je za id kartice
         setbrojIndeksa(event.target.value);
+
+        if (brojIndeksa.length >= 0) {
+            setidBrojKartice(true);
+        }
     }
     const userHandler = (event) => {
         setuser(event.target.value);
+
+        if (prezime.trim().length >= 0) {
+            setuserInput(true);
+        }
     }
     const passHandler = (event) => {
         setpass(event.target.value);
+
+        if (pass.trim().length >= 0) {
+            setpassInput(true);
+        }
     }
 
     const clickHandler = (e) => {
         e.preventDefault();
+
+        if (ime.trim().length === 0) {
+            setImeInput(false);
+
+
+        }
+
+        if (prezime.trim().length === 0) {
+            setprezimeInput(false);
+
+
+        }
+
+        let brojInd = document.getElementById("brojKartice");
+        if (brojInd.value.toString().length === 0) {
+            setidBrojKartice(false);
+        }
+
+
+
+
+        if (user.trim().length === 0) {
+            setuserInput(false);
+
+
+        }
+
+        if (pass.trim().length === 0) {
+            setpassInput(false);
+
+
+        }
 
         const obj = {
             ime: ime,
@@ -58,12 +121,16 @@ const RegisterProfesor = (props) => {
                 console.log(error);
             })
 
+
+
+
+
+
     }
-    const Nazad=()=>{
+
+    const Nazad = () => {
         props.onNazad(0);
     }
-
-
     return (
         <form className="login-form" >
             <img className="index" src={Slika}></img>
@@ -75,7 +142,7 @@ const RegisterProfesor = (props) => {
                 id="ime"
                 type="text"
                 onChange={imeHandler}
-                className="inpuT"
+                className={`inpuT ${!imeInput ? 'pozadina' : ''}`}
 
 
             />
@@ -84,15 +151,15 @@ const RegisterProfesor = (props) => {
                 id="prezime"
                 type="text"
                 onChange={prezimeHandler}
-                className="inpuT"
+                className={`inpuT ${!prezimeInput ? 'pozadina' : ''}`}
             />
 
             <label htmlFor="brojkartice">ID BROJA KARTICE</label>
             <input
-                id="alternative"
+                id="brojKartice"
                 type="number"
                 onChange={brojIndeksaHandler}
-                className="inpuT"
+                className={`inpuT ${!idBrojKartice ? 'pozadina' : ''}`}
 
             />
             <label htmlFor="username"> Username</label>
@@ -100,7 +167,7 @@ const RegisterProfesor = (props) => {
                 id="username"
                 type="email"
                 onChange={userHandler}
-                className="inpuT"
+                className={`inpuT ${!userInput ? 'pozadina' : ''}`}
 
             />
 
@@ -109,7 +176,7 @@ const RegisterProfesor = (props) => {
                 id="password"
                 type="password"
                 onChange={passHandler}
-                className="inpuT"
+                className={`inpuT ${!passInput ? 'pozadina' : ''}`}
 
             />
 
@@ -125,5 +192,6 @@ const RegisterProfesor = (props) => {
 
     )
 }
+
 
 export default RegisterProfesor;
