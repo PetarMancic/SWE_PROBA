@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Slika from "../images/index1.png";
-import './Register.css';
+import '../Student/Register.css';
 import axios from "../api/axios";
 import Login from "../Login/Login";
 
 
 
 
-const Register = (props) => {
+const RegisterProfesor = (props) => {
 
     const [ime, setIme] = useState('');
     const [prezime, setprezime] = useState('');
@@ -87,7 +87,7 @@ const Register = (props) => {
                 className="inpuT"
             />
 
-            <label htmlFor="brojIndeksa">BROJ INDEKSA</label>
+            <label htmlFor="brojkartice">ID BROJA KARTICE</label>
             <input
                 id="alternative"
                 type="number"
@@ -126,4 +126,4 @@ const Register = (props) => {
     )
 }
 
-export default Register;
+export default RegisterProfesor;

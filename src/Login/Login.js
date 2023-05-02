@@ -6,13 +6,15 @@ import './Login.css';
 import Failure from "../images/cancel.png";
 import Succes1 from "../images/check.png";
 import { Link } from 'react-router-dom';
-import Register from '../Student/Register';
+import Register from '../Student/RegisterStudent';
 import Home from '../Student/Home';
 
 import axios from '../api/axios';
 import NavbarStudent from '../UI/Navbar/NavbarStudent';
 import NavbarProfesor from '../UI/Navbar/NavbarProfesor';
 import HomeP from '../Profesor/HomeP';
+import RegisterStudent from '../Student/RegisterStudent';
+import RegisterProfesor from '../Profesor/RegisterProfesor';
 //Komentar
 const LOGIN_URL = '/auth';
 
@@ -60,9 +62,13 @@ const Login = () => {
         setError(null);
     }
     
-    const registerHandler= ()=>
+    const registerStudentHandler= ()=>
     {
         setRegister(1);
+    }
+    const registerProfesorHandler= ()=>
+    {
+        setRegister(2);
     }
     const [login,setLogin]=useState(0);
 
@@ -348,7 +354,8 @@ const Login = () => {
 
                   
 
-                        <label  id="register"  onClick={registerHandler}> Register now </label>
+                        <label  id="register"  onClick={registerStudentHandler}> Register as student </label>
+                        <label  id="register"  onClick={registerProfesorHandler}> Register as professor </label>
 
 
 
@@ -358,7 +365,10 @@ const Login = () => {
             
             </div>) }
             {
-                register===1 &&   ( <Register onNazad={goBack}> </Register> )    
+                register===1 &&   ( <RegisterStudent onNazad={goBack}> </RegisterStudent> )    
+            }
+             {
+                register===2 &&   ( <RegisterProfesor onNazad={goBack}> </RegisterProfesor> )    
             }
             {
                 register===0 && login===1 && (
