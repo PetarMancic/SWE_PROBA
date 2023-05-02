@@ -7,9 +7,11 @@ import Failure from "../images/cancel.png";
 import Succes1 from "../images/check.png";
 import { Link } from 'react-router-dom';
 import Register from '../Student/Register';
-
+import Home from '../Student/Home';
 
 import axios from '../api/axios';
+import Navbar from '../UI/Navbar/Navbar';
+import HomeP from '../Profesor/HomeP';
 //Komentar
 const LOGIN_URL = '/auth';
 
@@ -58,7 +60,14 @@ const Login = () => {
     {
         setRegister(1);
     }
+    const [login,setLogin]=useState(0);
+    const studentHandler=()=>{
+        setLogin(1);
 
+    }
+    const profesorHandler=()=>{
+        setLogin(2);
+    }
 
 
     const handlerSubmit = async (e) => {
@@ -145,7 +154,7 @@ const Login = () => {
     return (
 
         <>
-        { register===0 && (<div>
+        { register===0 && login===0 && (<div>
                 
                 {error && <ErrorModal title={error.title} message={error.message} slika={error.slika} ugasiProzor={errorHandler} />}
 
@@ -169,8 +178,8 @@ const Login = () => {
                         onChange={passwordHandler}
                     />
 <div>
-                <button type="submit" class="btn btn-primary btn-lg">Login as student</button>
-                <button type="button" class="btn btn-secondary btn-lg">Login as professor</button>
+                <button type="submit" class="btn btn-primary btn-lg" onClick={studentHandler}>Login as student</button>
+                <button type="button" class="btn btn-secondary btn-lg" onClick={profesorHandler}>Login as professor</button>
  </div>
 
                   
@@ -186,6 +195,22 @@ const Login = () => {
             </div>) }
             {
                 register===1 &&   ( <Register> </Register> )    
+            }
+            {
+                register===0 && login===1 && (
+                <>
+                <Home />
+                <Navbar/>
+                </>
+                )
+            }
+            {
+                register===0 && login===2 && (
+                    <>
+                    <HomeP />
+                    <Navbar />
+                    </>
+                )
             }
         
             </>
