@@ -32,12 +32,12 @@ const Login = () => {
     const [register, setRegister] = useState(0);
 
 
-    const goBack=(value)=>{
+    const goBack = (value) => {
         setRegister(value);  // metoda koja nam sluzi da promeni vrednost za register promenljivu
         // ukoliko je register ===0 koja se postavlja u  RegisterStudent, onda ce da se vrati na pocetnu 
     }
 
-    const [token,setToken]=useState('');
+    const [token, setToken] = useState('');
 
     /*const dugmeHandler = () => {
         async function fetchData() {
@@ -64,19 +64,17 @@ const Login = () => {
     const errorHandler = () => {
         setError(null);
     }
-    
-    const registerStudentHandler= ()=>
-    {
+
+    const registerStudentHandler = () => {
         setRegister(1);
     }
-    const registerProfesorHandler= ()=>
-    {
+    const registerProfesorHandler = () => {
         setRegister(2);
     }
-    const [login,setLogin]=useState(0);
+    const [login, setLogin] = useState(0);
 
-    const studentHandler= async (e)=>{
-        
+    const studentHandler = async (e) => {
+
 
         e.preventDefault();
 
@@ -116,7 +114,7 @@ const Login = () => {
                 const { id, ime, prezime, brojIndeksa, prosek, username, password } = response.data;
                 console.log(ime);
 
-                const token=response.data.token;
+                const token = response.data.token;
                 setToken(token);
 
                 if (response.status === 200) {
@@ -158,7 +156,7 @@ const Login = () => {
 
 
     }
-    const profesorHandler= async (e)=>{
+    const profesorHandler = async (e) => {
         e.preventDefault();
 
         if (user.trim().length === 0 && pwd.trim().length === 0) {
@@ -194,10 +192,10 @@ const Login = () => {
 
             try {
                 const response = await axios.get(`/profesor/loginProfesor/${user}/${pwd}`);
-                const { id, ime, prezime, brojIndeksa, prosek, username, password } = response.data;
+                const { id, ime, prezime, idBrojKartice, username, password } = response.data;
                 console.log(ime);
 
-                const token=response.data.token;
+                const token = response.data.token;
                 setToken(token);
 
                 if (response.status === 200) {
@@ -238,7 +236,7 @@ const Login = () => {
         }
 
 
-       
+
     }
 
 
@@ -281,7 +279,7 @@ const Login = () => {
                 const { id, ime, prezime, brojIndeksa, prosek, username, password } = response.data;
                 console.log(ime);
 
-                const token=response.data.token;
+                const token = response.data.token;
                 setToken(token);
 
                 if (response.status === 200) {
@@ -320,15 +318,15 @@ const Login = () => {
             setPwd('');
         }
 
-       
+
     }
 
 
     return (
 
         <>
-        { register===0 && login===0 && (<div>
-                
+            {register === 0 && login === 0 && (<div>
+
                 {error && <ErrorModal title={error.title} message={error.message} slika={error.slika} ugasiProzor={errorHandler} />}
 
                 <form className="login-form" onSubmit={handlerSubmit}>
@@ -350,47 +348,47 @@ const Login = () => {
                         value={pwd}
                         onChange={passwordHandler}
                     />
-<div>
-                <button type="submit" class="btn btn-primary btn-lg" onClick={studentHandler}>Login as student</button>
-                <button type="button" class="btn btn-secondary btn-lg" onClick={profesorHandler}>Login as professor</button>
- </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-lg" onClick={studentHandler}>Login as student</button>
+                        <button type="button" class="btn btn-secondary btn-lg" onClick={profesorHandler}>Login as professor</button>
+                    </div>
 
-                  
 
-                        <label  id="register"  onClick={registerStudentHandler}> Register as student </label>
-                        <label  id="register"  onClick={registerProfesorHandler}> Register as professor </label>
+
+                    <label id="register" onClick={registerStudentHandler}> Register as student </label>
+                    <label id="register" onClick={registerProfesorHandler}> Register as professor </label>
 
 
 
 
                 </form>
 
-            
-            </div>) }
+
+            </div>)}
             {
-                register===1 &&   ( <RegisterStudent onNazad={goBack}> </RegisterStudent> )    
-            }
-             {
-                register===2 &&   ( <RegisterProfesor onNazad={goBack}> </RegisterProfesor> )    
+                register === 1 && (<RegisterStudent onNazad={goBack}> </RegisterStudent>)
             }
             {
-                register===0 && login===1 && (
-                <>
-                <Home />
-                <NavbarStudent/>
-                </>
-                )
+                register === 2 && (<RegisterProfesor onNazad={goBack}> </RegisterProfesor>)
             }
             {
-                register===0 && login===2 && (
+                register === 0 && login === 1 && (
                     <>
-                    <HomeP />
-                    <NavbarProfesor />
+                        <Home />
+                        <NavbarStudent />
                     </>
                 )
             }
-        
-            </>
+            {
+                register === 0 && login === 2 && (
+                    <>
+                        <HomeP />
+                        <NavbarProfesor />
+                    </>
+                )
+            }
+
+        </>
     );
 }
 

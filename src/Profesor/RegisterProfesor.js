@@ -101,14 +101,13 @@ const RegisterProfesor = (props) => {
         const obj = {
             ime: ime,
             prezime: prezime,
-            brojIndexa: parseInt(brojIndeksa),
-            prosek: 7,
+            idBrojKartice: brojIndeksa,
             username: user,
             password: pass
         };
 
         console.log(JSON.stringify(obj));
-        axios.post('/student', obj, {
+        axios.post('/profesor', obj, {
             headers: {
                 "Content-Type": "application/json"
             }
