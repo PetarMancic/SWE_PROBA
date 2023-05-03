@@ -118,6 +118,7 @@ const RegisterStudent = (props) => {
 
         })
             .then(response => { // uspesno je vraceno 
+                console.log("Uspesno dodat");
                 return (
                     <div>
                       <h1> Uspesno ste upisali u bazu !</h1>
