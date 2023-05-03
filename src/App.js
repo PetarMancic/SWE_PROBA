@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Login from "./Login/Login";
 
-import Home from './Student/Home';
+
 function App() {
   return (
     <main className="App">

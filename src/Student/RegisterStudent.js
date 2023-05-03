@@ -8,6 +8,7 @@ import Slikauspeh from "../images/check.png";
 
 //import classes from '../Erorr/ErrorModal.module.css';
 import Card from '../Card';
+import UspesnaReg from "../Poruka/UspesnaReg";
 
 
 
@@ -27,6 +28,10 @@ const RegisterStudent = (props) => {
     const [passInput, setpassInput] = useState(true);
 
 
+    const [uspesnaReg,setUspesnaReg]=useState(1);
+    const ugasiHandler=()=>{
+        setUspesnaReg(0);
+    }
 
     const imeHandler = (event) => {
         setIme(event.target.value);
@@ -66,18 +71,21 @@ const RegisterStudent = (props) => {
             setpassInput(true);
         }
     }
-
+///Klik hendler
     const clickHandler = (e) => {
         e.preventDefault();
+        let zaustavi=false;
 
         if (ime.trim().length === 0) {
             setImeInput(false);
+            zaustavi=true;
 
 
         }
 
         if (prezime.trim().length === 0) {
             setprezimeInput(false);
+            zaustavi=true;
 
 
         }
@@ -85,22 +93,28 @@ const RegisterStudent = (props) => {
         let brojInd = document.getElementById("alternative");
         if (brojInd.value.toString().length === 0) {
             setbrojIndeksaInput(false)
+            zaustavi=true;
 
 
         }
 
         if (user.trim().length === 0) {
             setuserInput(false);
+            zaustavi=true;
 
 
         }
 
         if (pass.trim().length === 0) {
             setpassInput(false);
+            zaustavi=true;
 
 
         }
-
+        if(zaustavi==true)
+        {
+            return;
+        }
         const obj = {
             ime: ime,
             prezime: prezime,
@@ -109,7 +123,7 @@ const RegisterStudent = (props) => {
             username: user,
             password: pass
         };
-
+        setUspesnaReg(2);
         console.log(JSON.stringify(obj));
         axios.post('/student', obj, {
             headers: {
@@ -138,6 +152,9 @@ const RegisterStudent = (props) => {
 
 
     return (
+        <div>
+        {uspesnaReg===0&&<Login />}
+        { uspesnaReg===1 &&(
         <form className="login-form" >
             <img className="index" src={Slika}></img>
             <h1>Register to E-index</h1>
@@ -197,6 +214,9 @@ const RegisterStudent = (props) => {
 
 
         </form>
+        )}
+        {uspesnaReg===2 && (<UspesnaReg ugasiProzor={ugasiHandler}/>)}
+        </div>
 
     )
 }
