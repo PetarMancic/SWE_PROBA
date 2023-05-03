@@ -123,7 +123,7 @@ const RegisterStudent = (props) => {
             username: user,
             password: pass
         };
-        setUspesnaReg(2);
+        
         console.log(JSON.stringify(obj));
         axios.post('/student', obj, {
             headers: {
@@ -132,12 +132,13 @@ const RegisterStudent = (props) => {
 
         })
             .then(response => { // uspesno je vraceno 
-                console.log("Uspesno dodat");
-                return (
-                    <div>
-                      <h1> Uspesno ste upisali u bazu !</h1>
-                    </div>
-                  );
+                setUspesnaReg(2);
+                // console.log("Uspesno dodat");
+                // return (
+                //     <div>
+                //       <h1> Uspesno ste upisali u bazu !</h1>
+                //     </div>
+                //   );
 
                 console.log(response);
             })
