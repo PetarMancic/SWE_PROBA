@@ -3,6 +3,11 @@ import Slika from "../images/index1.png";
 import './Register.css';
 import axios from "../api/axios";
 import Login from "../Login/Login";
+import ErrorModal from "../Error/ErrorModal";
+import Slikauspeh from "../images/check.png";
+
+//import classes from '../Erorr/ErrorModal.module.css';
+import Card from '../Card';
 
 
 
@@ -112,7 +117,13 @@ const RegisterStudent = (props) => {
             }
 
         })
-            .then(response => {
+            .then(response => { // uspesno je vraceno 
+                return (
+                    <div>
+                      <h1> Uspesno ste upisali u bazu !</h1>
+                    </div>
+                  );
+
                 console.log(response);
             })
             .catch(error => {
