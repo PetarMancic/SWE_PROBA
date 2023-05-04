@@ -29,16 +29,6 @@ const RegisterStudent = (props) => {
     const [jmbg, setJmbg] = useState('');
     const [smer, setSmer] = useState('');
 
-    const [odabranSmer, setodabranSmer] = useState('');
-
-    const opcije = [
-        { label: 'Elektroenergetika', value: 'Elektroenergetika' },
-        { label: 'Racunarstvo i informatika', value: 'Racunarstvo i informatika' },
-        { label: 'Elektronika', value: 'Elektronika' },
-        { label: 'Elektronske komponente i mikrosistemi', value: 'Elektronske komponente i mikrosistemi' },
-        { label: 'Upravljanje sistemima', value: 'Upravljanje sistemima' },
-        { label: 'Komunikacije i informacione tehnologije', value: 'Komunikacije i informacione tehnologije' }
-    ];
 
     const [imeInput, setImeInput] = useState(true);
     const [prezimeInput, setprezimeInput] = useState(true);
@@ -52,13 +42,25 @@ const RegisterStudent = (props) => {
     const [imeRodInput, setimeRodInput] = useState(true);
     const [datumRodjenjaInput, setdatumRodjenjaInput] = useState(true);
     const [jmbgInput, setJmbgInput] = useState(true);
-    const [smerInput, setSmerInput] = useState(true);
+   const[smerInput,setSmerInput]=useState(true)
+    ////////////////////////////////////////////////////
+    const [selectedOption, setSelectedOption] = useState('');
 
+    const smerovi = ['Informatika', 'Računarstvo', 'Elektrotehnika', 'Matematika'];
+  
+    const handleSelectChange = (event) => {
+      setSelectedOption(event.target.value);
+      setSmer(event.target.value);
+  
+      
+    };
+    const podesiHandler=(event)=>{
+        setSmer(event.target.value);
+        console.log(smer);
 
-    const izaberiSmer = (event) => {
-        setodabranSmer(event.target.value);
-        console.log(odabranSmer);
     }
+  
+    /////////////////////////////////////////////////
 
 
     const [uspesnaReg, setUspesnaReg] = useState(1);
@@ -220,7 +222,11 @@ const RegisterStudent = (props) => {
             zaustavi = true;
         }
 
-        //FALIL ZA SMER 
+        if(selectedOption==='')
+        {
+            setSmerInput(false);
+            zaustavi=true;
+        }
 
 
 
@@ -392,15 +398,15 @@ const RegisterStudent = (props) => {
 
                     <label htmlFor="smer"> SMER</label>
 
-                    <select value={odabranSmer} onChange={izaberiSmer}>
-
-                        {opcije.map((opcija) => (
-                            
-                            <option key={opcija.value} value={opcija.value} className="crni-tekst">
-                                {opcija.label}
-                            </option>
-                        ))}
-                    </select>
+                    <select value={selectedOption} onChange={handleSelectChange} className={`crni-tekst ${!smerInput ? 'pozadina' : ''}`}>
+                    <option value="">Odaberite smer</option>
+                             {smerovi.map((smer) => (
+                    <option key={smer} value={smer}>
+                            {smer}
+                    </option>
+                    ))}
+                </select>
+                <h2 onChange={podesiHandler}>Odabrali ste: {selectedOption}</h2>
 
 
 

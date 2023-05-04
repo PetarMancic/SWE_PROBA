@@ -48,4 +48,7 @@
 .crni-tekst {
   color: black;
   font-size: 15px;
+  border: 5px;
+  position: relative;
+height: 40px;
 }

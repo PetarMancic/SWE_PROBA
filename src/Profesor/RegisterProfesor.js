@@ -10,22 +10,43 @@ import UspesnaReg from "../Poruka/UspesnaReg";
 
 
 const RegisterProfesor = (props) => {
-
+//za Bazu
     const [ime, setIme] = useState('');
     const [prezime, setprezime] = useState('');
-    const [brojIndeksa, setbrojIndeksa] = useState(1);
     const [user, setuser] = useState('');
     const [pass, setpass] = useState('');
+    const[idBrojKartice,setidBrojKartice]=useState(0);
+    const [email, setEmail] = useState('');
+    const [datumRodjenja, setdatumRodjenja] = useState(undefined);
+    const [JMBG, setJMBG] = useState(0);
+    const [radniStaz, setRadniStaz] = useState(0);
+    const [imeR, setImeR] = useState('');
+    
+    
+    
+    
+    
 
 
+//za crveno
     const [imeInput, setImeInput] = useState(true);
     const [prezimeInput, setprezimeInput] = useState(true);
-    const [idBrojKartice, setidBrojKartice] = useState(true);
+    const [idBrojKarticeInput, setidBrojKarticeInput] = useState(true);
     const [userInput, setuserInput] = useState(true);
     const [passInput, setpassInput] = useState(true);
+    const [emailInput, setEmailInput] = useState(true);
+    const [datumRodjenjaInput, setdatumRodjenjaInput] = useState(true);
+    const [JMBGInput, setJMBGInput] = useState(true);
+    const [radniStazInput, setRadniStazInput] = useState(true);
+    const [imeRInput, setImeRInput] = useState(true);
+    
+    
+    
+    
+    
 
 
-
+//za log reg poc saltanje
     const [uspesnaReg, setUspesnaReg] = useState(1); // trenutna stranica 
 
     const ugasiFormu = () => {
@@ -33,7 +54,7 @@ const RegisterProfesor = (props) => {
     }
 
 
-
+//za proveru za crveno
     const imeHandler = (event) => {
         setIme(event.target.value);
 
@@ -49,17 +70,17 @@ const RegisterProfesor = (props) => {
             setprezimeInput(true);
         }
     }
-    const brojIndeksaHandler = (event) => { // ovo je za id kartice
-        setbrojIndeksa(event.target.value);
+    const brojKarticeHandler = (event) => { // ovo je za id kartice
+        setidBrojKartice(event.target.value);
 
-        if (brojIndeksa.length >= 0) {
-            setidBrojKartice(true);
+        if (brojKarticeHandler.length >= 0) {
+            setidBrojKarticeInput(true);
         }
     }
     const userHandler = (event) => {
         setuser(event.target.value);
 
-        if (prezime.trim().length >= 0) {
+        if (user.trim().length >= 0) {
             setuserInput(true);
         }
     }
@@ -68,6 +89,41 @@ const RegisterProfesor = (props) => {
 
         if (pass.trim().length >= 0) {
             setpassInput(true);
+        }
+    }
+    const emailHandler = (event) => {
+        setEmail(event.target.value);
+
+        if (email.trim().length >= 5 && email.includes('@')) {
+            setEmailInput(true);
+        }
+    }
+    const DatumRodjenjaHandler = (event) => {
+        setdatumRodjenja(new Date(event.target.value));
+
+        if (datumRodjenja!=undefined) {
+            setdatumRodjenjaInput(true);
+        }
+    }
+    const JMBGHandler = (event) => {
+        setJMBG(event.target.value);
+
+        if (JMBGHandler.length >= 0) {
+            setJMBGInput(true);
+        }
+    }
+    const imeRHandler = (event) => {
+        setImeR(event.target.value);
+
+        if (imeR.trim().length >= 0) {
+            setImeRInput(true);
+        }
+    }
+    const radniStazHandler = (event) => {
+        setRadniStaz(event.target.value);
+
+        if (radniStazHandler.length >= 0) {
+            setRadniStazInput(true);
         }
     }
 
@@ -88,9 +144,9 @@ const RegisterProfesor = (props) => {
 
         }
 
-        let brojInd = document.getElementById("brojKartice");
-        if (brojInd.value.toString().length === 0) {
-            setidBrojKartice(false);
+        let brojKart = document.getElementById("brojKartice");
+        if (brojKart.value.toString().length === 0) {
+            setidBrojKarticeInput(false);
             promenljiva = true;
         }
 
@@ -108,6 +164,51 @@ const RegisterProfesor = (props) => {
             promenljiva = true;
 
         }
+        if (email.trim().length < 5 || !email.includes('@')) {
+            setEmailInput(false);
+            setEmail('');
+            promenljiva = true;
+
+        }
+        // if (datumRodjenja!=undefined)
+        // {
+        // promenljiva=true;
+        // setEmailInput(false);
+        // setEmail('');
+        
+        // }
+        // else
+        // {
+        // const month=datumRodjenja.toLocaleString('en-US',{month:'long'});
+        // const year=datumRodjenja.date.getFullYear();
+        // const day=datumRodjenja.date.toLocaleString('en-US',{day:'2-digit'});
+        // if(year<1950 || year>1998){
+        // promenljiva = true;
+        // setdatumRodjenjaInput(false);
+        // setdatumRodjenja('');
+        //     }
+        // }
+        let brojJMBG = document.getElementById("jmbg");
+        if ( brojJMBG.value.toString().length===0) {
+            setJMBGInput(false);
+            promenljiva = true;
+        
+        }
+        let brojRS = document.getElementById("radnistaz");
+        if ( brojRS.value.toString().length===0) {
+            setRadniStazInput(false);
+            promenljiva = true;
+        
+        }
+        if (imeR.trim().length===0) {
+            setImeRInput(false);
+            promenljiva=true;
+            
+            }
+
+        
+    
+    
 
         if (promenljiva === true)
              return;
@@ -117,9 +218,15 @@ const RegisterProfesor = (props) => {
         const obj = {
             ime: ime,
             prezime: prezime,
-            idBrojKartice: brojIndeksa,
+            idBrojKartice: idBrojKartice,
             username: user,
-            password: pass
+            password: pass,
+            Email:email,
+            DatumRodjenja:datumRodjenja,
+            JMBG:JMBG,
+            RadniStaz:radniStaz,
+            ImeRoditelja:imeR
+
         };
 
 
@@ -167,6 +274,7 @@ const RegisterProfesor = (props) => {
                         type="text"
                         onChange={imeHandler}
                         className={`inpuT ${!imeInput ? 'pozadina' : ''}`}
+                        
 
 
                     />
@@ -176,14 +284,16 @@ const RegisterProfesor = (props) => {
                         type="text"
                         onChange={prezimeHandler}
                         className={`inpuT ${!prezimeInput ? 'pozadina' : ''}`}
+                        
                     />
 
                     <label htmlFor="brojkartice">ID BROJA KARTICE</label>
                     <input
                         id="brojKartice"
                         type="number"
-                        onChange={brojIndeksaHandler}
-                        className={`inpuT ${!idBrojKartice ? 'pozadina' : ''}`}
+                        onChange={brojKarticeHandler}
+                        className={`inpuT ${!idBrojKarticeInput ? 'pozadina' : ''}`}
+                        
 
                     />
                     <label htmlFor="username"> Username</label>
@@ -192,6 +302,7 @@ const RegisterProfesor = (props) => {
                         type="email"
                         onChange={userHandler}
                         className={`inpuT ${!userInput ? 'pozadina' : ''}`}
+                        
 
                     />
 
@@ -201,8 +312,59 @@ const RegisterProfesor = (props) => {
                         type="password"
                         onChange={passHandler}
                         className={`inpuT ${!passInput ? 'pozadina' : ''}`}
+                        
 
                     />
+                    <label htmlFor="Email"> Email</label>
+                    <input
+                        id="email"
+                        type="email"
+                        onChange={emailHandler}
+                        className={`inpuT ${!emailInput ? 'pozadina' : ''}`}
+                        
+
+                    />
+                    <label htmlFor="date"> Datum Rodjenja</label>
+                    <input
+                        id="date"
+                        type="date"
+                        min={'01/01/1950'}
+                        max={'12/12/1998'}
+                        onChange={DatumRodjenjaHandler}
+                        className={`inpuT ${!datumRodjenjaInput ? 'pozadina' : ''}`}
+                        
+
+                    />
+                    <label htmlFor="jmbg"> JMBG</label>
+                    <input
+                        id="jmbg"
+                        type="number"
+                    
+                        onChange={JMBGHandler}
+                        className={`inpuT ${!JMBGInput ? 'pozadina' : ''}`}
+                        
+
+                    />
+                    <label htmlFor="rs"> Radni Staz</label>
+                    <input
+                        id="radnistaz"
+                        type="number"
+                        
+                        onChange={radniStazHandler}
+                        className={`inpuT ${!radniStazInput ? 'pozadina' : ''}`}
+                        
+
+                    />
+                    <label htmlFor="ir"> Ime Roditelja</label>
+                    <input
+                        id="imeRod"
+                        type="text"
+                        onChange={imeRHandler}
+                        className={`inpuT ${!imeRInput ? 'pozadina' : ''}`}
+                        
+
+                    />
+                    
 
 
 
