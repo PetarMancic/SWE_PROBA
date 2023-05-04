@@ -247,7 +247,7 @@ const RegisterStudent = (props) => {
             ImeRoditelja: imeRod,
             DatumRodjenja: datumRodjenja,
             JMBG: jmbg,
-            smer: "Opsti"
+            Smer: "Opsti"
         };
 
         console.log(JSON.stringify(obj));
