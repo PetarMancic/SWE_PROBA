@@ -17,13 +17,13 @@
 /* stil za dugme za prijavu */
 .login-form button {
   background-color: white; /* plava pozadina */
-  color: rgb(37, 33, 33); /* bela boja slova */
+  color: rgb(37, 33, 33); /* bela boja slova 37 33 33  */
   cursor: pointer;
 }
 
 .login-form button:hover {
   background-color: rgb(37, 33, 33);
-  color: white;
+  color: rgb(19, 17, 17);
 }
 
 .inpuT {
@@ -43,4 +43,9 @@
 .border
 {
   border-radius: 10px;
+}
+
+.crni-tekst {
+  color: black;
+  font-size: 15px;
 }

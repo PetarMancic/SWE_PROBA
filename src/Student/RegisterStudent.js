@@ -20,18 +20,25 @@ const RegisterStudent = (props) => {
     const [brojIndeksa, setbrojIndeksa] = useState(1);
     const [user, setuser] = useState('');
     const [pass, setpass] = useState('');
-    
-    const [brTel,setBrTel]=useState('');
-    const [email,setEmail]= useState('');
-    const [godStudija,setgodStudija]=useState('');
-    const [imeRod,setImeRod]=useState('');
-    const [datumRodjenja,setdatumRodjenja]=useState('');
-    const [jmbg,setJmbg]=useState('');
-    const [smer, setSmer]=useState('');
 
+    const [brTel, setBrTel] = useState('');
+    const [email, setEmail] = useState('');
+    const [godStudija, setgodStudija] = useState('');
+    const [imeRod, setImeRod] = useState('');
+    const [datumRodjenja, setdatumRodjenja] = useState('');
+    const [jmbg, setJmbg] = useState('');
+    const [smer, setSmer] = useState('');
 
+    const [odabranSmer, setodabranSmer] = useState('');
 
-
+    const opcije = [
+        { label: 'Elektroenergetika', value: 'Elektroenergetika' },
+        { label: 'Racunarstvo i informatika', value: 'Racunarstvo i informatika' },
+        { label: 'Elektronika', value: 'Elektronika' },
+        { label: 'Elektronske komponente i mikrosistemi', value: 'Elektronske komponente i mikrosistemi' },
+        { label: 'Upravljanje sistemima', value: 'Upravljanje sistemima' },
+        { label: 'Komunikacije i informacione tehnologije', value: 'Komunikacije i informacione tehnologije' }
+    ];
 
     const [imeInput, setImeInput] = useState(true);
     const [prezimeInput, setprezimeInput] = useState(true);
@@ -41,14 +48,17 @@ const RegisterStudent = (props) => {
 
     const [brTelInput, setbrTelInput] = useState(true);
     const [emailInput, setemailInput] = useState(true);
-    const [godStudijaInput,setgodStudijaInput]=useState(true);
+    const [godStudijaInput, setgodStudijaInput] = useState(true);
     const [imeRodInput, setimeRodInput] = useState(true);
     const [datumRodjenjaInput, setdatumRodjenjaInput] = useState(true);
-    const[ jmbgInput,setJmbgInput]=useState(true);
-    const [smerInput,setSmerInput]=useState(true);
+    const [jmbgInput, setJmbgInput] = useState(true);
+    const [smerInput, setSmerInput] = useState(true);
 
 
-
+    const izaberiSmer = (event) => {
+        setodabranSmer(event.target.value);
+        console.log(odabranSmer);
+    }
 
 
     const [uspesnaReg, setUspesnaReg] = useState(1);
@@ -67,7 +77,7 @@ const RegisterStudent = (props) => {
     const prezimeHandler = (event) => {
         setprezime(event.target.value);
 
-       // console.log(prezime.trim().length);
+        // console.log(prezime.trim().length);
         if (prezime.trim().length >= 0) {
             setprezimeInput(true);
         }
@@ -76,7 +86,7 @@ const RegisterStudent = (props) => {
     const brojTelefonaHandler = (event) => {
         setBrTel(event.target.value);
 
-       // console.log(prezime.trim().length);
+        // console.log(prezime.trim().length);
         if (brTel.trim().length >= 0) {
             setbrTelInput(true);
         }
@@ -86,7 +96,7 @@ const RegisterStudent = (props) => {
     const EmailHandler = (event) => {
         setEmail(event.target.value);
 
-       // console.log(prezime.trim().length);
+        // console.log(prezime.trim().length);
         if (email.trim().length >= 0) {
             setemailInput(true);
         }
@@ -95,7 +105,7 @@ const RegisterStudent = (props) => {
     const GodStudijaHandler = (event) => {
         setgodStudija(event.target.value);
 
-       // console.log(prezime.trim().length);
+        // console.log(prezime.trim().length);
         if (godStudija.trim().length >= 0) {
             setgodStudijaInput(true);
         }
@@ -155,6 +165,8 @@ const RegisterStudent = (props) => {
     }
 
     //za smer mora da bude padajuci meni i hvatanje 
+
+
 
 
 
@@ -221,7 +233,7 @@ const RegisterStudent = (props) => {
 
         }
 
-        
+
 
         if (pass.trim().length === 0) {
             setpassInput(false);
@@ -324,7 +336,7 @@ const RegisterStudent = (props) => {
                         className={`inpuT ${!emailInput ? 'pozadina' : ''}`}
                     />
 
-                     <label htmlFor="pwd"> PASSWORD</label>
+                    <label htmlFor="pwd"> PASSWORD</label>
                     <input
                         id="password"
                         type="password"
@@ -350,7 +362,7 @@ const RegisterStudent = (props) => {
                         className={`inpuT ${!godStudijaInput ? 'pozadina' : ''}`}
 
                     />
-                     <label htmlFor="Ime roditelja ">IME RODITELJA</label>
+                    <label htmlFor="Ime roditelja ">IME RODITELJA</label>
                     <input
                         id="imeRoditelja"
                         type="text"
@@ -379,18 +391,21 @@ const RegisterStudent = (props) => {
                     />
 
                     <label htmlFor="smer"> SMER</label>
-                    <input
-                        id="smer"
 
-                        type="text"
-                        onChange={userHandler}
-                        className={` border inpuT ${!userInput ? 'pozadina' : ''}`}
+                    <select value={odabranSmer} onChange={izaberiSmer}>
 
-                    />
+                        {opcije.map((opcija) => (
+                            
+                            <option key={opcija.value} value={opcija.value} className="crni-tekst">
+                                {opcija.label}
+                            </option>
+                        ))}
+                    </select>
 
-                
 
-                    
+
+
+
 
 
 
