@@ -9,7 +9,7 @@ import Slikauspeh from "../images/check.png";
 //import classes from '../Erorr/ErrorModal.module.css';
 import Card from '../Card';
 import UspesnaReg from "../Poruka/UspesnaReg";
-
+import Select from "react-select";
 
 
 
@@ -27,7 +27,8 @@ const RegisterStudent = (props) => {
     const [imeRod, setImeRod] = useState('');
     const [datumRodjenja, setdatumRodjenja] = useState('');
     const [jmbg, setJmbg] = useState('');
-    const [smer, setSmer] = useState('');
+    let smer='';
+    
 
 
     const [imeInput, setImeInput] = useState(true);
@@ -35,7 +36,6 @@ const RegisterStudent = (props) => {
     const [brojIndeksaInput, setbrojIndeksaInput] = useState(true);
     const [userInput, setuserInput] = useState(true);
     const [passInput, setpassInput] = useState(true);
-
     const [brTelInput, setbrTelInput] = useState(true);
     const [emailInput, setemailInput] = useState(true);
     const [godStudijaInput, setgodStudijaInput] = useState(true);
@@ -46,16 +46,18 @@ const RegisterStudent = (props) => {
     ////////////////////////////////////////////////////
     const [selectedOption, setSelectedOption] = useState('');
 
-    const smerovi = ['Informatika', 'Računarstvo', 'Elektrotehnika', 'Matematika'];
+    const smerovi = [{value:'Informatika',label:'Informatika'}, {value:'Računarstvo',label:'Racunarstvo'},{value: 'Elektrotehnika',label:'Elektrotehnika'}, {value:'Matematika',label:'Matematika'}];
   
+    
     const handleSelectChange = (event) => {
-      setSelectedOption(event.target.value);
-      setSmer(event.target.value);
+        smer=event.value;
+      console.log("Izabrano",smer);
+      
   
       
     };
     const podesiHandler=(event)=>{
-        setSmer(event.target.value);
+        
         console.log(smer);
 
     }
@@ -265,7 +267,7 @@ const RegisterStudent = (props) => {
             ImeRoditelja: imeRod,
             DatumRodjenja: datumRodjenja,
             JMBG: jmbg,
-            Smer: "Opsti"
+            Smer: smer
         };
 
         console.log(JSON.stringify(obj));
@@ -398,14 +400,10 @@ const RegisterStudent = (props) => {
 
                     <label htmlFor="smer"> SMER</label>
 
-                    <select value={selectedOption} onChange={handleSelectChange} className={`crni-tekst ${!smerInput ? 'pozadina' : ''}`}>
-                    <option value="">Odaberite smer</option>
-                             {smerovi.map((smer) => (
-                    <option key={smer} value={smer}>
-                            {smer}
-                    </option>
-                    ))}
-                </select>
+                    <Select options={smerovi} placeholder='Odaberite smer' onChange={handleSelectChange} className={`crni-tekst ${!smerInput ? 'pozadina' : ''}`}>
+                    
+                    
+                </Select>
                 <h2 onChange={podesiHandler}>Odabrali ste: {selectedOption}</h2>
 
 
