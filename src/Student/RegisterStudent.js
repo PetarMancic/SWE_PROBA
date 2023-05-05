@@ -46,7 +46,13 @@ const RegisterStudent = (props) => {
     ////////////////////////////////////////////////////
     const [selectedOption, setSelectedOption] = useState('');
 
-    const smerovi = [{value:'Informatika',label:'Informatika'}, {value:'Računarstvo',label:'Racunarstvo'},{value: 'Elektrotehnika',label:'Elektrotehnika'}, {value:'Matematika',label:'Matematika'}];
+    const smerovi = [{value:'Elektroenergetika',label:'Elektroenergetika'}, 
+                    {value:'Racunarstvo i informatika',label:'Racunarstvo i informatika'},
+                    {value: 'Elektronika',label:'Elektronika'}, 
+                    {value:'Elektronske komponente i mikrosistemi',label:'Elektronske komponente i mikrosistemi'},
+                    {value:'Upravljanje sistemima',label:'Upravljanje sistemima'},
+                    {value:'Komunikacije i informacione tehnologije',label:'Komunikacije i informacione tehnologije'}
+                ];
   
     
     const smerHandler = (event) => {
@@ -307,6 +313,8 @@ const RegisterStudent = (props) => {
                     <h1>Register to E-index</h1>
                     <h2>Please enter your data</h2>
 
+
+                
                     <label htmlFor="ime">IME</label>
                     <input
                         id="ime"
@@ -359,6 +367,8 @@ const RegisterStudent = (props) => {
 
                     />
 
+
+
                     <label htmlFor="Trenutna god studija">GODINA STUDIJA</label>
                     <input
                         id="godStudija"
@@ -401,7 +411,12 @@ const RegisterStudent = (props) => {
                     
                     
                 </Select>
+<<<<<<< HEAD
                 
+=======
+               
+
+>>>>>>> 27c0f6248b81f53fbf08d27656628ac64e7ad739
 
 
 
@@ -412,8 +427,7 @@ const RegisterStudent = (props) => {
                     <button onClick={clickHandler}> Register now</button>
                     <label id="goBackLabel" onClick={Nazad}>GO BACK</label>
 
-
-
+                   
 
                 </form>
             )}
