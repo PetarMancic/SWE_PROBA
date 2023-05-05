@@ -8,7 +8,9 @@ import NavbarStudent from './UI/Navbar/NavbarStudent';
 function App() {
   return (
     <main className="App">
-      <Login />
+      <Home />
+      <NavbarStudent/>
+      
       
     </main>
   );

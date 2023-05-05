@@ -27,7 +27,7 @@ const RegisterStudent = (props) => {
     const [imeRod, setImeRod] = useState('');
     const [datumRodjenja, setdatumRodjenja] = useState('');
     const [jmbg, setJmbg] = useState('');
-    let smer='';
+    let smer=undefined;
     
 
 
@@ -49,18 +49,15 @@ const RegisterStudent = (props) => {
     const smerovi = [{value:'Informatika',label:'Informatika'}, {value:'Računarstvo',label:'Racunarstvo'},{value: 'Elektrotehnika',label:'Elektrotehnika'}, {value:'Matematika',label:'Matematika'}];
   
     
-    const handleSelectChange = (event) => {
+    const smerHandler = (event) => {
+        setSmerInput(true)
         smer=event.value;
       console.log("Izabrano",smer);
       
   
       
     };
-    const podesiHandler=(event)=>{
-        
-        console.log(smer);
-
-    }
+    
   
     /////////////////////////////////////////////////
 
@@ -224,7 +221,7 @@ const RegisterStudent = (props) => {
             zaustavi = true;
         }
 
-        if(selectedOption==='')
+        if(smer===undefined)
         {
             setSmerInput(false);
             zaustavi=true;
@@ -400,12 +397,11 @@ const RegisterStudent = (props) => {
 
                     <label htmlFor="smer"> SMER</label>
 
-                    <Select options={smerovi} placeholder='Odaberite smer' onChange={handleSelectChange} className={`crni-tekst ${!smerInput ? 'pozadina' : ''}`}>
+                    <Select options={smerovi} placeholder='Odaberite smer' onChange={smerHandler} className={` crni-tekst  ${!smerInput ? 'pozadina' : ''}`}>
                     
                     
                 </Select>
-                <h2 onChange={podesiHandler}>Odabrali ste: {selectedOption}</h2>
-
+                
 
 
 

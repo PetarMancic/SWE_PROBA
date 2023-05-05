@@ -25,3 +25,22 @@
     }
     .row.content {height:auto;} 
   }
+  .heder{
+    position: absolute;
+    top:100px;
+  }
+  .futer{
+    
+      margin-bottom: 0;
+      border-radius: 0;
+      position: absolute;
+      bottom: 0%;
+      width: 100%;
+    
+    
+    
+  }
+  .slova{
+    color: white;
+  }
+  

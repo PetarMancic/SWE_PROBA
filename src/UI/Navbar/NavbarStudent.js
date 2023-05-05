@@ -3,6 +3,7 @@ import './Navbar.css';
 
 const NavbarStudent=()=>{
     return(
+      
     <nav class="navbar navbar-inverse" >
   <div class="container-fluid">
     <div class="navbar-header">
@@ -26,6 +27,8 @@ const NavbarStudent=()=>{
     </div>
   </div>
 </nav>
+
+
     );
 
 }
