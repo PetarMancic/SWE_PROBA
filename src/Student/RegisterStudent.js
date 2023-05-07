@@ -23,11 +23,12 @@ const RegisterStudent = (props) => {
 
     const [brTel, setBrTel] = useState('');
     const [email, setEmail] = useState('');
-    const [godStudija, setgodStudija] = useState('');
+    
     const [imeRod, setImeRod] = useState('');
     const [datumRodjenja, setdatumRodjenja] = useState('');
     const [jmbg, setJmbg] = useState('');
     let smer=undefined;
+    let godina=undefined;
     
 
 
@@ -53,12 +54,25 @@ const RegisterStudent = (props) => {
                     {value:'Upravljanje sistemima',label:'Upravljanje sistemima'},
                     {value:'Komunikacije i informacione tehnologije',label:'Komunikacije i informacione tehnologije'}
                 ];
-  
+    const godine = [{value:'1',label:'I'}, 
+    {value:'2',label:'II'},
+    {value: '3',label:'III'}, 
+    {value:'4',label:'IV'}
+];
+
     
     const smerHandler = (event) => {
         setSmerInput(true)
         smer=event.value;
       console.log("Izabrano",smer);
+      
+  
+      
+    };
+    const godineHandler = (event) => {
+        setgodStudijaInput(true)
+        godina=event.value;
+      console.log("Izabrano",godina);
       
   
       
@@ -109,15 +123,7 @@ const RegisterStudent = (props) => {
         }
     }
 
-    const GodStudijaHandler = (event) => {
-        setgodStudija(event.target.value);
-
-        // console.log(prezime.trim().length);
-        if (godStudija.trim().length >= 0) {
-            setgodStudijaInput(true);
-        }
-    }
-
+   
 
 
     const imeRoditeljaHandler = (event) => {
@@ -207,7 +213,7 @@ const RegisterStudent = (props) => {
             zaustavi = true;
         }
 
-        if (godStudija.trim().length === 0) {
+        if (godina=== undefined) {
             setgodStudijaInput(false);
             zaustavi = true;
         }
@@ -266,7 +272,7 @@ const RegisterStudent = (props) => {
             Email: email,
             Password: pass,
             BrojIndexa: parseInt(brojIndeksa),
-            TrenutnaGodinaStudija: parseInt(godStudija),
+            TrenutnaGodinaStudija: parseInt(godina),
             ImeRoditelja: imeRod,
             DatumRodjenja: datumRodjenja,
             JMBG: jmbg,
@@ -369,14 +375,14 @@ const RegisterStudent = (props) => {
 
 
 
-                    <label htmlFor="Trenutna god studija">GODINA STUDIJA</label>
-                    <input
-                        id="godStudija"
-                        type="number"
-                        onChange={GodStudijaHandler}
-                        className={`inpuT ${!godStudijaInput ? 'pozadina' : ''}`}
+                    <label htmlFor="godinStudija"> Izaberite godinu studija</label>
 
-                    />
+                    <Select options={godine} placeholder='Odaberite' onChange={godineHandler} className={` crni-tekst  ${!smerInput ? 'pozadina' : ''}`}>
+
+
+                    </Select>
+
+
                     <label htmlFor="Ime roditelja ">IME RODITELJA</label>
                     <input
                         id="imeRoditelja"
