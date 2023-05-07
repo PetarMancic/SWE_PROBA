@@ -411,12 +411,8 @@ const RegisterStudent = (props) => {
                     
                     
                 </Select>
-<<<<<<< HEAD
-                
-=======
                
 
->>>>>>> 27c0f6248b81f53fbf08d27656628ac64e7ad739
 
 
 
