@@ -27,7 +27,11 @@ const RegisterStudent = (props) => {
     const [imeRod, setImeRod] = useState('');
     const [datumRodjenja, setdatumRodjenja] = useState('');
     const [jmbg, setJmbg] = useState('');
+    const [VK, setVK]=useState(''); 
+    const [number, setNumber] = useState(0);
     let smer=undefined;
+
+    let godinaStudija=undefined;
     
 
 
@@ -42,7 +46,11 @@ const RegisterStudent = (props) => {
     const [imeRodInput, setimeRodInput] = useState(true);
     const [datumRodjenjaInput, setdatumRodjenjaInput] = useState(true);
     const [jmbgInput, setJmbgInput] = useState(true);
-   const[smerInput,setSmerInput]=useState(true)
+    const[smerInput,setSmerInput]=useState(true);
+    const [VKinput, setVKinput]=useState(true);
+    
+
+
     ////////////////////////////////////////////////////
     const [selectedOption, setSelectedOption] = useState('');
 
@@ -53,6 +61,13 @@ const RegisterStudent = (props) => {
                     {value:'Upravljanje sistemima',label:'Upravljanje sistemima'},
                     {value:'Komunikacije i informacione tehnologije',label:'Komunikacije i informacione tehnologije'}
                 ];
+
+    const nizGodStudija=[
+        {value:'1', label:'I'},
+        {value:'2', label:'II'},
+        {value:'3', label:'III'},
+        {value:'4', label:'IV'}
+    ]
   
     
     const smerHandler = (event) => {
@@ -110,10 +125,14 @@ const RegisterStudent = (props) => {
     }
 
     const GodStudijaHandler = (event) => {
-        setgodStudija(event.target.value);
+       // const inputNumber = parseInt(event.target.value);
+        
+       godinaStudija=event.target.value;
+
+       
 
         // console.log(prezime.trim().length);
-        if (godStudija.trim().length >= 0) {
+        if (godinaStudija!=undefined) {
             setgodStudijaInput(true);
         }
     }
@@ -170,6 +189,17 @@ const RegisterStudent = (props) => {
             setJmbgInput(true);
         }
     }
+
+    const VKHandler= (event) =>
+    {
+        setVK(event.target.value);
+
+        if(VK.trim().length >= 0)
+        {
+            setVKinput(true);
+        }
+    }
+
 
     //za smer mora da bude padajuci meni i hvatanje 
 
@@ -230,6 +260,12 @@ const RegisterStudent = (props) => {
         if(smer===undefined)
         {
             setSmerInput(false);
+            zaustavi=true;
+        }
+
+        if(VK.trim().length===0)
+        {
+            setVKinput(false);
             zaustavi=true;
         }
 
@@ -369,14 +405,20 @@ const RegisterStudent = (props) => {
 
 
 
-                    <label htmlFor="Trenutna god studija">GODINA STUDIJA</label>
+                    {/* <label htmlFor="Trenutna god studija">GODINA STUDIJA</label>
                     <input
                         id="godStudija"
                         type="number"
+                        value="number"
                         onChange={GodStudijaHandler}
                         className={`inpuT ${!godStudijaInput ? 'pozadina' : ''}`}
 
-                    />
+                    /> */}
+
+                    <label htmlFor="Trenutna god studija">GODINA STUDIJA</label>
+                    <Select options={nizGodStudija} placeholder='Izaberite...' onChange={GodStudijaHandler} className={` crni-tekst  ${!godStudijaInput ? 'pozadina' : ''}`}>
+                    </Select>
+                    
                     <label htmlFor="Ime roditelja ">IME RODITELJA</label>
                     <input
                         id="imeRoditelja"
@@ -408,15 +450,21 @@ const RegisterStudent = (props) => {
                     <label htmlFor="smer"> SMER</label>
 
                     <Select options={smerovi} placeholder='Odaberite smer' onChange={smerHandler} className={` crni-tekst  ${!smerInput ? 'pozadina' : ''}`}>
+                    </Select>
                     
                     
-                </Select>
-<<<<<<< HEAD
-                
-=======
+
+                <label htmlFor="VK"> VERIFIKACIONI BROJ</label>
+                    <input
+                        id="VK"
+
+                        type="number"
+                        onChange={VKHandler}
+                        className={` border inpuT ${!VKinput ? 'pozadina' : ''}`}
+
+                    />
                
 
->>>>>>> 27c0f6248b81f53fbf08d27656628ac64e7ad739
 
 
 

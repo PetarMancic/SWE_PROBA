@@ -327,7 +327,7 @@ const RegisterProfesor = (props) => {
                     <label htmlFor="date"> Datum Rodjenja</label>
                     <input
                         id="date"
-                        type="date"
+                        type="string"
                         min={'01/01/1950'}
                         max={'12/12/1998'}
                         onChange={DatumRodjenjaHandler}
