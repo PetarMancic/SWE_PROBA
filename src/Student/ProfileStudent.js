@@ -33,7 +33,7 @@ const ProfileStudent=(props)=>{
                 
                 <div class="w3-container">
                   <h2 class="w3-large"><h1><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Neko Nekovic</h1></h2>
-                  <img src={{Profilna}} className="img-rounded"/>
+                  <img src={Profilna} className="img-rounded"/>
                  
                   <h3>Broj indeksa:{props.podaci.brojIndeksa}</h3>
                   <br />

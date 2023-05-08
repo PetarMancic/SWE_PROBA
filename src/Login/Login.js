@@ -36,7 +36,7 @@ const Login = () => {
     const [administrator,setAdministrator] = useState(0);  // ako je 0 onda ne crta 
 
 
-
+    
 
     const goBack = (value) => {
         setRegister(value);  // metoda koja nam sluzi da promeni vrednost za register promenljivu
@@ -222,32 +222,32 @@ let student={
 
             try {
                 const response = await axios.get(`/student/loginStudent/${user}/${pwd}`);
-                let student2={
-    
-                    id:response.data.student.Id,
-                   ime:response.data.student.Ime,
-                    prezime:response.data.student.Prezime,
-                    brojTelefona:response.data.student.BrojTelefona,
-                    email:response.data.Email,
-                    password:response.data.Password,
-                    prosek:response.data.Prosek,
-                    brojIndeksa:response.data.BrojIndexa,
-                    trenutnaGodStudija:response.data.TrenutnaGodinaStudija,
-                    imeRoditelja:response.data.ImeRoditelja,
-                    datumRodj:response.data.DatumRodjenja,
-                    jmbg:response.data.JMBG,
-                    smer:response.data.student.Smer,
-            }
-            student=student2;
-            setPromenljiva(1);
-            console.log("nakon dodelu");
-            console.log(student.ime);
-
-
-                const token = response.data.token;
-                setToken(token);
-
-                if (response.status === 200) {
+                setPromenljiva(1);
+                console.log("nakon dodelu");
+            //console.log(student.ime);
+            
+            
+            const token = response.data.token;
+            setToken(token);
+            
+            if (response.status === 200) {
+                    let student2={
+        
+                        id:response.data.student.Id,
+                       ime:response.data.student.Ime,
+                        prezime:response.data.student.Prezime,
+                        brojTelefona:response.data.student.BrojTelefona,
+                        email:response.data.Email,
+                        password:response.data.Password,
+                        prosek:response.data.Prosek,
+                        brojIndeksa:response.data.BrojIndexa,
+                        trenutnaGodStudija:response.data.TrenutnaGodinaStudija,
+                        imeRoditelja:response.data.ImeRoditelja,
+                        datumRodj:response.data.DatumRodjenja,
+                        jmbg:response.data.JMBG,
+                        smer:response.data.student.Smer,
+                }
+                student=student2;
                     setLogin(1);
                     console.log(response.data);
                     setError(
