@@ -16,6 +16,7 @@ import NavbarProfesor from '../UI/Navbar/NavbarProfesor';
 import HomeP from '../Profesor/HomeP';
 import RegisterStudent from '../Student/RegisterStudent';
 import RegisterProfesor from '../Profesor/RegisterProfesor';
+import ProfileStudent from '../Student/ProfileStudent';
 //Komentar
 const LOGIN_URL = '/auth';
 
@@ -165,6 +166,23 @@ const Login = () => {
         setRegister(2);
     }
     const [login, setLogin] = useState(0);
+///////////////////////////////////////////////
+let student={
+    
+        id:0,
+        ime:'',
+        prezime:'',
+        brojTelefona:0,
+        email:'',
+        password:'',
+        prosek:0,
+        brojIndeksa:0,
+        trenutnaGodStudija:0,
+        imeRoditelja:'',
+        datumRodj:'',
+        jmbg:0,
+        smer:0
+}
 
     const studentHandler = async (e) => {
 
@@ -207,6 +225,19 @@ const Login = () => {
                 const { id, ime, prezime,brojTelefona,email,password,prosek, brojIndeksa, trenutnaGodstudija,imeRoditelja
                     ,datumROdjenja,jmbg, smer } = response.data;
                 console.log(ime);
+                student.id=id;
+                student.ime=ime;
+                student.prezime=prezime;
+                student.brojTelefona=brojTelefona;
+                student.email=email;
+                student.password=password;
+                student.prosek=prosek;
+                student.brojIndeksa=brojIndeksa;
+                student.trenutnaGodStudija=trenutnaGodstudija;
+                student.imeRoditelja=imeRoditelja;
+                student.datumRodj=datumROdjenja;
+                student.jmbg=jmbg;
+                student.smer=smer;
 
                 const token = response.data.token;
                 setToken(token);
@@ -250,6 +281,8 @@ const Login = () => {
 
 
     }
+    
+    //////
     const profesorHandler = async (e) => {
         e.preventDefault();
 
@@ -473,8 +506,8 @@ const Login = () => {
             {
                 register === 0 && login === 1 && (
                     <>
-                        <Home />
-                        <NavbarStudent />
+                        <ProfileStudent podaci={student} />
+                        <NavbarStudent  />
                     </>
                 )
             }

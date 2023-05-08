@@ -7,7 +7,7 @@ import Prijavljeni from "./Informacije/Prijavljeni";
 import Espb from "./Informacije/Espb";
 
 
-const ProfileStudent=()=>{
+const ProfileStudent=(props)=>{
     const[navigacija,setNavigacija]=useState(0);
     const polozeniHandler=(event)=>{
         setNavigacija(1);
@@ -35,13 +35,13 @@ const ProfileStudent=()=>{
                   <h2 class="w3-large"><h1><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Neko Nekovic</h1></h2>
                   <img src={{Profilna}} className="img-rounded"/>
                  
-                  <h3>Broj indeksa:11111</h3>
+                  <h3>Broj indeksa:{props.podaci.brojIndeksa}</h3>
                   <br />
-                  <h4>Smer:Automatika</h4>
+                  <h4>Smer:{props.podaci.smer}</h4>
                   <br />
-                  <h4>Prosek:10.0</h4>
+                  <h4>Prosek:{props.podaci.prosek}</h4>
                   <br />
-                  <h4>Godina studija:III</h4>
+                  <h4>Godina studija:{props.podaci.trenutnaGodStudija}</h4>
                   <br />
                   <hr />
         
@@ -49,49 +49,49 @@ const ProfileStudent=()=>{
                   <div className="row">
                   <div className="col-sm-6"><h3>JMBG</h3></div>
                   
-                  <div className="col-sm-6"><h3>12345689101</h3></div>
+                  <div className="col-sm-6"><h3>{props.podaci.jmbg}</h3></div>
                     
                 </div>
                 <div className="row">
                   <div className="col-sm-6"><h3>Datum rodjenja</h3></div>
                   
-                  <div className="col-sm-6"><h3>3.3.1999</h3></div>
+                  <div className="col-sm-6"><h3>{props.podaci.datumRodj}</h3></div>
                     
                 </div>
-                <div className="row">
+                {/* <div className="row">
                   <div className="col-sm-6"><h3>Mesto rodjenja</h3></div>
                   
                   <div className="col-sm-6"><h3>Beograd</h3></div>
                     
-                </div>
-                <div className="row">
+                </div> */}
+                {/* <div className="row">
                   <div className="col-sm-3"><h3>Adresa</h3></div>
                   
                   <div className="col-sm-9"><h3>Save kovacevica 10</h3></div>
                     
-                </div>
-                <div className="row">
+                </div> */}
+                {/* <div className="row">
                   <div className="col-sm-6"><h3>Grad</h3></div>
                   
                   <div className="col-sm-6"><h3>Beograd</h3></div>
                     
-                </div>
+                </div> */}
                 <div className="row">
-                  <div className="col-sm-6"><h3>Ime oca</h3></div>
+                  <div className="col-sm-6"><h3>Ime roditelja</h3></div>
                   
-                  <div className="col-sm-6"><h3>Stanko</h3></div>
+                  <div className="col-sm-6"><h3>{props.podaci.imeRoditelja}</h3></div>
                     
                 </div>
-                <div className="row">
+                {/* <div className="row">
                   <div className="col-sm-6"><h3>Mesto rodj</h3></div>
                   
                   <div className="col-sm-6"><h3>Beograd</h3></div>
                     
-                </div>
+                </div> */}
                 <div className="row">
-                  <div className="col-sm-6"><h3>Telefon</h3></div>
+                  <div className="col-sm-6"><h3>Telefona</h3></div>
                   
-                  <div className="col-sm-6"><h3>0612129854</h3></div>
+                  <div className="col-sm-6"><h3>{props.podaci.brojTelefona}</h3></div>
                     
                 </div>
                   <br />
@@ -118,7 +118,7 @@ const ProfileStudent=()=>{
                 </div>
                 <div class="w3-container">
                   <h5 class="w3-opacity"><b>Smer</b></h5>
-                  <h6 class="w3-text-teal"><i class="fa-fw w3-margin-right"></i>Automatika</h6>
+                  <h6 class="w3-text-teal"><i class="fa-fw w3-margin-right"></i>{props.podaci.smer}</h6>
                   <br />
                 </div>
               </div>
