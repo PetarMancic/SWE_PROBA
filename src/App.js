@@ -13,8 +13,8 @@ function App() {
      <ProfileStudent/>
      <NavbarStudent></NavbarStudent>
       {/* <Administrator> </Administrator> */}
-      <Login></Login> 
-      
+      {/* <Login></Login> 
+       */}
        {/* <Home> </Home>  */}
       {/* <NavbarStudent/> */}
       
