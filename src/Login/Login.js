@@ -20,6 +20,22 @@ import ProfileStudent from '../Student/ProfileStudent';
 //Komentar
 const LOGIN_URL = '/auth';
 const Login = () => {
+    const[student,setStudent]=useState({
+    
+        id:100,
+        ime:'',
+        prezime:'',
+        brojTelefona:0,
+        email:'',
+        password:'',
+        prosek:0,
+        brojIndeksa:100,
+        trenutnaGodStudija:0,
+        imeRoditelja:'',
+        datumRodj:'',
+        jmbg:0,
+        smer:0
+    })
     useEffect(()=>{
         setLogin(1);
     },[student]);
@@ -170,22 +186,7 @@ const Login = () => {
     }
     const [login, setLogin] = useState(0);
 ///////////////////////////////////////////////
-const[student,setStudent]=useState({
-    
-        id:100,
-        ime:'',
-        prezime:'',
-        brojTelefona:0,
-        email:'',
-        password:'',
-        prosek:0,
-        brojIndeksa:100,
-        trenutnaGodStudija:0,
-        imeRoditelja:'',
-        datumRodj:'',
-        jmbg:0,
-        smer:0
-    })
+
 
     const studentHandler = async (e) => {
 
