@@ -35,9 +35,12 @@ const Login = () => {
         datumRodj:'',
         jmbg:0,
         smer:0
-    })
+    });
+    let idi=false;
     useEffect(()=>{
+        if(idi===true){
         setLogin(1);
+        }
     },[student]);
     const [promenljiva,setPromenljiva]=useState(0);
     const { setAuth } = useContext(AuthContext);
@@ -235,6 +238,7 @@ const Login = () => {
             setToken(token);
             
             if (response.status === 200) {
+                idi=true;
        let student2={
         
                         id:response.data.student.Id,
