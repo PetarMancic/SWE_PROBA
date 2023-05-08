@@ -19,8 +19,8 @@ import RegisterProfesor from '../Profesor/RegisterProfesor';
 import ProfileStudent from '../Student/ProfileStudent';
 //Komentar
 const LOGIN_URL = '/auth';
-
 const Login = () => {
+    const [promenljiva,setPromenljiva]=useState(0);
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
@@ -169,14 +169,14 @@ const Login = () => {
 ///////////////////////////////////////////////
 let student={
     
-        id:0,
+        id:100,
         ime:'',
         prezime:'',
         brojTelefona:0,
         email:'',
         password:'',
         prosek:0,
-        brojIndeksa:0,
+        brojIndeksa:100,
         trenutnaGodStudija:0,
         imeRoditelja:'',
         datumRodj:'',
@@ -222,22 +222,27 @@ let student={
 
             try {
                 const response = await axios.get(`/student/loginStudent/${user}/${pwd}`);
-                const { id, ime, prezime,brojTelefona,email,password,prosek, brojIndeksa, trenutnaGodstudija,imeRoditelja
-                    ,datumROdjenja,jmbg, smer } = response.data;
-                console.log(ime);
-                student.id=id;
-                student.ime=ime;
-                student.prezime=prezime;
-                student.brojTelefona=brojTelefona;
-                student.email=email;
-                student.password=password;
-                student.prosek=prosek;
-                student.brojIndeksa=brojIndeksa;
-                student.trenutnaGodStudija=trenutnaGodstudija;
-                student.imeRoditelja=imeRoditelja;
-                student.datumRodj=datumROdjenja;
-                student.jmbg=jmbg;
-                student.smer=smer;
+                let student2={
+    
+                    id:response.data.student.Id,
+                   ime:response.data.student.Ime,
+                    prezime:response.data.student.Prezime,
+                    brojTelefona:response.data.student.BrojTelefona,
+                    email:response.data.Email,
+                    password:response.data.Password,
+                    prosek:response.data.Prosek,
+                    brojIndeksa:response.data.BrojIndexa,
+                    trenutnaGodStudija:response.data.TrenutnaGodinaStudija,
+                    imeRoditelja:response.data.ImeRoditelja,
+                    datumRodj:response.data.DatumRodjenja,
+                    jmbg:response.data.JMBG,
+                    smer:response.data.student.Smer,
+            }
+            student=student2;
+            setPromenljiva(1);
+            console.log("nakon dodelu");
+            console.log(student.ime);
+
 
                 const token = response.data.token;
                 setToken(token);
@@ -504,7 +509,7 @@ let student={
                 register === 2 && (<RegisterProfesor onNazad={goBack}> </RegisterProfesor>)
             }
             {
-                register === 0 && login === 1 && (
+                register === 0 && login === 1 &&  (
                     <>
                         <ProfileStudent podaci={student} />
                         <NavbarStudent  />
