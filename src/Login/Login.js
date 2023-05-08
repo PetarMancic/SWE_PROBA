@@ -8,6 +8,7 @@ import Succes1 from "../images/check.png";
 import { Link } from 'react-router-dom';
 import Register from '../Student/RegisterStudent';
 import Home from '../Student/Home';
+import Administrator from '../Administrator/Administrator';
 
 import axios from '../api/axios';
 import NavbarStudent from '../UI/Navbar/NavbarStudent';
@@ -31,10 +32,19 @@ const Login = () => {
     const [error, setError] = useState();
     const [register, setRegister] = useState(0);
 
+    const [administrator,setAdministrator] = useState(0);  // ako je 0 onda ne crta 
+
+
+
 
     const goBack = (value) => {
         setRegister(value);  // metoda koja nam sluzi da promeni vrednost za register promenljivu
         // ukoliko je register ===0 koja se postavlja u  RegisterStudent, onda ce da se vrati na pocetnu 
+    }
+    
+    const goBackLogin=(value)=>
+    {
+        setLogin(value);
     }
 
     const [token, setToken] = useState('');
@@ -52,7 +62,90 @@ const Login = () => {
         }
     }*/
 
+    
 
+    const LoginAdministratorHandler=  async (event )=>
+    {
+        event.preventDefault();
+
+        if (user.trim().length === 0 && pwd.trim().length === 0) {
+            setError(
+                {
+                    title: 'Invalid input',
+                    message: 'Please enter a valid username and password ',
+                    slika: Failure
+                }
+            )
+        }
+        if (user.trim().length != 0 && pwd.trim().length === 0) {
+            setError(
+                {
+                    title: 'Invalid input',
+                    message: 'Please enter a password',
+                    slika: Failure
+                }
+            )
+        }
+        if (user.trim().length === 0 && pwd.trim().length != 0) {
+            setError(
+                {
+                    title: 'Invalid input',
+                    message: 'Please enter a Username',
+                    slika: Failure
+                }
+            )
+        }
+        if (user.trim().length != 0 && pwd.trim().length != 0) {
+
+
+
+            try {
+                // const response = await axios.get(`/student/loginStudent/${user}/${pwd}`);
+                // const { id, ime, prezime, brojIndeksa, prosek, username, password } = response.data;
+                // console.log(ime);
+
+                // const token = response.data.token;
+                // setToken(token);
+
+                setLogin(3); // samo za probu
+
+                // if (response.status === 200) {
+                //     setLogin(3);
+                //     console.log(response.data);
+                //     setError(
+                //         {
+                //             title: 'Uspesno ste prijavili ',
+                //             message: '',
+                //             slika: Succes1
+                //         }
+                //     )
+                // }
+
+            }
+            catch (err) {
+                if (err.response && err.response.status === 500) {
+                    setError(
+                        {
+                            title: 'Invalid input',
+                            message: 'Please enter valid  Username or password',
+                            slika: Failure
+                        }
+                    )
+
+                } else {
+                    console.error(err);
+                }
+            }
+
+
+            const userName = user;
+            const pass = pwd;
+
+            console.log(userName, pass);
+            setUser('');
+            setPwd('');
+        }
+    }
     const userHandler = (event) => {
         setUser(event.target.value);
     }
@@ -352,6 +445,7 @@ const Login = () => {
                         <button type="submit" class="btn btn-primary btn-lg" onClick={studentHandler}>Login as student</button>
                         <button type="button" class="btn btn-secondary btn-lg" onClick={profesorHandler}>Login as professor</button>
                     </div>
+                    <button type="button" class="btn btn-secondary btn-lg" onClick={LoginAdministratorHandler}>Login as administrator</button> 
 
 
 
@@ -364,10 +458,13 @@ const Login = () => {
                 </form>
 
 
-            </div>)}
+            </div>)
+            }
+
             {
                 register === 1 && (<RegisterStudent onNazad={goBack}> </RegisterStudent>)
             }
+
             {
                 register === 2 && (<RegisterProfesor onNazad={goBack}> </RegisterProfesor>)
             }
@@ -379,11 +476,21 @@ const Login = () => {
                     </>
                 )
             }
+
             {
                 register === 0 && login === 2 && (
                     <>
                         <HomeP />
                         <NavbarProfesor />
+                    </>
+                )
+            }
+
+            {
+                register ===0 && login===3 && 
+                (
+                    <>
+                        <Administrator onNazad={goBackLogin} > </Administrator>
                     </>
                 )
             }

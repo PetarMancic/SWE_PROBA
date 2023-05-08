@@ -23,15 +23,12 @@ const RegisterStudent = (props) => {
 
     const [brTel, setBrTel] = useState('');
     const [email, setEmail] = useState('');
-    const [godStudija, setgodStudija] = useState('');
+    
     const [imeRod, setImeRod] = useState('');
     const [datumRodjenja, setdatumRodjenja] = useState('');
     const [jmbg, setJmbg] = useState('');
-    const [VK, setVK]=useState(''); 
-    const [number, setNumber] = useState(0);
     let smer=undefined;
-
-    let godinaStudija=undefined;
+    let godina=undefined;
     
 
 
@@ -46,11 +43,7 @@ const RegisterStudent = (props) => {
     const [imeRodInput, setimeRodInput] = useState(true);
     const [datumRodjenjaInput, setdatumRodjenjaInput] = useState(true);
     const [jmbgInput, setJmbgInput] = useState(true);
-    const[smerInput,setSmerInput]=useState(true);
-    const [VKinput, setVKinput]=useState(true);
-    
-
-
+   const[smerInput,setSmerInput]=useState(true)
     ////////////////////////////////////////////////////
     const [selectedOption, setSelectedOption] = useState('');
 
@@ -61,19 +54,25 @@ const RegisterStudent = (props) => {
                     {value:'Upravljanje sistemima',label:'Upravljanje sistemima'},
                     {value:'Komunikacije i informacione tehnologije',label:'Komunikacije i informacione tehnologije'}
                 ];
+    const godine = [ {value:'1',label:'I'}, 
+                     {value:'2',label:'II'},
+                     {value: '3',label:'III'}, 
+                     {value:'4',label:'IV'}
+                    ];
 
-    const nizGodStudija=[
-        {value:'1', label:'I'},
-        {value:'2', label:'II'},
-        {value:'3', label:'III'},
-        {value:'4', label:'IV'}
-    ]
-  
     
     const smerHandler = (event) => {
         setSmerInput(true)
         smer=event.value;
       console.log("Izabrano",smer);
+      
+  
+      
+    };
+    const godineHandler = (event) => {
+        setgodStudijaInput(true)
+        godina=event.value;
+      console.log("Izabrano",godina);
       
   
       
@@ -124,19 +123,7 @@ const RegisterStudent = (props) => {
         }
     }
 
-    const GodStudijaHandler = (event) => {
-       // const inputNumber = parseInt(event.target.value);
-        
-       godinaStudija=event.target.value;
-
-       
-
-        // console.log(prezime.trim().length);
-        if (godinaStudija!=undefined) {
-            setgodStudijaInput(true);
-        }
-    }
-
+   
 
 
     const imeRoditeljaHandler = (event) => {
@@ -190,17 +177,6 @@ const RegisterStudent = (props) => {
         }
     }
 
-    const VKHandler= (event) =>
-    {
-        setVK(event.target.value);
-
-        if(VK.trim().length >= 0)
-        {
-            setVKinput(true);
-        }
-    }
-
-
     //za smer mora da bude padajuci meni i hvatanje 
 
 
@@ -237,7 +213,7 @@ const RegisterStudent = (props) => {
             zaustavi = true;
         }
 
-        if (godStudija.trim().length === 0) {
+        if (godina=== undefined) {
             setgodStudijaInput(false);
             zaustavi = true;
         }
@@ -260,12 +236,6 @@ const RegisterStudent = (props) => {
         if(smer===undefined)
         {
             setSmerInput(false);
-            zaustavi=true;
-        }
-
-        if(VK.trim().length===0)
-        {
-            setVKinput(false);
             zaustavi=true;
         }
 
@@ -302,7 +272,7 @@ const RegisterStudent = (props) => {
             Email: email,
             Password: pass,
             BrojIndexa: parseInt(brojIndeksa),
-            TrenutnaGodinaStudija: parseInt(godStudija),
+            TrenutnaGodinaStudija: parseInt(godina),
             ImeRoditelja: imeRod,
             DatumRodjenja: datumRodjenja,
             JMBG: jmbg,
@@ -405,20 +375,14 @@ const RegisterStudent = (props) => {
 
 
 
-                    {/* <label htmlFor="Trenutna god studija">GODINA STUDIJA</label>
-                    <input
-                        id="godStudija"
-                        type="number"
-                        value="number"
-                        onChange={GodStudijaHandler}
-                        className={`inpuT ${!godStudijaInput ? 'pozadina' : ''}`}
+                    <label htmlFor="godinStudija"> Izaberite godinu studija</label>
 
-                    /> */}
+                    <Select options={godine} placeholder='Odaberite' onChange={godineHandler} className={` crni-tekst  ${!smerInput ? 'pozadina' : ''}`}>
 
-                    <label htmlFor="Trenutna god studija">GODINA STUDIJA</label>
-                    <Select options={nizGodStudija} placeholder='Izaberite...' onChange={GodStudijaHandler} className={` crni-tekst  ${!godStudijaInput ? 'pozadina' : ''}`}>
+
                     </Select>
-                    
+
+
                     <label htmlFor="Ime roditelja ">IME RODITELJA</label>
                     <input
                         id="imeRoditelja"
@@ -450,19 +414,9 @@ const RegisterStudent = (props) => {
                     <label htmlFor="smer"> SMER</label>
 
                     <Select options={smerovi} placeholder='Odaberite smer' onChange={smerHandler} className={` crni-tekst  ${!smerInput ? 'pozadina' : ''}`}>
-                    </Select>
                     
                     
-
-                <label htmlFor="VK"> VERIFIKACIONI BROJ</label>
-                    <input
-                        id="VK"
-
-                        type="number"
-                        onChange={VKHandler}
-                        className={` border inpuT ${!VKinput ? 'pozadina' : ''}`}
-
-                    />
+                </Select>
                
 
 
