@@ -20,6 +20,9 @@ import ProfileStudent from '../Student/ProfileStudent';
 //Komentar
 const LOGIN_URL = '/auth';
 const Login = () => {
+    useEffect(()=>{
+        setLogin(1);
+    },[student]);
     const [promenljiva,setPromenljiva]=useState(0);
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
@@ -167,7 +170,7 @@ const Login = () => {
     }
     const [login, setLogin] = useState(0);
 ///////////////////////////////////////////////
-let student={
+const[student,setStudent]=useState({
     
         id:100,
         ime:'',
@@ -182,7 +185,7 @@ let student={
         datumRodj:'',
         jmbg:0,
         smer:0
-}
+    })
 
     const studentHandler = async (e) => {
 
@@ -231,7 +234,7 @@ let student={
             setToken(token);
             
             if (response.status === 200) {
-                    let student2={
+       let student2={
         
                         id:response.data.student.Id,
                        ime:response.data.student.Ime,
@@ -247,8 +250,8 @@ let student={
                         jmbg:response.data.JMBG,
                         smer:response.data.student.Smer,
                 }
-                student=student2;
-                    setLogin(1);
+                setStudent(student2);
+                  
                     console.log(response.data);
                     setError(
                         {
@@ -257,9 +260,10 @@ let student={
                             slika: Succes1
                         }
                     )
-                }
+       
 
             }
+        }
             catch (err) {
                 if (err.response && err.response.status === 500) {
                     setError(
