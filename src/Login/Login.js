@@ -204,7 +204,8 @@ const Login = () => {
 
             try {
                 const response = await axios.get(`/student/loginStudent/${user}/${pwd}`);
-                const { id, ime, prezime, brojIndeksa, prosek, username, password } = response.data;
+                const { id, ime, prezime,brojTelefona,email,password,prosek, brojIndeksa, trenutnaGodstudija,imeRoditelja
+                    ,datumROdjenja,jmbg, smer } = response.data;
                 console.log(ime);
 
                 const token = response.data.token;
@@ -285,7 +286,8 @@ const Login = () => {
 
             try {
                 const response = await axios.get(`/profesor/loginProfesor/${user}/${pwd}`);
-                const { id, ime, prezime, idBrojKartice, username, password } = response.data;
+                const { id, ime, prezime, idBrojKartice,email,password,datumROdjenja,jmbg,radniStaz,imeRoditelja,
+                    prosecnaOcena,trenutniBrojOcena } = response.data;
                 console.log(ime);
 
                 const token = response.data.token;
