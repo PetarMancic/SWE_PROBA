@@ -10,10 +10,10 @@ import Administrator from './Administrator/Administrator';
 function App() {
   return (
     <main className="App">
-     <ProfileStudent/>
+     {/* <ProfileStudent/> */}
      {/* <NavbarStudent></NavbarStudent> */}
       {/* <Administrator> </Administrator> */}
-      {/* <Login></Login>  */}
+      <Login></Login> 
       
        {/* <Home> </Home>  */}
       {/* <NavbarStudent/> */}
