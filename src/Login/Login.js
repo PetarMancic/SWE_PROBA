@@ -20,28 +20,9 @@ import ProfileStudent from '../Student/ProfileStudent';
 //Komentar
 const LOGIN_URL = '/auth';
 const Login = () => {
-    const[student,setStudent]=useState({
-    
-        id:100,
-        ime:'',
-        prezime:'',
-        brojTelefona:0,
-        email:'',
-        password:'',
-        prosek:0,
-        brojIndeksa:100,
-        trenutnaGodStudija:0,
-        imeRoditelja:'',
-        datumRodj:'',
-        jmbg:0,
-        smer:0
-    });
-    let idi=false;
-    useEffect(()=>{
-        if(idi===true){
-        setLogin(1);
-        }
-    },[student]);
+     
+
+        
     const [promenljiva,setPromenljiva]=useState(0);
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
@@ -195,6 +176,7 @@ const Login = () => {
 
 
         e.preventDefault();
+        
 
         if (user.trim().length === 0 && pwd.trim().length === 0) {
             setError(
@@ -228,7 +210,7 @@ const Login = () => {
 
 
             try {
-                const response = await axios.get(`/student/loginStudent/${user}/${pwd}`);
+                const response =await axios.get(`/student/loginStudent/${user}/${pwd}`);
                 setPromenljiva(1);
                 console.log("nakon dodelu");
             //console.log(student.ime);
@@ -238,24 +220,13 @@ const Login = () => {
             setToken(token);
             
             if (response.status === 200) {
-                idi=true;
-       let student2={
-        
-                        id:response.data.student.Id,
-                       ime:response.data.student.Ime,
-                        prezime:response.data.student.Prezime,
-                        brojTelefona:response.data.student.BrojTelefona,
-                        email:response.data.Email,
-                        password:response.data.Password,
-                        prosek:response.data.Prosek,
-                        brojIndeksa:response.data.BrojIndexa,
-                        trenutnaGodStudija:response.data.TrenutnaGodinaStudija,
-                        imeRoditelja:response.data.ImeRoditelja,
-                        datumRodj:response.data.DatumRodjenja,
-                        jmbg:response.data.JMBG,
-                        smer:response.data.student.Smer,
-                }
-                setStudent(student2);
+                
+                setUser(user);
+                setPwd(pwd);
+                localStorage.setItem('user',user);
+                localStorage.setItem('pwd',pwd);
+
+                setLogin(1);
                   
                     console.log(response.data);
                     setError(
@@ -266,34 +237,27 @@ const Login = () => {
                         }
                     )
        
-
+  
             }
-        }
-            catch (err) {
-                if (err.response && err.response.status === 500) {
-                    setError(
-                        {
-                            title: 'Invalid input',
-                            message: 'Please enter valid  Username or password',
-                            slika: Failure
-                        }
-                    )
+        
 
-                } else {
-                    console.error(err);
+
+    }
+    catch (err) {
+        if (err.response && err.response.status === 500) {
+            setError(
+                {
+                    title: 'Invalid input',
+                    message: 'Please enter valid  Username or password',
+                    slika: Failure
                 }
+            )
+
+        } else {
+            console.error(err);
             }
-
-
-            const userName = user;
-            const pass = pwd;
-
-            console.log(userName, pass);
-            setUser('');
-            setPwd('');
+            }
         }
-
-
     }
     
     //////
@@ -520,7 +484,7 @@ const Login = () => {
             {
                 register === 0 && login === 1 &&  (
                     <>
-                        <ProfileStudent podaci={student} />
+                        <ProfileStudent />
                         <NavbarStudent  />
                     </>
                 )
@@ -549,4 +513,4 @@ const Login = () => {
 }
 
 //<button type="submit"> Login</button>
-export default Login
+export default Login;
