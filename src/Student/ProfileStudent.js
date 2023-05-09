@@ -112,8 +112,8 @@ useState(()=>{
               <div class=" w3-text-grey w3-card-4 login-form">
                 
                 <div class="w3-container">
+                  <img src={Profilna} style={{position:'relative',height:'140px'}} className="img-rounded"/>
                   <h2 class="w3-large"><h1><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Neko Nekovic</h1></h2>
-                  <img src={Profilna} className="img-rounded"/>
                  
                   <h3>Broj indeksa:{student.brojIndeksa}</h3>
                   <br />
