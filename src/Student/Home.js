@@ -8,6 +8,9 @@ import Slika4 from "./slike/comments.png";
 import Slika5 from "./slike/test.png";
 import Slika6 from "./slike/form.png";
 import Slika7 from "./slike/komentari.png";
+import { Route, Routes } from "react-router-dom";
+import ProfileStudent from './ProfileStudent';
+import Login from "../Login/Login";
 
 
 
@@ -73,6 +76,7 @@ const Home=()=>{
     </div>
 </div><br/><br/>
 </div>
+
 </div>
     );
 

@@ -5,7 +5,7 @@ import Home from './Student/Home';
 import NavbarStudent from './UI/Navbar/NavbarStudent';
 import ProfileStudent from './Student/ProfileStudent'
 import Administrator from './Administrator/Administrator';
-
+import {Route,Routes} from 'react-router-dom';
 
 function App() {
   return (
@@ -13,11 +13,20 @@ function App() {
      {/* <ProfileStudent/> */}
      {/* <NavbarStudent></NavbarStudent> */}
       {/* <Administrator> </Administrator> */}
-      <Login></Login> 
+      {/* <Login></Login>  */}
       
        {/* <Home> </Home>  */}
-      {/* <NavbarStudent/> */}
-      
+      <NavbarStudent/>
+      <div className="container">
+  <Routes>
+    <Route path="/home" element={<Home />}/>
+    <Route path="/profil" element={<ProfileStudent />}/>
+    <Route path='/poi' element={<Login />}/>
+    <Route path="/salji" element={<Login />}/>
+    <Route path="/pogledaj" element={<Login />}/>
+    <Route path="/kuca" element={<Login />}/>
+  </Routes>
+</div>
       
     </main>
   );

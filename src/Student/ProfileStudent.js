@@ -5,31 +5,21 @@ import Table from 'react-bootstrap/Table';
 import Polozeni from "./Informacije/Polozeni";
 import Prijavljeni from "./Informacije/Prijavljeni";
 import Espb from "./Informacije/Espb";
-
+import {Route,Routes} from 'react-router-dom'
 import { useRef, useState, useEffect, useContext } from 'react';
 import AuthContext from "../context/AuthProvider";
 
 import ErrorModal from '../Error/ErrorModal';
 
-import { Link } from 'react-router-dom';
+
 
 import axios from '../api/axios';
+import ProfileStudentNav from './ProfileStudentNav';
+import Login from '../Login/Login';
 
 
 const ProfileStudent=(props)=>{
-    const[navigacija,setNavigacija]=useState(0);
-    const polozeniHandler=(event)=>{
-        setNavigacija(1);
-    }
-    const prijavljeniHandler=(event)=>{
-        setNavigacija(2);
-    }
-    const espbHandler=(event)=>{
-        setNavigacija(3);
-    }
-    const sakriHandler=(event)=>{
-        setNavigacija(0);
-    }
+ 
     ////////////////////////////////////
     const[student,setStudent]=useState({
     
@@ -97,10 +87,28 @@ const ProfileStudent=(props)=>{
           
       
   };
-useState(()=>{
+useEffect(()=>{
   fetchData();
 },[]);
 /////////////////////////////////////////////////////////////////////
+const [nav,setNav]=useState(0);
+const polozeniHandler=()=>{
+  setNav(1);
+
+}
+const prijavljeniHandler=()=>{
+  setNav(2);
+
+}
+const ESPBHandler=()=>{
+  setNav(3);
+
+}
+const sakrijHandler=()=>{
+  setNav(0);
+
+}
+//////////////////////////////////////////////////////////////////////
     return (
         
         <div class="w3-content w3-margin-top" style={{maxWidth:"1400px",position:'absolute',top:'35px',width:'1000%'}} >
@@ -202,7 +210,7 @@ useState(()=>{
                   <br />
                 </div>
               </div>
- <nav class="navbar navbar-inverse" style={{position:'relative',bottom:'0px'}} >
+              <nav class="navbar navbar-inverse" style={{position:'relative',bottom:'0px'}} >
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -210,23 +218,23 @@ useState(()=>{
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand active" onClick={sakriHandler}>Sakrij</a>
+      <a class="navbar-brand active" onClick={sakrijHandler}>Sakrij</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li> <a onClick={polozeniHandler}>Polozeni ispiti</a></li>
         <li> <a onClick={prijavljeniHandler}>Prijavljeni ispiti</a></li>
-        <li><a onClick={espbHandler}>ESPB</a></li>
-        <li><a href="#">Svoji komentari</a></li>
+        <li><a onClick={ESPBHandler}>ESPB</a></li>
+        <li><a >Svoji komentari</a></li>
       </ul>
      
     </div>
   </div>
 </nav>
-{navigacija===1 &&<Polozeni />}
-{navigacija===2 &&<Prijavljeni />}
-{navigacija===3 &&<Espb />}
-        
+{nav===1 && <Polozeni/>}
+{nav===2 && <Prijavljeni/>}
+{nav===3 && <Espb/>}
+
             
           </div>
           
