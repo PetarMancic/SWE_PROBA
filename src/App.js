@@ -17,7 +17,7 @@ function App() {
       
        {/* <Home> </Home>  */}
       <NavbarStudent/>
-      <div className="container">
+      
   <Routes>
     <Route path="/home" element={<Home />}/>
     <Route path="/profil" element={<ProfileStudent />}/>
@@ -26,7 +26,7 @@ function App() {
     <Route path="/pogledaj" element={<Login />}/>
     <Route path="/kuca" element={<Login />}/>
   </Routes>
-</div>
+
       
     </main>
   );
