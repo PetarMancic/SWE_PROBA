@@ -56,7 +56,7 @@ const Login = () => {
         setLogin(value);
     }
 
-    const [token, setToken] = useState('');
+    const token=useSelector(state=>state.token);
 
     /*const dugmeHandler = () => {
         async function fetchData() {
@@ -223,8 +223,7 @@ const Login = () => {
             //console.log(student.ime);
             
             
-            const token = response.data.token;
-            setToken(token);
+            //token = response.data.token;
             
             if (response.status === 200) {
                 
@@ -244,6 +243,7 @@ const Login = () => {
                 dispatch(userSliceActions.userDatum(response.data.student.DatumRodjenja));
                 dispatch(userSliceActions.userJmbg(response.data.student.JMBG));
                 dispatch(userSliceActions.userSmer(response.data.student.Smer));
+                dispatch(userSliceActions.userToken(response.data.token));
                 
                 
                 
@@ -328,7 +328,7 @@ const Login = () => {
                 console.log(ime);
 
                 const token = response.data.token;
-                setToken(token);
+               // setToken(token);
 
                 if (response.status === 200) {
                     setLogin(2);
@@ -411,8 +411,8 @@ const Login = () => {
                 const { id, ime, prezime, brojIndeksa, prosek, username, password } = response.data;
                 console.log(ime);
 
-                const token = response.data.token;
-                setToken(token);
+                //const token = response.data.token;
+               // setToken(token);
 
                 if (response.status === 200) {
                     console.log(response.data);

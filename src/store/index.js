@@ -13,7 +13,8 @@ const initialState={
     uImeRoditelja: "",
     uDatumRodjenja: "",
     uJmbg: "",
-    uSmer:""
+    uSmer:"",
+    token:""
 }
 const userSlice=createSlice({name:'podaci',
 initialState:initialState,
@@ -27,7 +28,7 @@ reducers:{
     userId(state,action){
         state.uID=action.payload;
     },
-    userLastName(state,action){
+    userPrezime(state,action){
         state.uPrezime=action.payload;
     },
     userNumber(state,action){
@@ -56,6 +57,9 @@ reducers:{
     },
     userSmer(state,action){
         state.uSmer=action.payload;
+    },
+    userToken(state,action){
+        state.token=action.payload;
     }
 
 
