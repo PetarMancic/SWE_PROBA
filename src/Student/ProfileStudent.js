@@ -16,80 +16,95 @@ import ErrorModal from '../Error/ErrorModal';
 import axios from '../api/axios';
 import ProfileStudentNav from './ProfileStudentNav';
 import Login from '../Login/Login';
+import { useSelector, useDispatch } from 'react-redux';
+import { userSliceActions } from '../store';
+
 
 
 const ProfileStudent=(props)=>{
+  const ime=useSelector(state=>state.uIme);
+  const prezime=useSelector(state=>state.uPrezime);
+  const broj=useSelector(state=>state.uBrojTelefona);
+  const user=useSelector((state)=>state.uEmail);
+  const pwd=useSelector((state)=>state.uPassword);
+  const prosek=useSelector(state=>state.uProsek);
+  const index=useSelector(state=>state.uBrojIndeksa);
+  const godina=useSelector(state=>state.uTrenutnaGodStudija);
+  const roditelj=useSelector(state=>state.uImeRoditelja);
+  const datum=useSelector(state=>state.uDatumRodjenja);
+  const jmbg=useSelector(state=>state.uJmbg);
+  const smer=useSelector(state=>state.uSmer);
+  const dispatch=useDispatch();
  
     ////////////////////////////////////
-    const[student,setStudent]=useState({
+//     const[student,setStudent]=useState({
     
-      id:100,
-      ime:'',
-      prezime:'',
-      brojTelefona:0,
-      email:'',
-      password:'',
-      prosek:0,
-      brojIndeksa:100,
-      trenutnaGodStudija:0,
-      imeRoditelja:'',
-      datumRodj:'',
-      jmbg:0,
-      smer:0
-  });
+//       id:100,
+//       ime:'',
+//       prezime:'',
+//       brojTelefona:0,
+//       email:'',
+//       password:'',
+//       prosek:0,
+//       brojIndeksa:100,
+//       trenutnaGodStudija:0,
+//       imeRoditelja:'',
+//       datumRodj:'',
+//       jmbg:0,
+//       smer:0
+//   });
   
-    const fetchData=async()=>{
+//     const fetchData=async()=>{
 
 
-          try {
-            const user=localStorage.getItem('user');
-            const pwd=localStorage.getItem('pwd');
-              const response =await axios.get(`/student/loginStudent/${user}/${pwd}`);
+//           try {
+//             // const user=localStorage.getItem('user');
+//             // const pwd=localStorage.getItem('pwd');
+//               const response =await axios.get(`/student/loginStudent/${user}/${pwd}`);
               
-              console.log("nakon dodelu");
-          //console.log(student.ime);
+//               console.log("nakon dodelu");
+//           //console.log(student.ime);
           
           
           
-          if (response.status === 200) {
+//           if (response.status === 200) {
               
-     let student2={
+//     //  let student2={
       
-                      id:response.data.student.Id,
-                     ime:response.data.student.Ime,
-                      prezime:response.data.student.Prezime,
-                      brojTelefona:response.data.student.BrojTelefona,
-                      email:response.data.Email,
-                      password:response.data.Password,
-                      prosek:response.data.Prosek,
-                      brojIndeksa:response.data.BrojIndexa,
-                      trenutnaGodStudija:response.data.TrenutnaGodinaStudija,
-                      imeRoditelja:response.data.ImeRoditelja,
-                      datumRodj:response.data.DatumRodjenja,
-                      jmbg:response.data.JMBG,
-                      smer:response.data.student.Smer,
-              }
-              setStudent(student2);
-              console.log(response.data);
-                  
+//     //                   id:response.data.student.Id,
+//     //                  ime:response.data.student.Ime,
+//     //                   prezime:response.data.student.Prezime,
+//     //                   brojTelefona:response.data.student.BrojTelefona,
+//     //                   email:response.data.Email,
+//     //                   password:response.data.Password,
+//     //                   prosek:response.data.Prosek,
+//     //                   brojIndeksa:response.data.BrojIndexa,
+//     //                   trenutnaGodStudija:response.data.TrenutnaGodinaStudija,
+//     //                   imeRoditelja:response.data.ImeRoditelja,
+//     //                   datumRodj:response.data.DatumRodjenja,
+//     //                   jmbg:response.data.JMBG,
+//     //                   smer:response.data.student.Smer,
+//     //           }
+//     //           setStudent(student2);
+//     dispatch(userSliceActions.)
 
-          }
-      }
-          catch (err) {
+//           }
+//       }
+//           catch (err) {
             
-                  console.error(err);
+//                   console.error(err);
             
-          }
-          localStorage.removeItem('user');
-          localStorage.removeItem('pwd');
+//           }
+//           localStorage.removeItem('user');
+//           localStorage.removeItem('pwd');
 
 
           
       
-  };
-useEffect(()=>{
-  fetchData();
-},[]);
+//   };
+// useEffect(()=>{
+//   fetchData();
+// },[]);
 /////////////////////////////////////////////////////////////////////
 const [nav,setNav]=useState(0);
 const polozeniHandler=()=>{
@@ -121,15 +136,15 @@ const sakrijHandler=()=>{
                 
                 <div class="w3-container">
                   <img src={Profilna} style={{position:'relative',height:'140px'}} className="img-rounded"/>
-                  <h2 class="w3-large"><h1><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Neko Nekovic</h1></h2>
+                  <h2 class="w3-large"><h1><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>{ime} {prezime}</h1></h2>
                  
-                  <h3>Broj indeksa:{student.brojIndeksa}</h3>
+                  <h3>Broj indeksa:{index}</h3>
                   <br />
-                  <h4>Smer:{student.smer}</h4>
+                  <h4>Smer:{smer}</h4>
                   <br />
-                  <h4>Prosek:{student.prosek}</h4>
+                  <h4>Prosek:{prosek}</h4>
                   <br />
-                  <h4>Godina studija:{student.trenutnaGodStudija}</h4>
+                  <h4>Godina studija:{godina}</h4>
                   <br />
                   <hr />
         
@@ -137,13 +152,13 @@ const sakrijHandler=()=>{
                   <div className="row">
                   <div className="col-sm-6"><h3>JMBG</h3></div>
                   
-                  <div className="col-sm-6"><h3>{student.jmbg}</h3></div>
+                  <div className="col-sm-6"><h3>{jmbg}</h3></div>
                     
                 </div>
                 <div className="row">
                   <div className="col-sm-6"><h3>Datum rodjenja</h3></div>
                   
-                  <div className="col-sm-6"><h3>{student.datumRodj}</h3></div>
+                  <div className="col-sm-6"><h3>{datum}</h3></div>
                     
                 </div>
                 {/* <div className="row">
@@ -167,7 +182,7 @@ const sakrijHandler=()=>{
                 <div className="row">
                   <div className="col-sm-6"><h3>Ime roditelja</h3></div>
                   
-                  <div className="col-sm-6"><h3>{student.imeRoditelja}</h3></div>
+                  <div className="col-sm-6"><h3>{roditelj}</h3></div>
                     
                 </div>
                 {/* <div className="row">
@@ -177,9 +192,9 @@ const sakrijHandler=()=>{
                     
                 </div> */}
                 <div className="row">
-                  <div className="col-sm-6"><h3>Telefona</h3></div>
+                  <div className="col-sm-6"><h3>Telefon</h3></div>
                   
-                  <div className="col-sm-6"><h3>{student.brojTelefona}</h3></div>
+                  <div className="col-sm-6"><h3>{broj}</h3></div>
                     
                 </div>
                   <br />
@@ -206,7 +221,7 @@ const sakrijHandler=()=>{
                 </div>
                 <div class="w3-container">
                   <h5 class="w3-opacity"><b>Smer</b></h5>
-                  <h6 class="w3-text-teal"><i class="fa-fw w3-margin-right"></i>{student.smer}</h6>
+                  <h6 class="w3-text-teal"><i class="fa-fw w3-margin-right"></i>{smer}</h6>
                   <br />
                 </div>
               </div>

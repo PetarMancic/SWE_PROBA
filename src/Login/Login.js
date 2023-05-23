@@ -17,19 +17,24 @@ import HomeP from '../Profesor/HomeP';
 import RegisterStudent from '../Student/RegisterStudent';
 import RegisterProfesor from '../Profesor/RegisterProfesor';
 import ProfileStudent from '../Student/ProfileStudent';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { userSliceActions } from '../store/index';
 //Komentar
 const LOGIN_URL = '/auth';
 const Login = () => {
      
-
-        
+    const dispatch=useDispatch();
+    const [user,setUser]=useState('');
+    const [pwd,setPwd]=useState();
+    
     const [promenljiva,setPromenljiva]=useState(0);
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
-    const [user, setUser] = useState('');
-    const [pwd, setPwd] = useState('');
+    // const [user, setUser] = useState('');
+    // const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
@@ -104,6 +109,7 @@ const Login = () => {
 
 
             try {
+
                 // const response = await axios.get(`/student/loginStudent/${user}/${pwd}`);
                 // const { id, ime, prezime, brojIndeksa, prosek, username, password } = response.data;
                 // console.log(ime);
@@ -151,7 +157,8 @@ const Login = () => {
         }
     }
     const userHandler = (event) => {
-        setUser(event.target.value);
+         setUser(event.target.value);
+        
     }
     const passwordHandler = (event) => {
         setPwd(event.target.value);
@@ -221,11 +228,30 @@ const Login = () => {
             
             if (response.status === 200) {
                 
-                setUser(user);
-                setPwd(pwd);
-                localStorage.setItem('user',user);
-                localStorage.setItem('pwd',pwd);
-
+                // setUser(user);
+                // setPwd(pwd);
+                // localStorage.setItem('user',user);
+                // localStorage.setItem('pwd',pwd);
+                dispatch(userSliceActions.userEmail(user));
+                dispatch(userSliceActions.userPass(pwd));
+                dispatch(userSliceActions.userIme(response.data.student.Ime));
+                dispatch(userSliceActions.userPrezime(response.data.student.Prezime));
+                dispatch(userSliceActions.userNumber(response.data.student.BrojTelefona));
+                dispatch(userSliceActions.userProsek(response.data.student.Prosek));
+                dispatch(userSliceActions.userIndeks(response.data.student.BrojIndexa));
+                dispatch(userSliceActions.userGodina(response.data.student.TrenutnaGodinaStudija));
+                dispatch(userSliceActions.userRoditelj(response.data.student.imeRoditelja));
+                dispatch(userSliceActions.userDatum(response.data.student.DatumRodjenja));
+                dispatch(userSliceActions.userJmbg(response.data.student.JMBG));
+                dispatch(userSliceActions.userSmer(response.data.student.Smer));
+                
+                
+                
+                
+                
+                
+                
+                
                 setLogin(1);
                   
                     console.log(response.data);
