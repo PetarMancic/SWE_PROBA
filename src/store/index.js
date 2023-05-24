@@ -88,39 +88,39 @@ const profSlice=createSlice({
     {
         postaviIme(state,action){
            
-           return state.profIme=action.payload;
+            state.profIme=action.payload;
             
         },
         postaviPrezime(state=initialStateProf,action){
-            return state.profPrezime=action.payload;
+             state.profPrezime=action.payload;
             
         },
         postaviBrojTelefona(state=initialStateProf,action){
-            return  state.profBrojTelefona=action.payload;
+              state.profBrojTelefona=action.payload;
         },
         postaviIDBrojKartice(state=initialStateProf,action){
-            return  state.profIDBrojKartice=action.payload;
+              state.profIDBrojKartice=action.payload;
         },
         postaviprofEmail(state=initialStateProf,action){
-            return state.profEmail=action.payload;
+             state.profEmail=action.payload;
         },
         postaviprofPass(state=initialStateProf,action){
-            return state.profPassword=action.payload;
+             state.profPassword=action.payload;
         },
         postaviProfDatumRodjenja(state=initialStateProf,action){
-            return state.profDatumRodjenja=action.payload;
+             state.profDatumRodjenja=action.payload;
         },
         postaviProfJMBG(state=initialStateProf,action){
-            return state.profJmbg=action.payload;
+             state.profJmbg=action.payload;
         },
         postaviprofRadniStaz(state=initialStateProf,action){
-            return state.profRadniStaz=action.payload;
+             state.profRadniStaz=action.payload;
         },
         postaviprofImeRoditelja(state=initialStateProf,action){
-            return  state.profImeRoditelja=action.payload;
+              state.profImeRoditelja=action.payload;
         },
         postaviToken(state=initialStateProf,action){
-            return  state.token=action.payload;
+              state.token=action.payload;
         }
         
         
