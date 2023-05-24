@@ -1,99 +1,85 @@
 import '../Student/ProfileStudent.css';
 import Profilna from '../images/user.png';
 import Table from 'react-bootstrap/Table';
-import Polozeni from "./Informacije/Polozeni";
-import Prijavljeni from "./Informacije/Prijavljeni";
-import Espb from "./Informacije/Espb";
+
 import {Route,Routes} from 'react-router-dom'
 import { useRef, useState, useEffect, useContext } from 'react';
 import AuthContext from "../context/AuthProvider";
 
-import ErrorModal from '../Error/ErrorModal';
-
-
-
+import ListaKartica from './AdministratorListe/ListaKartica';
+import ListaPredmeta from './AdministratorListe/ListaPredmeta';
+import ListaPrijavljenihIspita from './AdministratorListe/ListaPrijavljenihIspita';
+import ListaProfesora from './AdministratorListe/ListaProfesora';
+import ListaStudenata from './AdministratorListe/ListaStudenata';
 import axios from '../api/axios';
-import ProfileStudentNav from './ProfileStudentNav';
-import Login from '../Login/Login';
+
+import { adminSliceActions } from '../store';
 import { useSelector, useDispatch } from 'react-redux';
-import { userSliceActions } from '../store';
+
 import { profSliceActions } from '../store';
 const ProfileAdministrator=()=>{
+    ///////////////////////////////
+    const [nav,setNav]=useState(0);
+    
+    const karticaHandler=()=>
+    {
+        setNav(1);
+    }
+    const predmetHandler=()=>
+    {
+        setNav(2);
+    }
+    const ispitHandler=()=>
+    {
+        setNav(3);
+    }
+    const profesorHandler=()=>
+    {
+        setNav(4);
+    }
+    const studentHandler=()=>
+    {
+        setNav(5);
+    }
+    const sakrijHandler=()=>
+    {
+        setNav(0);
+    }
+    //////////////////////////////////////
+    const username=useSelector(state=>state.administratorPodaci.aUsername);
+    const password=useSelector(state=>state.administratorPodaci.aPassword);
     return(
         <div class="w3-content w3-margin-top" style={{maxWidth:"1400px",position:'absolute',top:'35px',width:'1000%'}} >
         
         <div class="w3-row-padding">
         
           <div class="w3-third">
-          
-            <div class=" w3-text-grey w3-card-4 login-form">
-              
-              <div class="w3-container">
-                <img src={Profilna} style={{position:'relative',height:'140px'}} className="img-rounded"/>
-                <h2 class="w3-large"><h1><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>{ime} {prezime}</h1></h2>
-               
-                <h3>Broj indeksa:{index}</h3>
-                <br />
-                <h4>Smer:{smer}</h4>
-                <br />
-                <h4>Prosek:{prosek}</h4>
-                <br />
-                <h4>Godina studija:{godina}</h4>
-                <br />
-                <hr />
-      
-                <h1 class="w3-large"><h1><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Licni podaci</h1></h1>
-                <div className="row">
-                <div className="col-sm-6"><h3>JMBG</h3></div>
-                
-                <div className="col-sm-6"><h3>{jmbg}</h3></div>
-                  
-              </div>
-              <div className="row">
-                <div className="col-sm-6"><h3>Datum rodjenja</h3></div>
-                
-                <div className="col-sm-6"><h3>{datum}</h3></div>
-                  
-              </div>
-             
-              <div className="row">
-                <div className="col-sm-6"><h3>Ime roditelja</h3></div>
-                
-                <div className="col-sm-6"><h3>{roditelj}</h3></div>
-                  
-              </div>
-              
-              <div className="row">
-                <div className="col-sm-6"><h3>Telefon</h3></div>
-                
-                <div className="col-sm-6"><h3>{broj}</h3></div>
-                  
-              </div>
-                <br />
-      
-              </div>
-            </div><br />
-      
+          </div>
+          <div class="w3-third">
           </div>
       
-          <div class="w3-twothird">
+          <div class="w3-twothird" >
           <div class="w3-container w3-card login-form">
-              <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Edukacija</h2>
+              <h2 class="w3-text-grey w3-padding-16"><img src={Profilna} style={{position:'relative',height:'140px'}} className="img-rounded"/></h2>
               <div class="w3-container">
-                <h5 class="w3-opacity"><b>Tip studija</b></h5>
-                <h6 class="w3-text-teal">Onsovne akademske studije</h6>
+                
+                <h2 class="w3-opacity"><h2>Username</h2></h2>
+                <br />
+                <h2 class="w3-text-teal">{username}</h2>
                
                 <hr />
               </div>
               <div class="w3-container">
-                <h5 class="w3-opacity"><b>Studijski program</b></h5>
-                <h6 class="w3-text-teal"><i class="w3-opacityt"></i>Elektrotehnika i racunarstvo</h6>
                 
+                <h2 class="w3-opacity"><h2>Password</h2></h2>
+                <br />
+                <h2 class="w3-text-teal">{password}</h2>
+               
                 <hr />
               </div>
               <div class="w3-container">
-                <h5 class="w3-opacity"><b>Smer</b></h5>
-                <h6 class="w3-text-teal"><i class="fa-fw w3-margin-right"></i>{smer}</h6>
+                <h1 class="w3-opacity"><b>Liste</b></h1>
+                <h1 class="w3-text-teal"><i class="fa-fw w3-margin-right"></i>Izaberite listu koju zelite da vidite</h1>
                 <br />
               </div>
             </div>
@@ -109,18 +95,25 @@ const ProfileAdministrator=()=>{
   </div>
   <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
-      <li> <a onClick={polozeniHandler}>Polozeni ispiti</a></li>
-      <li> <a onClick={prijavljeniHandler}>Prijavljeni ispiti</a></li>
-      <li><a onClick={ESPBHandler}>ESPB</a></li>
-      <li><a >Svoji komentari</a></li>
+      <li> <a onClick={studentHandler}>lista studenata</a></li>
+      <li> <a onClick={profesorHandler}>Lista profesora</a></li>
+     
+      <li><a onClick={karticaHandler}>Lista kartica</a></li>
+      <li><a onClick={predmetHandler}>Lista predmeta</a></li>
+      <li><a onClick={ispitHandler}>Lista prijavljenih ispita</a></li>
     </ul>
    
   </div>
 </div>
 </nav>
-{nav===1 && <Polozeni/>}
-{nav===2 && <Prijavljeni/>}
-{nav===3 && <Espb/>}
+{nav===1 && <ListaKartica/>}
+{nav===2 && <ListaPredmeta/>}
+{nav===3 && <ListaPrijavljenihIspita/>}
+
+{nav===4 && <ListaProfesora/>}
+{nav===5 && <ListaStudenata/>}
+
+
 
           
         </div>

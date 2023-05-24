@@ -10,6 +10,7 @@ import ProfesorProfil from './Profesor/ProfesorProfil';
 import { BrowserRouter as Router, Link,  } from 'react-router-dom';
 import RegisterStudent from './Student/RegisterStudent';
 import HomeAdministrator from './Administrator/HomeAdministrator';
+import ProfileAdministrator from './Administrator/ProfileAdministrator';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
     <main className="App">
     
       {/* <ProfesorProfil> </ProfesorProfil>  */}
-      <HomeAdministrator/>
+      <ProfileAdministrator/>
       
       
   <Routes>

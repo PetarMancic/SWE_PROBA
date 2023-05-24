@@ -1,7 +1,7 @@
 const Espb=()=>{
     return(
         <div class="w3-container">
-         <table class="table table-striped  table-hover table-condensed">
+         <table class="table table-striped  table-hover table-condensed table-responsive">
             <thead>
               <th>Skolska godinat</th>
               <th>ESPB</th>
