@@ -21,6 +21,7 @@ import ProfileStudent from '../Student/ProfileStudent';
 import { useSelector, useDispatch } from 'react-redux';
 import { userSliceActions } from '../store/index';
 import { profSliceActions } from '../store/index';
+import ProfesorProfil from '../Profesor/ProfesorProfil';
 //Komentar
 const LOGIN_URL = '/auth';
 const Login = () => {
@@ -547,7 +548,7 @@ const Login = () => {
             {
                 register === 0 && login === 2 && (
                     <>
-                        <HomeP />
+                        <ProfesorProfil />
                         <NavbarProfesor />
                     </>
                 )
