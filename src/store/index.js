@@ -1,5 +1,6 @@
-import {configureStore, createSlice} from '@reduxjs/toolkit';
+import {configureStore, createSlice,combineReducers} from '@reduxjs/toolkit';
 import { configure } from '@testing-library/react';
+
 const initialState={
     uID: "",
     uIme: "",
@@ -62,17 +63,76 @@ reducers:{
         state.token=action.payload;
     }
 
-
-
-
-
-
-
 }
 })
 
-const store=configureStore({
+const initialStateProf={
+    profIme: "",
+    profPrezime: "",
+    profBrojTelefona: "",
+    profIDBrojKartice: "",
+    profEmail: "",
+    profPassword: "",
+    profDatumRodjenja: "",
+    profJmbg: "",
+    profRadniStaz:"",
+    profImeRoditelja: ""
+   
+}
+
+const profSlice=createSlice({
+    name:"podaci",
+    initialStateProf:initialStateProf,
+    reducers:
+    {
+        postaviIme(state,action){
+            state.profIme=action.payload;
+        },
+        postaviPrezime(state,action){
+            state.profPrezime=action.payload;
+        },
+        postaviBrojTelefona(state,action){
+            state.profBrojTelefona=action.payload;
+        },
+        postaviIDBrojKartice(state,action){
+            state.profIDBrojKartice=action.payload;
+        },
+        postaviprofEmail(state,action){
+            state.profEmail=action.payload;
+        },
+        postaviprofPass(state,action){
+            state.profPassword=action.payload;
+        },
+        postaviProfDatumRodjenja(state,action){
+            state.profDatumRodjenja=action.payload;
+        },
+        postaviProfJMBG(state,action){
+            state.profJmbg=action.payload;
+        },
+        postaviprofRadniStaz(state,action){
+            state.profRadniStaz=action.payload;
+        },
+        postaviprofImeRoditelja(state,action){
+            state.profImeRoditelja=action.payload;
+        }
+
+
+    }
+})
+
+const rootReducer = combineReducers({
+    reducer1: userSlice.reducer,
+    reducer2: profSlice.reducer
+  });
+
+
+/*const store=configureStore({
     reducer:userSlice.reducer
-});
+});*/
+
+const store=configureStore({
+    reducer:rootReducer
+})
 export const  userSliceActions=userSlice.actions;
+export const profSliceActions=profSlice.actions;
 export default store;

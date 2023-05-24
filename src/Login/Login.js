@@ -20,6 +20,7 @@ import ProfileStudent from '../Student/ProfileStudent';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { userSliceActions } from '../store/index';
+import { profSliceActions } from '../store/index';
 //Komentar
 const LOGIN_URL = '/auth';
 const Login = () => {
@@ -332,6 +333,17 @@ const Login = () => {
 
                 if (response.status === 200) {
                     setLogin(2);
+
+                    dispatch(profSliceActions.postavi(ime));
+                    dispatch(profSliceActions.postavi(prezime));
+                    dispatch(profSliceActions.postavi(idBrojKartice));
+                    /*dispatch(profSliceActions.postavi(ime));
+                    dispatch(profSliceActions.postavi(ime));
+                    dispatch(profSliceActions.postavi(ime));
+                    dispatch(profSliceActions.postavi(ime));
+                    dispatch(profSliceActions.postavi(ime));
+                    dispatch(profSliceActions.postavi(ime));*/
+
                     console.log(response.data);
                     setError(
                         {

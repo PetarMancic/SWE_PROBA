@@ -18,6 +18,7 @@ import ProfileStudentNav from './ProfileStudentNav';
 import Login from '../Login/Login';
 import { useSelector, useDispatch } from 'react-redux';
 import { userSliceActions } from '../store';
+import { profSliceActions } from '../store';
 
 
 
