@@ -25,59 +25,47 @@ import ProfesorProfil from '../Profesor/ProfesorProfil';
 //Komentar
 const LOGIN_URL = '/auth';
 const Login = () => {
-     
-    const dispatch=useDispatch();
-    const [user,setUser]=useState('');
-    const [pwd,setPwd]=useState();
-    
-    const [promenljiva,setPromenljiva]=useState(0);
+
+    const dispatch = useDispatch();
+
+    const [promenljiva, setPromenljiva] = useState(0);
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
+    const [register, setRegister] = useState(0);
+    const [administrator, setAdministrator] = useState(0);  // ako je 0 onda ne crta 
 
-    // const [user, setUser] = useState('');
-    // const [pwd, setPwd] = useState('');
+    const [user, setUser] = useState('');
+    const [pwd, setPwd] = useState();
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
-
     const [error, setError] = useState();
-    const [register, setRegister] = useState(0);
-
-    const [administrator,setAdministrator] = useState(0);  // ako je 0 onda ne crta 
 
 
-    
+
+
+
+
+
+
 
     const goBack = (value) => {
         setRegister(value);  // metoda koja nam sluzi da promeni vrednost za register promenljivu
         // ukoliko je register ===0 koja se postavlja u  RegisterStudent, onda ce da se vrati na pocetnu 
     }
-    
-    const goBackLogin=(value)=>
-    {
+
+    const goBackLogin = (value) => {
         setLogin(value);
     }
 
-    const token=useSelector(state=>state.token);
+    const token = useSelector(state => state.token);
 
-    /*const dugmeHandler = () => {
-        async function fetchData() {
-            try {
-                const response = await axios.get('https://localhost:3000/student/loginStudent/mihajlomadic@gmail.com/mixa');
-                console.log(response.data);
-            }
-            catch (err) {
-                console.error(err);
-            }
 
-        }
-    }*/
 
-    
+                //LOGIN ADMINISTRATOR //////////////////////////////
+    const LoginAdministratorHandler = async (event) => {
+        event.preventDefault(); // da ne refreshuje stranicu 
 
-    const LoginAdministratorHandler=  async (event )=>
-    {
-        event.preventDefault();
 
         if (user.trim().length === 0 && pwd.trim().length === 0) {
             setError(
@@ -158,9 +146,14 @@ const Login = () => {
             setPwd('');
         }
     }
+
+                //ZAVRSETAK FUNKCIJE LOGINADMINISTRATORHANDLER
+
+
+
     const userHandler = (event) => {
-         setUser(event.target.value);
-        
+        setUser(event.target.value);
+
     }
     const passwordHandler = (event) => {
         setPwd(event.target.value);
@@ -178,14 +171,18 @@ const Login = () => {
         setRegister(2);
     }
     const [login, setLogin] = useState(0);
-///////////////////////////////////////////////
+    ///////////////////////////////////////////////
 
 
-    const studentHandler = async (e) => {
+
+                //STUDENT HANDLER////////////////////////////////////////////////////
+
+    const studentHandler = async (e) => 
+    {
 
 
         e.preventDefault();
-        
+
 
         if (user.trim().length === 0 && pwd.trim().length === 0) {
             setError(
@@ -214,48 +211,41 @@ const Login = () => {
                 }
             )
         }
-        if (user.trim().length != 0 && pwd.trim().length != 0) {
+
+        //AKO JE UNEO USERNAME I PASSWORD ONDA ZOVEMO METODU SA BACK-A 
+        if (user.trim().length != 0 && pwd.trim().length != 0) 
+        {
 
 
 
             try {
-                const response =await axios.get(`/student/loginStudent/${user}/${pwd}`);
-                setPromenljiva(1);
+                const response = await axios.get(`/student/loginStudent/${user}/${pwd}`);
+                setPromenljiva(1); //STUDENT PROFIL, izgleda da se ne koristi 
+
                 console.log("nakon dodelu");
-            //console.log(student.ime);
-            
-            
-            //token = response.data.token;
-            
-            if (response.status === 200) {
                 
-                // setUser(user);
-                // setPwd(pwd);
-                // localStorage.setItem('user',user);
-                // localStorage.setItem('pwd',pwd);
-                dispatch(userSliceActions.userEmail(user));
-                dispatch(userSliceActions.userPass(pwd));
-                dispatch(userSliceActions.userIme(response.data.student.Ime));
-                dispatch(userSliceActions.userPrezime(response.data.student.Prezime));
-                dispatch(userSliceActions.userNumber(response.data.student.BrojTelefona));
-                dispatch(userSliceActions.userProsek(response.data.student.Prosek));
-                dispatch(userSliceActions.userIndeks(response.data.student.BrojIndexa));
-                dispatch(userSliceActions.userGodina(response.data.student.TrenutnaGodinaStudija));
-                dispatch(userSliceActions.userRoditelj(response.data.student.imeRoditelja));
-                dispatch(userSliceActions.userDatum(response.data.student.DatumRodjenja));
-                dispatch(userSliceActions.userJmbg(response.data.student.JMBG));
-                dispatch(userSliceActions.userSmer(response.data.student.Smer));
-                dispatch(userSliceActions.userToken(response.data.token));
-                
-                
-                
-                
-                
-                
-                
-                
-                setLogin(1);
-                  
+                    //AKO JE USPESNO VRATIO BACK ONDA PROSLEDJUJEMO PODATKE STUDENT PROFILU
+                if (response.status === 200)
+                 {
+
+                    
+                    dispatch(userSliceActions.userEmail(user));
+                    dispatch(userSliceActions.userPass(pwd));
+                    dispatch(userSliceActions.userIme(response.data.student.Ime));
+                    dispatch(userSliceActions.userPrezime(response.data.student.Prezime));
+                    dispatch(userSliceActions.userNumber(response.data.student.BrojTelefona));
+                    dispatch(userSliceActions.userProsek(response.data.student.Prosek));
+                    dispatch(userSliceActions.userIndeks(response.data.student.BrojIndexa));
+                    dispatch(userSliceActions.userGodina(response.data.student.TrenutnaGodinaStudija));
+                    dispatch(userSliceActions.userRoditelj(response.data.student.imeRoditelja));
+                    dispatch(userSliceActions.userDatum(response.data.student.DatumRodjenja));
+                    dispatch(userSliceActions.userJmbg(response.data.student.JMBG));
+                    dispatch(userSliceActions.userSmer(response.data.student.Smer));
+                    dispatch(userSliceActions.userToken(response.data.token));
+
+
+                    setLogin(1); // sve je OK i idemo na stranicu ProfilStudenta 
+                    
                     console.log(response.data);
                     setError(
                         {
@@ -264,32 +254,40 @@ const Login = () => {
                             slika: Succes1
                         }
                     )
-       
-  
-            }
-        
 
-
-    }
-    catch (err) {
-        if (err.response && err.response.status === 500) {
-            setError(
-                {
-                    title: 'Invalid input',
-                    message: 'Please enter valid  Username or password',
-                    slika: Failure
                 }
-            )
 
-        } else {
-            console.error(err);
             }
+
+            catch (err) 
+            {
+                    if (err.response && err.response.status === 500) 
+                        {
+                            setError({
+                                    title: 'Invalid input',
+                                    message: 'Please enter valid  Username or password',
+                                    slika: Failure
+                                })
+
+                     } else 
+                     {
+                        console.error(err);
+                     }
             }
-        }
-    }
-    
-    //////
-    const profesorHandler = async (e) => {
+
+
+        }// zavrsava se if, ako je uneto i USER I PASS 
+
+    }//ZAVRSAVA SE STUDENT HANDLER /////////////////////////
+
+
+
+
+
+
+    ////// PROFESOR HANDLER 
+    const profesorHandler = async (e) => 
+    {
         e.preventDefault();
 
         if (user.trim().length === 0 && pwd.trim().length === 0) {
@@ -329,14 +327,14 @@ const Login = () => {
                 // const { id, ime, prezime, idBrojKartice,email,password,datumROdjenja,jmbg,radniStaz,imeRoditelja,
                 //     prosecnaOcena,trenutniBrojOcena } = response.data;
                 // console.log(ime);
-                
+
                 const token = response.data.token;
                 // setToken(token);
-                
+
                 if (response.status === 200) {
                     console.log("uso u 200");
                     console.log(response.data.profesor.Ime);
-                    
+
                     dispatch(profSliceActions.postaviIme(response.data.profesor.Ime));
                     dispatch(profSliceActions.postaviPrezime(response.data.profesor.Prezime));
                     dispatch(profSliceActions.postaviBrojTelefona(response.data.profesor.BrojTelefona));
@@ -348,62 +346,55 @@ const Login = () => {
                     dispatch(profSliceActions.postaviprofRadniStaz(response.data.profesor.RadniStaz));
                     dispatch(profSliceActions.postaviprofImeRoditelja(response.data.profesor.ImeRoditelja));
                     dispatch(profSliceActions.postaviToken(response.data.Token));
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+
+
+
                     setLogin(2);
-                    
-                    /*dispatch(profSliceActions.postavi(ime));
-                    dispatch(profSliceActions.postavi(ime));
-                    dispatch(profSliceActions.postavi(ime));
-                    dispatch(profSliceActions.postavi(ime));
-                    dispatch(profSliceActions.postavi(ime));
-                    dispatch(profSliceActions.postavi(ime));*/
 
                     console.log(response.data);
-                    setError(
-                        {
+                    setError({
                             title: 'Uspesno ste prijavili ',
                             message: '',
                             slika: Succes1
-                        }
-                    )
+                        })
+
+
+                    }
+                }
+                catch (err) 
+                {
+                    if (err.response && err.response.status === 500) 
+                    {
+                            setError({
+                                    title: 'Invalid input',
+                                    message: 'Please enter valid  Username or password',
+                                    slika: Failure
+                                })
+    
+                    } else {
+                        console.error(err);
+                    }
                 }
 
-            }
-            catch (err) {
-                if (err.response && err.response.status === 500) {
-                    setError(
-                        {
-                            title: 'Invalid input',
-                            message: 'Please enter valid  Username or password',
-                            slika: Failure
-                        }
-                    )
-
-                } else {
-                    console.error(err);
-                }
+                const userName = user;
+                const pass = pwd;
+    
+                console.log(userName, pass);
+                setUser('');
+                setPwd('');
             }
 
-
-            const userName = user;
-            const pass = pwd;
-
-            console.log(userName, pass);
-            setUser('');
-            setPwd('');
-        }
+        } //ZAVRSAVA SE PROFESOR HANDLER 
+                    
 
 
 
-    }
 
 
+
+
+
+//mozda sve ovo moze da se obrise ako nemamo handler submit 
     const handlerSubmit = async (e) => {
         e.preventDefault();
 
@@ -443,8 +434,7 @@ const Login = () => {
                 const { id, ime, prezime, brojIndeksa, prosek, username, password } = response.data;
                 console.log(ime);
 
-                //const token = response.data.token;
-               // setToken(token);
+               
 
                 if (response.status === 200) {
                     console.log(response.data);
@@ -489,11 +479,15 @@ const Login = () => {
     return (
 
         <>
-            {register === 0 && login === 0 && (<div>
+            {register === 0 && login === 0 &&  // ako je ovo ispunjeno, vraca pocetnu formu 
+            
+            (<div>
 
                 {error && <ErrorModal title={error.title} message={error.message} slika={error.slika} ugasiProzor={errorHandler} />}
+                        {/* Ovo nam sluzi da izbaci pop up prozor ako nista nije uneo, i da omoguci da ga ugasimo */}
 
                 <form className="login-form" onSubmit={handlerSubmit}>
+                    
                     <img className="index" src={Slika}></img>
                     <h1>Welcome to E-index</h1>
                     <h2>Login</h2>
@@ -505,6 +499,8 @@ const Login = () => {
                         value={user}
                         onChange={userHandler}
                     />
+
+
                     <label htmlFor="pwd"> Password</label>
                     <input
                         id="password"
@@ -512,11 +508,14 @@ const Login = () => {
                         value={pwd}
                         onChange={passwordHandler}
                     />
+
+
                     <div>
                         <button type="submit" class="btn btn-primary btn-lg" onClick={studentHandler}>Login as student</button>
                         <button type="button" class="btn btn-secondary btn-lg" onClick={profesorHandler}>Login as professor</button>
                     </div>
-                    <button type="button" class="btn btn-secondary btn-lg" onClick={LoginAdministratorHandler}>Login as administrator</button> 
+
+                    <button type="button" class="btn btn-secondary btn-lg" onClick={LoginAdministratorHandler}>Login as administrator</button>
 
 
 
@@ -524,49 +523,56 @@ const Login = () => {
                     <label id="register" onClick={registerProfesorHandler}> Register as professor </label>
 
 
-
-
                 </form>
 
 
+
+
             </div>)
-            }
 
-            {
-                register === 1 && (<RegisterStudent onNazad={goBack}> </RegisterStudent>)
-            }
+            }  // kraj pocetne forme, ono sto prikazuje cim se ucita 
 
-            {
-                register === 2 && (<RegisterProfesor onNazad={goBack}> </RegisterProfesor>)
-            }
-            {
-                register === 0 && login === 1 &&  (
-                    <>
-                        <ProfileStudent />
-                        <NavbarStudent  />
-                    </>
-                )
-            }
 
-            {
-                register === 0 && login === 2 && (
-                    <>
-                        <ProfesorProfil />
-                        <NavbarProfesor />
-                    </>
-                )
-            }
+                        {
+                            register === 1 && (<RegisterStudent onNazad={goBack}> </RegisterStudent>) // registracija Studenta 
+                        }
 
-            {
-                register ===0 && login===3 && 
-                (
-                    <>
-                        <Administrator onNazad={goBackLogin} > </Administrator>
-                    </>
-                )
-            }
+                        {
+                            register === 2 && (<RegisterProfesor onNazad={goBack}> </RegisterProfesor>) // registracija Profesor
+                        }
 
-        </>
+                        {
+                            register === 0 && login === 1 && 
+                            (
+                                <>
+                                    <ProfileStudent />
+                                    <NavbarStudent />
+                                </>
+                            )
+                        }
+
+
+                        {
+                            register === 0 && login === 2 && 
+                            (
+                                <>
+                                    <ProfesorProfil />
+                                    <NavbarProfesor />
+                                </>
+                            )
+                        }
+
+
+                        {
+                            register === 0 && login === 3 &&
+                            (
+                                <>
+                                    <Administrator onNazad={goBackLogin} > </Administrator>
+                                </>
+                            )
+                        }
+
+        </>  // kraj za return 
     );
 }
 
