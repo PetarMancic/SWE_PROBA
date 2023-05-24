@@ -545,7 +545,7 @@ const Login = () => {
                             register === 0 && login === 1 && 
                             (
                                 <>
-                                    <ProfileStudent />
+                                   
                                     <NavbarStudent />
                                 </>
                             )
@@ -556,7 +556,7 @@ const Login = () => {
                             register === 0 && login === 2 && 
                             (
                                 <>
-                                    <ProfesorProfil />
+                                   
                                     <NavbarProfesor />
                                 </>
                             )

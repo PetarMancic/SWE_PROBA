@@ -21,8 +21,8 @@ import { userSliceActions } from '../store';
 import { profSliceActions } from '../store';
 
 
-
 const ProfileStudent=(props)=>{
+  
   const ime=useSelector(state=>state.studentPodaci.uIme);
   const prezime=useSelector(state=>state.studentPodaci.uPrezime);
   const broj=useSelector(state=>state.studentPodaci.uBrojTelefona);
