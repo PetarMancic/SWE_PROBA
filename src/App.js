@@ -6,6 +6,7 @@ import NavbarStudent from './UI/Navbar/NavbarStudent';
 import ProfileStudent from './Student/ProfileStudent'
 import Administrator from './Administrator/Administrator';
 import {Route,Routes} from 'react-router-dom';
+import ProfesorProfil from './Profesor/ProfesorProfil';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
       {/* <Login></Login>  */}
       
        {/* <Home> </Home>  */}
-      <NavbarStudent/>
+      <Login/>
       
   <Routes>
     <Route path="/home" element={<Home />}/>
@@ -26,6 +27,14 @@ function App() {
     <Route path="/pogledaj" element={<Login />}/>
     <Route path="/kuca" element={<Login />}/>
   </Routes>
+  {/* <Routes>
+    <Route path="/HomeP" element={<HomeP />}/>
+    <Route path="/ProfesorProfil" element={<ProfesorProfil />}/>
+    <Route path='/ProfesorUpisOcene' element={<Login />}/>
+    <Route path="/salji" element={<Login />}/>
+    <Route path="/pogledaj" element={<Login />}/>
+    <Route path="/kuca" element={<Login />}/>
+  </Routes> */}
 
       
     </main>

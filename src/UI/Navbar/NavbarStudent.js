@@ -16,7 +16,7 @@ const NavbarStudent=()=>{
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-            <li class="active"><Link to="/profil">Profil</Link></li>
+            <li ><Link to="/profil">Profil</Link></li>
             <li><Link to="/poi">Prijavi ispit</Link></li>
             <li><Link to="/salji">Posalji komentar</Link></li>
             <li><Link to="/pogledaj">Pregledaj komentare</Link></li>

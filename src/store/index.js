@@ -17,7 +17,7 @@ const initialState={
     uSmer:"",
     token:""
 }
-const userSlice=createSlice({name:'podaci',
+const userSlice=createSlice({name:'studentPodaci',
 initialState:initialState,
 reducers:{
     userEmail(state,action){
@@ -64,7 +64,7 @@ reducers:{
     }
 
 }
-})
+});
 
 const initialStateProf={
     profIme: "",
@@ -76,62 +76,68 @@ const initialStateProf={
     profDatumRodjenja: "",
     profJmbg: "",
     profRadniStaz:"",
-    profImeRoditelja: ""
+    profImeRoditelja: "",
+    token:""
    
-}
+};
 
 const profSlice=createSlice({
-    name:"podaci",
-    initialStateProf:initialStateProf,
+    name:'profesorPodaci',
+    initialState:initialStateProf,
     reducers:
     {
         postaviIme(state,action){
-            state.profIme=action.payload;
+           
+           return state.profIme=action.payload;
+            
         },
-        postaviPrezime(state,action){
-            state.profPrezime=action.payload;
+        postaviPrezime(state=initialStateProf,action){
+            return state.profPrezime=action.payload;
+            
         },
-        postaviBrojTelefona(state,action){
-            state.profBrojTelefona=action.payload;
+        postaviBrojTelefona(state=initialStateProf,action){
+            return  state.profBrojTelefona=action.payload;
         },
-        postaviIDBrojKartice(state,action){
-            state.profIDBrojKartice=action.payload;
+        postaviIDBrojKartice(state=initialStateProf,action){
+            return  state.profIDBrojKartice=action.payload;
         },
-        postaviprofEmail(state,action){
-            state.profEmail=action.payload;
+        postaviprofEmail(state=initialStateProf,action){
+            return state.profEmail=action.payload;
         },
-        postaviprofPass(state,action){
-            state.profPassword=action.payload;
+        postaviprofPass(state=initialStateProf,action){
+            return state.profPassword=action.payload;
         },
-        postaviProfDatumRodjenja(state,action){
-            state.profDatumRodjenja=action.payload;
+        postaviProfDatumRodjenja(state=initialStateProf,action){
+            return state.profDatumRodjenja=action.payload;
         },
-        postaviProfJMBG(state,action){
-            state.profJmbg=action.payload;
+        postaviProfJMBG(state=initialStateProf,action){
+            return state.profJmbg=action.payload;
         },
-        postaviprofRadniStaz(state,action){
-            state.profRadniStaz=action.payload;
+        postaviprofRadniStaz(state=initialStateProf,action){
+            return state.profRadniStaz=action.payload;
         },
-        postaviprofImeRoditelja(state,action){
-            state.profImeRoditelja=action.payload;
+        postaviprofImeRoditelja(state=initialStateProf,action){
+            return  state.profImeRoditelja=action.payload;
+        },
+        postaviToken(state=initialStateProf,action){
+            return  state.token=action.payload;
         }
+        
+        
+
 
 
     }
 })
 
-const rootReducer = combineReducers({
-    reducer1: userSlice.reducer,
-    reducer2: profSlice.reducer
-  });
-
-
-/*const store=configureStore({
-    reducer:userSlice.reducer,
-});*/
+// const rootReducer = combineReducers({
+//     reducer1: userSlice.reducer,
+//     reducer2: profSlice.reducer
+//   });
+  
 
 const store=configureStore({
-    reducer:profSlice.reducer,
+    reducer:{profesorPodaci:profSlice.reducer,studentPodaci:userSlice.reducer},
 });
 /*const store=configureStore({
     reducer:rootReducer

@@ -1,10 +1,10 @@
 import React from "react";
-import { profSliceActions } from "../store";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from 'react-redux';
+
 const ProfesorProfil = () => {
-    const ime = useSelector(state => state.profIme);
-    const prezime = useSelector(state => state.profPrezime);
-    const profBrojTelefona = useSelector(state => state.profBrojTelefona);
+    const ime = useSelector(state => state.profesorPodaci.profIme);
+    const prezime = useSelector(state => state.profesorPodaci.profPrezime);
+    const profBrojTelefona = useSelector(state => state.profesorPodaci.profBrojTelefona);
 
     return (
         <div>
