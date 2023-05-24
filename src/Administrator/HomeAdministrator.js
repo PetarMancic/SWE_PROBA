@@ -1,13 +1,14 @@
 import React from "react";
 import '../Student/Home.css';
-import Slika1 from "../Student/slike/examKonacno.png";
+import Slika1 from "./slike/profileProfeosra.png";
 
-import Slika2 from "../Student/slike/info1.png";
-import Slika3 from "../Student/slike/exam1.png";
-import Slika4 from "../Student/slike/comments.png";
-import Slika5 from "../Student/slike/test.png";
-import Slika6 from "../Student/slike/form.png";
-import Slika7 from "../Student/slike/komentari.png";
+import Slika2 from "./slike/student.png";
+import Slika3 from "./slike/online-course.png";
+import Slika4 from "./slike/dodavanjePredmeta.png";
+import Slika5 from "./slike/verified.png";
+import Slika6 from "./slike/test.png";
+import Slika7 from "./slike/database.png";
+import Slika8 from "./slike/delete.png";
 import { Route, Routes } from "react-router-dom";
 
 
@@ -64,7 +65,7 @@ const HomeAdministrator=()=>{
     </div>
     <div class="col-sm-3">
       <p className="class1">Uvid u sve prijavljene ispite</p>
-      <img src={Slika6} class="img-responsive" style={{width:'80%'}} alt="Image"/>
+      <img src={Slika7} class="img-responsive" style={{width:'80%'}} alt="Image"/>
     </div>
     </div>
   </div>
@@ -72,7 +73,7 @@ const HomeAdministrator=()=>{
     <div class="row">
       <div class="col-sm-3 zadnji">
         <p className="class1">Brisanje naloga </p>
-        <img src={Slika7} class="img-responsive " style={{width:'80%%'}} alt="Image"/>
+        <img src={Slika8} class="img-responsive " style={{width:'80%%'}} alt="Image"/>
       </div>
     
       

@@ -10,11 +10,12 @@ import Slikauspeh from "../images/check.png";
 import Card from '../Card';
 import UspesnaReg from "../Poruka/UspesnaReg";
 import Select from "react-select";
-
+import { Navigate,useNavigate } from 'react-router-dom';
 
 
 const RegisterStudent = (props) => {
 
+    const navigate=useNavigate();
     const [ime, setIme] = useState('');
     const [prezime, setprezime] = useState('');
     const [brojIndeksa, setbrojIndeksa] = useState(1);
@@ -303,7 +304,7 @@ const RegisterStudent = (props) => {
 
     }
     const Nazad = () => {
-        props.onNazad(0);
+        navigate('/');
     }
 
 

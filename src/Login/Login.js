@@ -8,7 +8,7 @@ import Succes1 from "../images/check.png";
 import { Link } from 'react-router-dom';
 import Register from '../Student/RegisterStudent';
 import Home from '../Student/Home';
-import Administrator from '../Administrator/Administrator';
+
 
 import axios from '../api/axios';
 import NavbarStudent from '../UI/Navbar/NavbarStudent';
@@ -113,7 +113,7 @@ const Login = () => {
                 // setToken(token);
 
                 setLogin(3); // samo za probu
-
+                navigate('/ProfilAdministrator');
                 // if (response.status === 200) {
                 //     setLogin(3);
                 //     console.log(response.data);
@@ -575,7 +575,7 @@ const Login = () => {
                             register === 0 && login === 3 &&
                             (
                                 <>
-                                    <Administrator onNazad={goBackLogin} > </Administrator>
+                                    navigate('/ProfilAdministrator');
                                 </>
                             )
                         }
