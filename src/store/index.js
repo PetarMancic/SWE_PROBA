@@ -137,7 +137,8 @@ const profSlice=createSlice({
   
 
 const store=configureStore({
-    reducer:{profesorPodaci:profSlice.reducer,studentPodaci:userSlice.reducer},
+    reducer:{profesorPodaci:profSlice.reducer,
+        studentPodaci:userSlice.reducer},
 });
 /*const store=configureStore({
     reducer:rootReducer
