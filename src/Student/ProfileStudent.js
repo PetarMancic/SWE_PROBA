@@ -23,18 +23,18 @@ import { profSliceActions } from '../store';
 
 
 const ProfileStudent=(props)=>{
-  const ime=useSelector(state=>state.uIme);
-  const prezime=useSelector(state=>state.uPrezime);
-  const broj=useSelector(state=>state.uBrojTelefona);
-  const user=useSelector((state)=>state.uEmail);
-  const pwd=useSelector((state)=>state.uPassword);
-  const prosek=useSelector(state=>state.uProsek);
-  const index=useSelector(state=>state.uBrojIndeksa);
-  const godina=useSelector(state=>state.uTrenutnaGodStudija);
-  const roditelj=useSelector(state=>state.uImeRoditelja);
-  const datum=useSelector(state=>state.uDatumRodjenja);
-  const jmbg=useSelector(state=>state.uJmbg);
-  const smer=useSelector(state=>state.uSmer);
+  const ime=useSelector(state=>state.studentPodaci.uIme);
+  const prezime=useSelector(state=>state.studentPodaci.uPrezime);
+  const broj=useSelector(state=>state.studentPodaci.uBrojTelefona);
+  const user=useSelector((state)=>state.studentPodaci.uEmail);
+  const pwd=useSelector((state)=>state.studentPodaci.uPassword);
+  const prosek=useSelector(state=>state.studentPodaci.uProsek);
+  const index=useSelector(state=>state.studentPodaci.uBrojIndeksa);
+  const godina=useSelector(state=>state.studentPodaci.uTrenutnaGodStudija);
+  const roditelj=useSelector(state=>state.studentPodaci.uImeRoditelja);
+  const datum=useSelector(state=>state.studentPodaci.uDatumRodjenja);
+  const jmbg=useSelector(state=>state.studentPodaci.uJmbg);
+  const smer=useSelector(state=>state.studentPodaci.uSmer);
   const dispatch=useDispatch();
  
     ////////////////////////////////////
