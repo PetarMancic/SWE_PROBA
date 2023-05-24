@@ -37,75 +37,7 @@ const ProfileStudent=(props)=>{
   const smer=useSelector(state=>state.studentPodaci.uSmer);
   const dispatch=useDispatch();
  
-    ////////////////////////////////////
-//     const[student,setStudent]=useState({
     
-//       id:100,
-//       ime:'',
-//       prezime:'',
-//       brojTelefona:0,
-//       email:'',
-//       password:'',
-//       prosek:0,
-//       brojIndeksa:100,
-//       trenutnaGodStudija:0,
-//       imeRoditelja:'',
-//       datumRodj:'',
-//       jmbg:0,
-//       smer:0
-//   });
-  
-//     const fetchData=async()=>{
-
-
-//           try {
-//             // const user=localStorage.getItem('user');
-//             // const pwd=localStorage.getItem('pwd');
-//               const response =await axios.get(`/student/loginStudent/${user}/${pwd}`);
-              
-//               console.log("nakon dodelu");
-//           //console.log(student.ime);
-          
-          
-          
-//           if (response.status === 200) {
-              
-//     //  let student2={
-      
-//     //                   id:response.data.student.Id,
-//     //                  ime:response.data.student.Ime,
-//     //                   prezime:response.data.student.Prezime,
-//     //                   brojTelefona:response.data.student.BrojTelefona,
-//     //                   email:response.data.Email,
-//     //                   password:response.data.Password,
-//     //                   prosek:response.data.Prosek,
-//     //                   brojIndeksa:response.data.BrojIndexa,
-//     //                   trenutnaGodStudija:response.data.TrenutnaGodinaStudija,
-//     //                   imeRoditelja:response.data.ImeRoditelja,
-//     //                   datumRodj:response.data.DatumRodjenja,
-//     //                   jmbg:response.data.JMBG,
-//     //                   smer:response.data.student.Smer,
-//     //           }
-//     //           setStudent(student2);
-//     dispatch(userSliceActions.)
-
-//           }
-//       }
-//           catch (err) {
-            
-//                   console.error(err);
-            
-//           }
-//           localStorage.removeItem('user');
-//           localStorage.removeItem('pwd');
-
-
-          
-      
-//   };
-// useEffect(()=>{
-//   fetchData();
-// },[]);
 /////////////////////////////////////////////////////////////////////
 const [nav,setNav]=useState(0);
 const polozeniHandler=()=>{
@@ -162,36 +94,14 @@ const sakrijHandler=()=>{
                   <div className="col-sm-6"><h3>{datum}</h3></div>
                     
                 </div>
-                {/* <div className="row">
-                  <div className="col-sm-6"><h3>Mesto rodjenja</h3></div>
-                  
-                  <div className="col-sm-6"><h3>Beograd</h3></div>
-                    
-                </div> */}
-                {/* <div className="row">
-                  <div className="col-sm-3"><h3>Adresa</h3></div>
-                  
-                  <div className="col-sm-9"><h3>Save kovacevica 10</h3></div>
-                    
-                </div> */}
-                {/* <div className="row">
-                  <div className="col-sm-6"><h3>Grad</h3></div>
-                  
-                  <div className="col-sm-6"><h3>Beograd</h3></div>
-                    
-                </div> */}
+               
                 <div className="row">
                   <div className="col-sm-6"><h3>Ime roditelja</h3></div>
                   
                   <div className="col-sm-6"><h3>{roditelj}</h3></div>
                     
                 </div>
-                {/* <div className="row">
-                  <div className="col-sm-6"><h3>Mesto rodj</h3></div>
-                  
-                  <div className="col-sm-6"><h3>Beograd</h3></div>
-                    
-                </div> */}
+                
                 <div className="row">
                   <div className="col-sm-6"><h3>Telefon</h3></div>
                   
