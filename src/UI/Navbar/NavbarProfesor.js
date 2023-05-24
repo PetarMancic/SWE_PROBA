@@ -4,7 +4,7 @@ import './Navbar.css';
 const NavbarProfesor=()=>{
     return(
       <div>
-        
+        petar
       </div>
 //     <nav class="navbar navbar-inverse" >
 //   <div class="container-fluid">

@@ -22,9 +22,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { userSliceActions } from '../store/index';
 import { profSliceActions } from '../store/index';
 import ProfesorProfil from '../Profesor/ProfesorProfil';
+import { Navigate,useNavigate } from 'react-router-dom';
+
+
 //Komentar
 const LOGIN_URL = '/auth';
 const Login = () => {
+
+    const navigate=useNavigate();
 
     const dispatch = useDispatch();
 
@@ -165,7 +170,10 @@ const Login = () => {
     }
 
     const registerStudentHandler = () => {
-        setRegister(1);
+      //  setRegister(1);
+      navigate('/registerStudent');
+
+      
     }
     const registerProfesorHandler = () => {
         setRegister(2);
