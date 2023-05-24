@@ -127,12 +127,15 @@ const rootReducer = combineReducers({
 
 
 /*const store=configureStore({
-    reducer:userSlice.reducer
+    reducer:userSlice.reducer,
 });*/
 
 const store=configureStore({
+    reducer:profSlice.reducer,
+});
+/*const store=configureStore({
     reducer:rootReducer
-})
+})*/
 export const  userSliceActions=userSlice.actions;
 export const profSliceActions=profSlice.actions;
 export default store;

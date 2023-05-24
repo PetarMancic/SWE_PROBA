@@ -334,9 +334,9 @@ const Login = () => {
                 if (response.status === 200) {
                     setLogin(2);
 
-                    dispatch(profSliceActions.postavi(ime));
-                    dispatch(profSliceActions.postavi(prezime));
-                    dispatch(profSliceActions.postavi(idBrojKartice));
+                    dispatch(profSliceActions.postaviIme(ime));
+                    dispatch(profSliceActions.postaviPrezime(prezime));
+                    dispatch(profSliceActions.postaviBrojTelefona(idBrojKartice));
                     /*dispatch(profSliceActions.postavi(ime));
                     dispatch(profSliceActions.postavi(ime));
                     dispatch(profSliceActions.postavi(ime));
