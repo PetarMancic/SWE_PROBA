@@ -325,6 +325,7 @@ const Login = () => {
 
             try {
                 const response = await axios.get(`/profesor/loginProfesor/${user}/${pwd}`);
+                console.log(response.data);
                 // const { id, ime, prezime, idBrojKartice,email,password,datumROdjenja,jmbg,radniStaz,imeRoditelja,
                 //     prosecnaOcena,trenutniBrojOcena } = response.data;
                 // console.log(ime);
@@ -333,19 +334,20 @@ const Login = () => {
                // setToken(token);
 
                 if (response.status === 200) {
+                    console.log("uso u 200");
                     setLogin(2);
 
-                    dispatch(profSliceActions.postaviIme(response.data.profesor.Ime));
-                    dispatch(profSliceActions.postaviPrezime(response.data.profesor.Prezime));
-                    dispatch(profSliceActions.postaviBrojTelefona(response.data.profesor.BrojTelefona));
-                    dispatch(profSliceActions.postaviIDBrojKartice(response.data.profesor.IdBrojKartice));
-                    dispatch(profSliceActions.postaviprofEmail(response.data.profesor.Email));
-                    dispatch(profSliceActions.postaviprofPass(response.data.profesor.Password));
-                    dispatch(profSliceActions.postaviProfDatumRodjenja(response.data.profesor.DatumRodjenja));
-                    dispatch(profSliceActions.postaviProfJMBG(response.data.profesor.JMBG));
-                    dispatch(profSliceActions.postaviprofRadniStaz(response.data.profesor.RadniStaz));
-                    dispatch(profSliceActions.postaviprofImeRoditelja(response.data.profesor.ImeRoditelja));
-                    dispatch(profSliceActions.postaviToken(response.data.profesor.Token));
+                    dispatch(profSliceActions.postaviIme(response.data.Ime));
+                    dispatch(profSliceActions.postaviPrezime(response.data.Prezime));
+                    dispatch(profSliceActions.postaviBrojTelefona(response.data.BrojTelefona));
+                    dispatch(profSliceActions.postaviIDBrojKartice(response.data.IdBrojKartice));
+                    dispatch(profSliceActions.postaviprofEmail(response.data.Email));
+                    dispatch(profSliceActions.postaviprofPass(response.data.Password));
+                    dispatch(profSliceActions.postaviProfDatumRodjenja(response.data.DatumRodjenja));
+                    dispatch(profSliceActions.postaviProfJMBG(response.data.JMBG));
+                    dispatch(profSliceActions.postaviprofRadniStaz(response.data.RadniStaz));
+                    dispatch(profSliceActions.postaviprofImeRoditelja(response.data.ImeRoditelja));
+                    dispatch(profSliceActions.postaviToken(response.data.Token));
                     
                     
                     
