@@ -19,6 +19,7 @@ import Login from '../Login/Login';
 import { useSelector, useDispatch } from 'react-redux';
 import { userSliceActions } from '../store';
 import { profSliceActions } from '../store';
+import { Navigate } from 'react-router-dom';
 
 
 const ProfileStudent=(props)=>{
@@ -41,15 +42,16 @@ const ProfileStudent=(props)=>{
 /////////////////////////////////////////////////////////////////////
 const [nav,setNav]=useState(0);
 const polozeniHandler=()=>{
-  setNav(1);
+ // setNav(1);
+ Navigate('/Polozeni');
 
 }
 const prijavljeniHandler=()=>{
-  setNav(2);
-
+  //setNav(2);
+  Navigate('/Prijavljeni');
 }
 const ESPBHandler=()=>{
-  setNav(3);
+  Navigate('/Espb');
 
 }
 const sakrijHandler=()=>{

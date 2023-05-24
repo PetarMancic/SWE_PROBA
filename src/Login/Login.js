@@ -252,6 +252,7 @@ const Login = () => {
                     dispatch(userSliceActions.userToken(response.data.token));
 
 
+                    navigate('/Home');  // vodi nas na Home
                     setLogin(1); // sve je OK i idemo na stranicu ProfilStudenta 
                     
                     console.log(response.data);
@@ -355,7 +356,7 @@ const Login = () => {
                     dispatch(profSliceActions.postaviprofImeRoditelja(response.data.profesor.ImeRoditelja));
                     dispatch(profSliceActions.postaviToken(response.data.Token));
 
-
+                    navigate('/Home');
 
                     setLogin(2);
 
