@@ -10,12 +10,12 @@ import Slikauspeh from "../images/check.png";
 import Card from '../Card';
 import UspesnaReg from "../Poruka/UspesnaReg";
 import Select from "react-select";
-import { Navigate,useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 const RegisterStudent = (props) => {
 
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const [ime, setIme] = useState('');
     const [prezime, setprezime] = useState('');
     const [brojIndeksa, setbrojIndeksa] = useState(1);
@@ -24,13 +24,13 @@ const RegisterStudent = (props) => {
 
     const [brTel, setBrTel] = useState('');
     const [email, setEmail] = useState('');
-    
+
     const [imeRod, setImeRod] = useState('');
     const [datumRodjenja, setdatumRodjenja] = useState('');
     const [jmbg, setJmbg] = useState('');
-    let smer=undefined;
-    let godina=undefined;
-    
+    let smer = undefined;
+    let godina = undefined;
+
 
 
     const [imeInput, setImeInput] = useState(true);
@@ -44,48 +44,50 @@ const RegisterStudent = (props) => {
     const [imeRodInput, setimeRodInput] = useState(true);
     const [datumRodjenjaInput, setdatumRodjenjaInput] = useState(true);
     const [jmbgInput, setJmbgInput] = useState(true);
-   const[smerInput,setSmerInput]=useState(true)
+    const [smerInput, setSmerInput] = useState(true)
     ////////////////////////////////////////////////////
     const [selectedOption, setSelectedOption] = useState('');
+   
 
-    const smerovi = [{value:'Elektroenergetika',label:'Elektroenergetika'}, 
-                    {value:'Racunarstvo i informatika',label:'Racunarstvo i informatika'},
-                    {value: 'Elektronika',label:'Elektronika'}, 
-                    {value:'Elektronske komponente i mikrosistemi',label:'Elektronske komponente i mikrosistemi'},
-                    {value:'Upravljanje sistemima',label:'Upravljanje sistemima'},
-                    {value:'Komunikacije i informacione tehnologije',label:'Komunikacije i informacione tehnologije'}
-                ];
-    const godine = [ {value:'1',label:'I'}, 
-                     {value:'2',label:'II'},
-                     {value: '3',label:'III'}, 
-                     {value:'4',label:'IV'}
-                    ];
+    const smerovi = [{ value: 'Elektroenergetika', label: 'Elektroenergetika' },
+    { value: 'Racunarstvo i informatika', label: 'Racunarstvo i informatika' },
+    { value: 'Elektronika', label: 'Elektronika' },
+    { value: 'Elektronske komponente i mikrosistemi', label: 'Elektronske komponente i mikrosistemi' },
+    { value: 'Upravljanje sistemima', label: 'Upravljanje sistemima' },
+    { value: 'Komunikacije i informacione tehnologije', label: 'Komunikacije i informacione tehnologije' }
+    ];
+    const godine = [{ value: '1', label: 'I' },
+    { value: '2', label: 'II' },
+    { value: '3', label: 'III' },
+    { value: '4', label: 'IV' }
+    ];
 
-    
+
     const smerHandler = (event) => {
         setSmerInput(true)
-        smer=event.value;
-      console.log("Izabrano",smer);
-      
-  
-      
+        smer = event.value;
+        console.log("Izabrano", smer);
+
+
+
     };
     const godineHandler = (event) => {
         setgodStudijaInput(true)
-        godina=event.value;
-      console.log("Izabrano",godina);
-      
-  
-      
+        godina = event.value;
+        console.log("Izabrano", godina);
+
+
+
     };
-    
-  
+
+
     /////////////////////////////////////////////////
 
 
     const [uspesnaReg, setUspesnaReg] = useState(1);
     const ugasiHandler = () => {
-        setUspesnaReg(0);
+       // setUspesnaReg(0);
+        navigate('/');  //mozda moze i -1
     }
 
     const imeHandler = (event) => {
@@ -124,7 +126,7 @@ const RegisterStudent = (props) => {
         }
     }
 
-   
+
 
 
     const imeRoditeljaHandler = (event) => {
@@ -214,7 +216,7 @@ const RegisterStudent = (props) => {
             zaustavi = true;
         }
 
-        if (godina=== undefined) {
+        if (godina === undefined) {
             setgodStudijaInput(false);
             zaustavi = true;
         }
@@ -234,10 +236,9 @@ const RegisterStudent = (props) => {
             zaustavi = true;
         }
 
-        if(smer===undefined)
-        {
+        if (smer === undefined) {
             setSmerInput(false);
-            zaustavi=true;
+            zaustavi = true;
         }
 
 
@@ -289,6 +290,8 @@ const RegisterStudent = (props) => {
         })
             .then(response => { // uspesno je vraceno 
                 setUspesnaReg(2);
+                //uspesna reg 
+                navigate('/UspesnaReg');
                 // console.log("Uspesno dodat");
                 // return (
                 //     <div>
@@ -304,8 +307,10 @@ const RegisterStudent = (props) => {
 
     }
     const Nazad = () => {
-        navigate('/');
-    }
+        navigate(-1);
+    } // a ako ne definisem gore const navigate, ne mogu li da pozivam Navigate?
+    // Navigate je neka klasa iz biblioteke, a ovo useNavigate je ustv taj hook
+    // al ja kad idem iz login stranice na ovu za registraciju, koristim Navigate 
 
 
     return (
@@ -321,7 +326,7 @@ const RegisterStudent = (props) => {
                     <h2>Please enter your data</h2>
 
 
-                
+
                     <label htmlFor="ime">IME</label>
                     <input
                         id="ime"
@@ -415,10 +420,10 @@ const RegisterStudent = (props) => {
                     <label htmlFor="smer"> SMER</label>
 
                     <Select options={smerovi} placeholder='Odaberite smer' onChange={smerHandler} className={` crni-tekst  ${!smerInput ? 'pozadina' : ''}`}>
-                    
-                    
-                </Select>
-               
+
+
+                    </Select>
+
 
 
 
@@ -430,7 +435,7 @@ const RegisterStudent = (props) => {
                     <button onClick={clickHandler}> Register now</button>
                     <label id="goBackLabel" onClick={Nazad}>GO BACK</label>
 
-                   
+
 
                 </form>
             )}

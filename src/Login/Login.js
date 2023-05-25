@@ -29,7 +29,8 @@ import { Navigate,useNavigate } from 'react-router-dom';
 const LOGIN_URL = '/auth';
 const Login = () => {
 
-    const navigate=useNavigate();
+    const navigate=useNavigate(); // to sam zaboravio da napisem  tamo 
+    
 
     const dispatch = useDispatch();
 
@@ -172,11 +173,12 @@ const Login = () => {
     const registerStudentHandler = () => {
       //  setRegister(1);
       navigate('/registerStudent');
-
+ // aha lose sam video
       
     }
     const registerProfesorHandler = () => {
-        setRegister(2);
+        //setRegister(2);
+        navigate('/registerProfesor');
     }
     const [login, setLogin] = useState(0);
     ///////////////////////////////////////////////
@@ -285,7 +287,7 @@ const Login = () => {
             }
 
 
-        }// zavrsava se if, ako je uneto i USER I PASS 
+        }// zavrsava se if, ako je uneto i USER I PASS Kude je greskata?
 
     }//ZAVRSAVA SE STUDENT HANDLER /////////////////////////
 

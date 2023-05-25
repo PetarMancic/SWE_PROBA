@@ -5,30 +5,34 @@ import axios from "../api/axios";
 import Login from "../Login/Login";
 import './Profesor.css';
 import UspesnaReg from "../Poruka/UspesnaReg";
+import { Navigate, useNavigate } from 'react-router-dom';
+
 
 
 
 
 const RegisterProfesor = (props) => {
-//za Bazu
+    const navigate = useNavigate();
+
+    //za Bazu
     const [ime, setIme] = useState('');
     const [prezime, setprezime] = useState('');
     const [user, setuser] = useState('');
     const [pass, setpass] = useState('');
-    const[idBrojKartice,setidBrojKartice]=useState(0);
+    const [idBrojKartice, setidBrojKartice] = useState(0);
     const [email, setEmail] = useState('');
     const [datumRodjenja, setdatumRodjenja] = useState(undefined);
     const [JMBG, setJMBG] = useState(0);
     const [radniStaz, setRadniStaz] = useState(0);
     const [imeR, setImeR] = useState('');
-    
-    
-    
-    
-    
 
 
-//za crveno
+
+
+
+
+
+    //za crveno
     const [imeInput, setImeInput] = useState(true);
     const [prezimeInput, setprezimeInput] = useState(true);
     const [idBrojKarticeInput, setidBrojKarticeInput] = useState(true);
@@ -39,14 +43,14 @@ const RegisterProfesor = (props) => {
     const [JMBGInput, setJMBGInput] = useState(true);
     const [radniStazInput, setRadniStazInput] = useState(true);
     const [imeRInput, setImeRInput] = useState(true);
-    
-    
-    
-    
-    
 
 
-//za log reg poc saltanje
+
+
+
+
+
+    //za log reg poc saltanje
     const [uspesnaReg, setUspesnaReg] = useState(1); // trenutna stranica 
 
     const ugasiFormu = () => {
@@ -54,7 +58,7 @@ const RegisterProfesor = (props) => {
     }
 
 
-//za proveru za crveno
+    //za proveru za crveno
     const imeHandler = (event) => {
         setIme(event.target.value);
 
@@ -101,7 +105,7 @@ const RegisterProfesor = (props) => {
     const DatumRodjenjaHandler = (event) => {
         setdatumRodjenja(new Date(event.target.value));
 
-        if (datumRodjenja!=undefined) {
+        if (datumRodjenja != undefined) {
             setdatumRodjenjaInput(true);
         }
     }
@@ -170,50 +174,33 @@ const RegisterProfesor = (props) => {
             promenljiva = true;
 
         }
-        // if (datumRodjenja!=undefined)
-        // {
-        // promenljiva=true;
-        // setEmailInput(false);
-        // setEmail('');
         
-        // }
-        // else
-        // {
-        // const month=datumRodjenja.toLocaleString('en-US',{month:'long'});
-        // const year=datumRodjenja.date.getFullYear();
-        // const day=datumRodjenja.date.toLocaleString('en-US',{day:'2-digit'});
-        // if(year<1950 || year>1998){
-        // promenljiva = true;
-        // setdatumRodjenjaInput(false);
-        // setdatumRodjenja('');
-        //     }
-        // }
         let brojJMBG = document.getElementById("jmbg");
-        if ( brojJMBG.value.toString().length===0) {
+        if (brojJMBG.value.toString().length === 0) {
             setJMBGInput(false);
             promenljiva = true;
-        
+
         }
         let brojRS = document.getElementById("radnistaz");
-        if ( brojRS.value.toString().length===0) {
+        if (brojRS.value.toString().length === 0) {
             setRadniStazInput(false);
             promenljiva = true;
-        
-        }
-        if (imeR.trim().length===0) {
-            setImeRInput(false);
-            promenljiva=true;
-            
-            }
 
-        
-    
-    
+        }
+        if (imeR.trim().length === 0) {
+            setImeRInput(false);
+            promenljiva = true;
+
+        }
+
+
+
+
 
         if (promenljiva === true)
-             return;
+            return;
 
-        
+
 
         const obj = {
             ime: ime,
@@ -221,11 +208,11 @@ const RegisterProfesor = (props) => {
             idBrojKartice: idBrojKartice,
             username: user,
             password: pass,
-            Email:email,
-            DatumRodjenja:datumRodjenja,
-            JMBG:JMBG,
-            RadniStaz:radniStaz,
-            ImeRoditelja:imeR
+            Email: email,
+            DatumRodjenja: datumRodjenja,
+            JMBG: JMBG,
+            RadniStaz: radniStaz,
+            ImeRoditelja: imeR
 
         };
 
@@ -248,18 +235,20 @@ const RegisterProfesor = (props) => {
 
 
 
-        }// zavrsetak od clickHandler
+    }// zavrsetak od clickHandler
 
 
 
 
-
+   
     const Nazad = () => {
-        props.onNazad(0);
+        navigate('/');
     }
+        
+        
 
 
-    
+
     return (
         <>
             {uspesnaReg === 1 &&
@@ -274,7 +263,7 @@ const RegisterProfesor = (props) => {
                         type="text"
                         onChange={imeHandler}
                         className={`inpuT ${!imeInput ? 'pozadina' : ''}`}
-                        
+
 
 
                     />
@@ -284,7 +273,7 @@ const RegisterProfesor = (props) => {
                         type="text"
                         onChange={prezimeHandler}
                         className={`inpuT ${!prezimeInput ? 'pozadina' : ''}`}
-                        
+
                     />
 
                     <label htmlFor="brojkartice">ID BROJA KARTICE</label>
@@ -293,7 +282,7 @@ const RegisterProfesor = (props) => {
                         type="number"
                         onChange={brojKarticeHandler}
                         className={`inpuT ${!idBrojKarticeInput ? 'pozadina' : ''}`}
-                        
+
 
                     />
                     <label htmlFor="username"> Username</label>
@@ -302,7 +291,7 @@ const RegisterProfesor = (props) => {
                         type="email"
                         onChange={userHandler}
                         className={`inpuT ${!userInput ? 'pozadina' : ''}`}
-                        
+
 
                     />
 
@@ -312,7 +301,7 @@ const RegisterProfesor = (props) => {
                         type="password"
                         onChange={passHandler}
                         className={`inpuT ${!passInput ? 'pozadina' : ''}`}
-                        
+
 
                     />
                     <label htmlFor="Email"> Email</label>
@@ -321,7 +310,7 @@ const RegisterProfesor = (props) => {
                         type="email"
                         onChange={emailHandler}
                         className={`inpuT ${!emailInput ? 'pozadina' : ''}`}
-                        
+
 
                     />
                     <label htmlFor="date"> Datum Rodjenja</label>
@@ -332,27 +321,27 @@ const RegisterProfesor = (props) => {
                         max={'12/12/1998'}
                         onChange={DatumRodjenjaHandler}
                         className={`inpuT ${!datumRodjenjaInput ? 'pozadina' : ''}`}
-                        
+
 
                     />
                     <label htmlFor="jmbg"> JMBG</label>
                     <input
                         id="jmbg"
                         type="number"
-                    
+
                         onChange={JMBGHandler}
                         className={`inpuT ${!JMBGInput ? 'pozadina' : ''}`}
-                        
+
 
                     />
                     <label htmlFor="rs"> Radni Staz</label>
                     <input
                         id="radnistaz"
                         type="number"
-                        
+
                         onChange={radniStazHandler}
                         className={`inpuT ${!radniStazInput ? 'pozadina' : ''}`}
-                        
+
 
                     />
                     <label htmlFor="ir"> Ime Roditelja</label>
@@ -361,10 +350,10 @@ const RegisterProfesor = (props) => {
                         type="text"
                         onChange={imeRHandler}
                         className={`inpuT ${!imeRInput ? 'pozadina' : ''}`}
-                        
+
 
                     />
-                    
+
 
 
 
@@ -375,7 +364,7 @@ const RegisterProfesor = (props) => {
 
 
                 </form>
-            } 
+            }
             {uspesnaReg === 0 && <Login> </Login>}
 
             {uspesnaReg === 2 && <UspesnaReg ugasiProzor={ugasiFormu}> </UspesnaReg>}

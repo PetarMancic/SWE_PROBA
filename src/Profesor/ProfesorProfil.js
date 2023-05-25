@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import {Link }   from 'react-router-dom';
+import {Link, useNavigate }   from 'react-router-dom';
 import {NavbarProfesor } from '../UI/Navbar/NavbarProfesor';
 import PictureMan from "../Student/slike/muskarac.png";
 import PictureWoman from "../Student/slike/zena.png";
+import axios from "../api/axios";
+import { Navigate } from 'react-router-dom';
+import Predmeti from "../Student/Informacije/Predmeti";
+import { predmetSliceActions } from "../store";
+
+
 
 const ProfesorProfil = () => {
     const ime = useSelector(state => state.profesorPodaci.profIme);
@@ -16,10 +22,53 @@ const ProfesorProfil = () => {
     const JMBG= useSelector(state => state.profesorPodaci.profJmbg);
     const RadniStaz= useSelector(state => state.profesorPodaci.profRadniStaz);
     const ImeRoditelja= useSelector(state => state.profesorPodaci.profImeRoditelja);
+    const token= useSelector(state=>state.profesorPodaci.token);
 
-    
+    const navigate=useNavigate();
+    const [tabela,setTabela]=useState(0);
+    const dispatch = useDispatch();
    
+const handlePredmete= async()  =>
+{
+    //http://localhost:4200/studenti
+    //http://localhost:4200/profesor/vratiSvePredmete/${JMBG}
 
+    const response =await axios.get(`http://localhost:4200/profesor/vratiSvePredmete/${JMBG} `, {
+         headers:{
+           'Authorization':'Bearer '+token
+         }
+    })
+    
+      .then(response=>{
+        console.log(response.data);
+       // navigate('/Predmeti');
+
+        console.log(` Sada stampam response.data `);
+        console.log(response.data);
+        dispatch(predmetSliceActions.postaviNaziv(response.data.predmet));
+       console.log("Dispatch nije ni odradjen ");
+        // dispatch(predmetSliceActions.userPass(response.data.ime));
+        // dispatch(predmetSliceActions.userIme(response.data.student.Ime));
+        // dispatch(predmetSliceActions.userPrezime(response.data.student.Prezime));
+        // dispatch(predmetSliceActions.userNumber(response.data.student.BrojTelefona));
+        // dispatch(predmetSliceActions.userProsek(response.data.student.Prosek));
+
+
+       setTabela(1);
+
+
+    })
+      .catch(error=>{
+        if(error.response && error.response.status===401){
+          console.log("nevalidan token");
+        }
+        else{
+          console.log("Greska u axios",error);
+        }
+      });
+
+      console.log("ProfesorProfil ovde ");
+}
     
     
 
@@ -131,16 +180,13 @@ const ProfesorProfil = () => {
  <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
 
-        {/* <li>  <a> Upisi ocenu </a> </li>
-        <li>  <a> Prijavljeni ispiti </a> </li>
-        <li>  <a> ESPB  </a> </li>
-         <li> <a>Svoji komentari</a></li> */}
+       
 
-            <li ><Link to="/poi">Login</Link></li>
+            <p  className="imena hoverEffect" onClick={handlePredmete} >  Prikazi sve predmete  </p> 
 
-            {/* <li><Link to="/poi">Prijavi ispit</Link></li>
-            <li><Link to="/salji">Posalji komentar</Link></li>
-            <li><Link to="/pogledaj">Pregledaj komentare</Link></li> */}
+            
+
+           
       </ul>
       
      
@@ -148,6 +194,7 @@ const ProfesorProfil = () => {
 
 </div> 
 </nav>
+{tabela===1 && <Predmeti> </Predmeti>}
 {/* {nav===1 && <Polozeni/>}
 {nav===2 && <Prijavljeni/>}
 {nav===3 && <Espb/>} */}

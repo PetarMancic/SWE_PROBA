@@ -39,3 +39,17 @@
   .inpuT.pozadina{
     background-color: red;
   }
+
+  .imena{
+    margin-top: 10px;
+    color: white;
+    font-size: large;
+  }
+
+  
+  
+  .hoverEffect:hover {
+    text-decoration: underline; /* Podcrtavanje teksta */
+    transform: scale(1.1); /* Povećanje veličine */
+  }
+  

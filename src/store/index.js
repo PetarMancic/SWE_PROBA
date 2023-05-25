@@ -123,26 +123,62 @@ const profSlice=createSlice({
               state.token=action.payload;
         }
         
+    }
+})
         
 
 
 
-    }
-})
 
-// const rootReducer = combineReducers({
-//     reducer1: userSlice.reducer,
-//     reducer2: profSlice.reducer
-//   });
+const initialStatePredmet={
+    predmetNaziv: "",
+    predmetESPB: "",
+    predmetSmer: "",
+    predmetGodina: "",
+    predmetOpis: ""
+    
+};
   
+
+const predmetSlice=createSlice({
+    name:'predmetPodaci',
+    initialState:initialStatePredmet,
+    reducers:
+    {
+        postaviNaziv(state,action){
+            state.predmetNaziv=action.payload;
+        },
+        postaviESPB(state,action){
+            state.predmetESPB=action.payload;
+        },
+        postaviSMER(state,action){
+            state.predmetSmer=action.payload;
+        },
+        postavigODINU(state,action){
+            state.predmetGodina=action.payload;
+        },
+        postaviOpis(state,action){
+            state.predmetOpis=action.payload;
+        }
+    }
+
+})
+           
+            
+
+
 
 const store=configureStore({
     reducer:{profesorPodaci:profSlice.reducer,
-        studentPodaci:userSlice.reducer},
+        studentPodaci:userSlice.reducer,
+        predmetPodaci:predmetSlice.reducer
+    }
 });
 /*const store=configureStore({
     reducer:rootReducer
 })*/
 export const  userSliceActions=userSlice.actions;
 export const profSliceActions=profSlice.actions;
+export const predmetSliceActions=predmetSlice.actions;
+
 export default store;
