@@ -77,7 +77,24 @@ const initialStateProf={
     profJmbg: "",
     profRadniStaz:"",
     profImeRoditelja: "",
-    token:""
+    token:"",
+
+    profPredmet:[{
+    predmetID:"",
+    predmetNaziv: "",
+    predmetESPB: "",
+    predmetSmer: "",
+    predmetGodina: "",
+    predmetOpis: ""
+    }],
+
+    profKomentari:[
+        {
+            komentarID:"",
+            tekst:"",
+            ocena:""
+        }
+    ]
    
 };
 
@@ -121,7 +138,16 @@ const profSlice=createSlice({
         },
         postaviToken(state=initialStateProf,action){
               state.token=action.payload;
+        },
+        postaviPredmete(state,action)
+        {
+            state.profPredmet=action.payload;
+        },
+        postaviKomentare(state,action)
+        {
+            state.profKomentari=action.payload;
         }
+
         
     }
 })

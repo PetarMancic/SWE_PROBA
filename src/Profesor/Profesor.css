@@ -41,7 +41,9 @@
   }
 
   .imena{
-    margin-top: 10px;
+    margin: 10px;
+   margin-left: auto;
+   margin-right: auto;
     color: white;
     font-size: large;
   }
@@ -53,3 +55,8 @@
     transform: scale(1.1); /* Povećanje veličine */
   }
   
+  .mojaKlasa
+  {
+    display: flex;
+    flex-direction: row;
+  }

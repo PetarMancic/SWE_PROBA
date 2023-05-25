@@ -27,10 +27,10 @@ function App() {
       
       
    <Routes>
-    <Route path='/profesorProfil' element={<ProfesorProfil />}/>
+    <Route path='/' index={true} element={<ProfesorProfil />}/>
 
     <Route path="/Home"  element={<Home />}/>
-    <Route path="/" index={true} element={<Login/>} />    // ovde treba /
+    <Route path="/Login" index={true} element={<Login/>} />    // ovde treba /
     <Route path="/registerStudent" element={<RegisterStudent />} />
     {/* <Route path="/registerProfesor" element={<RegisterProfesor />}/> */}
 

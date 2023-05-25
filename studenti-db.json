@@ -1,12 +1,70 @@
 {
-    "studenti":[
-        {
-            "id":1,
-            "ime":"Mixa"
-        },
-        {
-            "id":2,
-            "ime":"Djole"
-        }
-    ]
+    "profesor": {
+        "Id": 1,
+        "Ime": "Marko",
+        "Prezime": "Marković",
+        "IdBrojKartice": 123456789,
+        "Email": "markomarkovic@gmail.com",
+        "Password": "$2b$10$2As0ucPfuDATfUQnVRfyZOiYkfYo3agP9IpPkhDUB5DlmD9YbwezW",
+        "DatumRodjenja": "1990-05-15",
+        "JMBG": "1505990178900",
+        "RadniStaz": 5,
+        "ImeRoditelja": "Petar",
+        "ProsecnaOcena": 0,
+        "Komentari": [
+            {
+                "Id": 12,
+                "Komentar": "Profesor je prosecan",
+                "Ocena": 3
+            }
+        ],
+        "Predmeti": [
+            {
+                "Id": 10,
+                "Naziv": "Digitalna elektronika",
+                "ESPB": 5,
+                "Smer": "RII",
+                "Godina": 2,
+                "Opis": "Uvod u digitalna i analogna kola",
+                "Izborni": true
+            },
+            {
+                "Id": 11,
+                "Naziv": "Teorija grafova",
+                "ESPB": 5,
+                "Smer": "RII",
+                "Godina": 2,
+                "Opis": "Uvod u teoriju grafova",
+                "Izborni": true
+            },
+            {
+                "Id": 12,
+                "Naziv": "AIP",
+                "ESPB": 5,
+                "Smer": "Opsti",
+                "Godina": 1,
+                "Opis": "Uvod u programski jezik C",
+                "Izborni": false
+            },
+            {
+                "Id": 13,
+                "Naziv": "OOP",
+                "ESPB": 5,
+                "Smer": "RII",
+                "Godina": 2,
+                "Opis": "Uvod u programski jezik C++",
+                "Izborni": false
+            },
+            {
+                "Id": 14,
+                "Naziv": "Baze podataka",
+                "ESPB": 5,
+                "Smer": "RII",
+                "Godina": 2,
+                "Opis": "Uvod u baze podataka",
+                "Izborni": false
+            }
+        ]
+    }
+    
 }
