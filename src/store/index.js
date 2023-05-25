@@ -163,6 +163,53 @@ const predmetSlice=createSlice({
     }
 
 })
+
+const initialStateAdministrator={
+    aID: "",
+    aUsername: "",
+    aPassword: "",
+    aStudenti: "",
+    aProfesori: "",
+    aPredmeti: "",
+    aKodovi: "",
+    aKartice: "",
+    
+    token:""
+}
+const adminSlice=createSlice({name:'administratorPodaci',
+initialState:initialState,
+reducers:{
+    adminUsername(state,action){
+        state.aUsername=action.payload;
+    },
+    adminPassword(state,action){
+        state.aPassword=action.payload;
+    },
+    adminId(state,action){
+        state.aID=action.payload;
+    },
+    adminStudenti(state,action){
+        state.aStudenti=action.payload;
+    },
+    adminProfesori(state,action){
+        state.aProfesori=action.payload;
+    },
+    adminPredmeti(state,action){
+        state.aPredmeti=action.payload;
+    },
+    adminKodovi(state,action){
+        state.aKodovi=action.payload;
+    },
+    adminKartice(state,action){
+        state.aKartice=action.payload;
+    },
+    
+    adminToken(state,action){
+        state.token=action.payload;
+    }
+
+}
+});
            
             
 
@@ -170,15 +217,14 @@ const predmetSlice=createSlice({
 
 const store=configureStore({
     reducer:{profesorPodaci:profSlice.reducer,
-        studentPodaci:userSlice.reducer,
-        predmetPodaci:predmetSlice.reducer
-    }
+        studentPodaci:userSlice.reducer,adminPodaci:adminSlice.reducer},
 });
 /*const store=configureStore({
     reducer:rootReducer
 })*/
 export const  userSliceActions=userSlice.actions;
 export const profSliceActions=profSlice.actions;
+export const adminSliceActions=adminSlice.actions;
 export const predmetSliceActions=predmetSlice.actions;
 
 export default store;

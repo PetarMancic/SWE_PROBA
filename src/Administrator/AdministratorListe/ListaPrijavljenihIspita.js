@@ -1,4 +1,8 @@
-const Prijavljeni=()=>{
+import { adminSliceActions } from '../../store/index';
+import { useSelector, useDispatch } from 'react-redux';
+
+const ListaPrijavljenihIspita=()=>{
+    
     return (
         <div class="w3-container">
                 
@@ -48,4 +52,4 @@ const Prijavljeni=()=>{
     );
 
 }
-export default Prijavljeni;
+export default ListaPrijavljenihIspita;

@@ -21,6 +21,7 @@ import ProfileStudent from '../Student/ProfileStudent';
 import { useSelector, useDispatch } from 'react-redux';
 import { userSliceActions } from '../store/index';
 import { profSliceActions } from '../store/index';
+import { adminSliceActions } from '../store/index';
 import ProfesorProfil from '../Profesor/ProfesorProfil';
 import { Navigate,useNavigate } from 'react-router-dom';
 
@@ -106,26 +107,33 @@ const Login = () => {
 
             try {
 
-                // const response = await axios.get(`/student/loginStudent/${user}/${pwd}`);
-                // const { id, ime, prezime, brojIndeksa, prosek, username, password } = response.data;
-                // console.log(ime);
+                const response = await axios.get(`/student/loginAdministrator/${user}/${pwd}`);
+                
 
-                // const token = response.data.token;
-                // setToken(token);
-
-                setLogin(3); // samo za probu
-                navigate('/ProfilAdministrator');
-                // if (response.status === 200) {
-                //     setLogin(3);
-                //     console.log(response.data);
-                //     setError(
-                //         {
-                //             title: 'Uspesno ste prijavili ',
-                //             message: '',
-                //             slika: Succes1
-                //         }
-                //     )
-                // }
+                
+                if (response.status === 200) {
+                    navigate('/ProfilAdministrator');
+                    
+                    dispatch(adminSliceActions.adminUsername(user));
+                    dispatch(adminSliceActions.adminPassword(pwd));
+                    dispatch(adminSliceActions.adminToken(response.data.administrator.token));
+                    dispatch(adminSliceActions.adminStudenti(response.data.administrator.Studenti));
+                    dispatch(adminSliceActions.adminProfesori(response.data.administrator.Profesori));
+                    dispatch(adminSliceActions.adminPredmeti(response.data.administrator.Predmeti));
+                    dispatch(adminSliceActions.adminKodovi(response.data.administrator.ListaVerifKodova));
+                    dispatch(adminSliceActions.adminKartice(response.data.administrator.ListaBrKartica));
+                    
+                    
+                    
+                    
+                    setError(
+                        {
+                            title: 'Uspesno ste prijavili ',
+                            message: '',
+                            slika: Succes1
+                        }
+                    )
+                }
 
             }
             catch (err) {

@@ -14,9 +14,9 @@ import RegisterProfesor from './Profesor/RegisterProfesor';
 import Espb from './Student/Informacije/Espb';
 import Polozeni from './Student/Informacije/Polozeni';
 import Prijavljeni from './Student/Informacije/Prijavljeni';
+import ProfileAdministrator from './Administrator/ProfileAdministrator';
 import UspesnaReg from './Poruka/UspesnaReg';
 import Predmeti from './Student/Informacije/Predmeti';
-
 function App() {
   return (
    
