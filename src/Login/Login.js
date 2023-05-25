@@ -364,9 +364,9 @@ const Login = () => {
                     dispatch(profSliceActions.postaviProfJMBG(response.data.profesor.JMBG));
                     dispatch(profSliceActions.postaviprofRadniStaz(response.data.profesor.RadniStaz));
                     dispatch(profSliceActions.postaviprofImeRoditelja(response.data.profesor.ImeRoditelja));
-                    dispatch(profSliceActions.postaviToken(response.data.Token));
+                    dispatch(profSliceActions.postaviToken(response.data.token));
 
-                    navigate('/Home');
+                    navigate('/profesorProfil');
 
                     setLogin(2);
 

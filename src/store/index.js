@@ -217,7 +217,7 @@ reducers:{
 
 const store=configureStore({
     reducer:{profesorPodaci:profSlice.reducer,
-        studentPodaci:userSlice.reducer,adminPodaci:adminSlice.reducer},
+        studentPodaci:userSlice.reducer,adminPodaci:adminSlice.reducer,predmetPodaci:predmetSlice.reducer},
 });
 /*const store=configureStore({
     reducer:rootReducer
@@ -226,5 +226,4 @@ export const  userSliceActions=userSlice.actions;
 export const profSliceActions=profSlice.actions;
 export const adminSliceActions=adminSlice.actions;
 export const predmetSliceActions=predmetSlice.actions;
-
 export default store;

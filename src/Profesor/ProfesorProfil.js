@@ -32,26 +32,26 @@ const handlePredmete= async()  =>
 {
     //http://localhost:4200/studenti
     //http://localhost:4200/profesor/vratiSvePredmete/${JMBG}
+    console.log(`${JMBG}`);
+    console.log("stampam token"+token);
 
-    const response =await axios.get(`http://localhost:4200/profesor/vratiSvePredmete/${JMBG} `, {
+    const response =await axios.get(`http://localhost:4200/profesor/vratiSvePredmete/${JMBG}`, {
          headers:{
            'Authorization':'Bearer '+token
          }
     })
     
       .then(response=>{
-        console.log(response.data);
+        
        // navigate('/Predmeti');
-
-        console.log(` Sada stampam response.data `);
-        console.log(response.data);
-        dispatch(predmetSliceActions.postaviNaziv(response.data.predmet));
-       console.log("Dispatch nije ni odradjen ");
-        // dispatch(predmetSliceActions.userPass(response.data.ime));
-        // dispatch(predmetSliceActions.userIme(response.data.student.Ime));
-        // dispatch(predmetSliceActions.userPrezime(response.data.student.Prezime));
-        // dispatch(predmetSliceActions.userNumber(response.data.student.BrojTelefona));
-        // dispatch(predmetSliceActions.userProsek(response.data.student.Prosek));
+       // response.data.foreach(x=>console.log(x));
+        dispatch(predmetSliceActions.postaviNaziv(response.data[0].Naziv));
+         dispatch(predmetSliceActions.postaviESPB(response.data[0].ESPB));
+         dispatch(predmetSliceActions.postaviSMER(response.data[0].Smer));
+         dispatch(predmetSliceActions.postavigODINU(response.data[0].Godina));
+         dispatch(predmetSliceActions.postaviOpis(response.data[0].Opis));
+        /* dispatch(predmetSliceActions.userNumber(response.data[0].BrojTelefona));
+         dispatch(predmetSliceActions.userProsek(response.data[0].Prosek));*/
 
 
        setTabela(1);

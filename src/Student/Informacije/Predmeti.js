@@ -4,9 +4,16 @@ import { useSelector } from "react-redux";
 
 const Predmeti=()=>{
 
-    const ime = useSelector(state => state.predmetPodaci.predmetNaziv);
+    //const ime = useSelector(state => state.predmetPodaci.predmetNaziv);
+    const naziv = useSelector(state => state.predmetPodaci.predmetNaziv);
+    const espb= useSelector(state => state.predmetPodaci.predmetESPB);
+    const goind = useSelector(state => state.predmetPodaci.predmetGodina);
+    const opis=useSelector(state=>state.predmetPodaci.predmetOpis);
 
-    console.log(`Ovde je predmeti ${ime}`);
+    console.log(`Ovde je predmeti ${naziv}`);
+      console.log(`PP ${espb}`);
+      console.log(`PP ${goind}`);
+      console.log(`PP ${opis}`);
 
     const bastami="p";
 
@@ -29,10 +36,10 @@ const Predmeti=()=>{
 
                     <tbody>
                       <tr>
-                            <td>{ime}</td>
-                            <td>I</td>
-                            <td>Obavezni</td>
-                            <td>I</td>
+                            <td>{naziv}</td>
+                            <td>{espb}</td>
+                            <td>{goind}</td>
+                            <td>{opis}</td>
                       </tr>
                       <tr>
                             <td>Fizka</td>
