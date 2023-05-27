@@ -28,6 +28,9 @@ const RegisterStudent = (props) => {
     const [imeRod, setImeRod] = useState('');
     const [datumRodjenja, setdatumRodjenja] = useState('');
     const [jmbg, setJmbg] = useState('');
+
+    const [verifikacioniKod, setverifikacioniKod] = useState('');
+
     let smer = undefined;
     let godina = undefined;
 
@@ -145,6 +148,13 @@ const RegisterStudent = (props) => {
             setbrojIndeksaInput(true);
         }
 
+    }
+
+    const verifikacioniKodHandler=(event)=>
+    {
+        setverifikacioniKod(event.target.value);
+
+        
     }
 
     const userHandler = (event) => {
@@ -276,13 +286,14 @@ const RegisterStudent = (props) => {
             BrojIndexa: parseInt(brojIndeksa),
             TrenutnaGodinaStudija: parseInt(godina),
             ImeRoditelja: imeRod,
+           
             DatumRodjenja: datumRodjenja,
             JMBG: jmbg,
             Smer: smer
         };
 
         console.log(JSON.stringify(obj));
-        axios.post('/student', obj, {
+        axios.post(`/student/${verifikacioniKod}`, obj, {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -290,8 +301,9 @@ const RegisterStudent = (props) => {
         })
             .then(response => { // uspesno je vraceno 
                 setUspesnaReg(2);
+
                 //uspesna reg 
-                navigate('/UspesnaReg');
+                navigate('/uspesnaReg');
                 // console.log("Uspesno dodat");
                 // return (
                 //     <div>
@@ -376,6 +388,15 @@ const RegisterStudent = (props) => {
                         type="number"
                         onChange={brojIndeksaHandler}
                         className={`inpuT ${!brojIndeksaInput ? 'pozadina' : ''}`}
+
+                    />
+
+                    <label htmlFor="brojIndeksa">VERIFIKACIONI KOD</label>
+                    <input
+                        id="verifikacioniKOD"
+                        type="number"
+                        onChange={verifikacioniKodHandler}
+                        // className={`inpuT ${!brojIndeksaInput ? 'pozadina' : ''}`}
 
                     />
 
