@@ -8,7 +8,7 @@ import AuthContext from "../context/AuthProvider";
 
 import ListaKartica from './AdministratorListe/ListaKartica';
 import ListaPredmeta from './AdministratorListe/ListaPredmeta';
-import ListaPrijavljenihIspita from './AdministratorListe/ListaPrijavljenihIspita';
+import ListaVerifikacija from './AdministratorListe/ListaVerifikacija';
 import ListaProfesora from './AdministratorListe/ListaProfesora';
 import ListaStudenata from './AdministratorListe/ListaStudenata';
 import axios from '../api/axios';
@@ -29,7 +29,7 @@ const ProfileAdministrator=()=>{
     {
         setNav(2);
     }
-    const ispitHandler=()=>
+    const verifikacijaHandler=()=>
     {
         setNav(3);
     }
@@ -46,8 +46,8 @@ const ProfileAdministrator=()=>{
         setNav(0);
     }
     //////////////////////////////////////
-    const username=useSelector(state=>state.administratorPodaci.aUsername);
-    const password=useSelector(state=>state.administratorPodaci.aPassword);
+   const username=useSelector(state=>state.adminPodaci.aUsername);
+    const password=useSelector(state=>state.adminPodaci.aPassword);
     return(
         <div class="w3-content w3-margin-top" style={{maxWidth:"1400px",position:'absolute',top:'35px',width:'1000%'}} >
         
@@ -71,10 +71,6 @@ const ProfileAdministrator=()=>{
               </div>
               <div class="w3-container">
                 
-                <h2 class="w3-opacity"><h2>Password</h2></h2>
-                <br />
-                <h2 class="w3-text-teal">{password}</h2>
-               
                 <hr />
               </div>
               <div class="w3-container">
@@ -100,7 +96,7 @@ const ProfileAdministrator=()=>{
      
       <li><a onClick={karticaHandler}>Lista kartica</a></li>
       <li><a onClick={predmetHandler}>Lista predmeta</a></li>
-      <li><a onClick={ispitHandler}>Lista prijavljenih ispita</a></li>
+      <li><a onClick={verifikacijaHandler}>Lista verifikacija</a></li>
     </ul>
    
   </div>
@@ -108,7 +104,7 @@ const ProfileAdministrator=()=>{
 </nav>
 {nav===1 && <ListaKartica/>}
 {nav===2 && <ListaPredmeta/>}
-{nav===3 && <ListaPrijavljenihIspita/>}
+{nav===3 && <ListaVerifikacija/>}
 
 {nav===4 && <ListaProfesora/>}
 {nav===5 && <ListaStudenata/>}

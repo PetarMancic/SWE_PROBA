@@ -15,25 +15,45 @@ import Espb from './Student/Informacije/Espb';
 import Polozeni from './Student/Informacije/Polozeni';
 import Prijavljeni from './Student/Informacije/Prijavljeni';
 import ProfileAdministrator from './Administrator/ProfileAdministrator';
+import NavbarAdministrator from './Administrator/NavBarAdministrator';
+import PrijaviIspit from './Student/PrijaviIspit';
+import Komentari from './Student/Komentari';
+import PogledajKomentare from './Student/PogledajKomentare';
+import IzborPredmeta from './Student/IzborPredmeta';
 function App() {
   return (
    
     <main className="App">
     
       {/* <ProfesorProfil> </ProfesorProfil>  */}
-      <ProfileAdministrator/>
+      {/* <ProfileAdministrator/> */}
+      <NavbarStudent/>
       
       
   <Routes>
     <Route path="/" index={true} element={<Login/>} />
     <Route path="/Home" element={<Home />}/>
+
     <Route path="/registerStudent" element={<RegisterStudent />} />
     <Route path="/registerProfesor" element={<RegisterProfesor />}/>
 
-    <Route path='/profileStudent' element={<ProfileStudent />}/>
-    <Route path='/Espb' element={<Espb />}/>
-    <Route path='/Polozeni' element={<Polozeni/>}/>
+    <Route path='/profil' element={<ProfileStudent />}/>
+    <Route path='/poi' element={<PrijaviIspit />}/>
+    <Route path='/komentari' element={<Komentari/>}/>
+    <Route path='/pogledaj' element={<PogledajKomentare/>}/>
+    <Route path='/izbor' element={<IzborPredmeta/>}/>
+    <Route path='/kuca' element={<Login/>}/>
     <Route path='/Prijavljeni' element={<Prijavljeni />}/>
+    <Route path="/AdministratorProfil"element={<ProfileAdministrator/>}/>
+    <Route path="/AdministratorHome"element={<HomeAdministrator/>}/>
+    <Route  path="/AdministratorVratiPrijavljeneIspite"element={<Login/>}/>        
+    <Route path="/AdministratorVratiIspite"element={<Login/>}/>
+    <Route path="/AdministratorDodajPredmet"element={<Login/>}/> 
+    <Route path="/AdministratorVerifikacioniKod"element={<Login/>}/>
+    <Route path="/AdministratorDodajBrojKartice"element={<Login/>}/>
+    <Route path="/AdministratorDodeliIspite"element={<Login/>}/>
+    <Route path="/AdministratorObrisiNalog"element={<Login/>}/>
+         
 
     
 

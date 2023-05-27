@@ -1,4 +1,7 @@
+import { useSelector } from "react-redux";
+
 const ListaProfesora=()=>{
+  const profesori=useSelector(state=>state.adminPodaci.aProfesori);
     return(
         
             <div class="w3-container">
@@ -10,36 +13,17 @@ const ListaProfesora=()=>{
                   <th>Prosecna ocena</th>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Fizka</td>
-                    <td>10</td>
-                    <td>02.03.2002</td>
-                    <td>7</td>
-                  </tr>
-                  <tr>
-                    <td>Fizka</td>
-                    <td>10</td>
-                    <td>02.03.2002</td>
-                    <td>7</td>
-                  </tr>
-                  <tr>
-                    <td>Fizka</td>
-                    <td>10</td>
-                    <td>02.03.2002</td>
-                    <td>7</td>
-                  </tr>
-                  <tr>
-                    <td>Fizka</td>
-                    <td>10</td>
-                    <td>02.03.2002</td>
-                    <td>7</td>
-                  </tr>
-                  <tr>
-                    <td>Fizka</td>
-                    <td>10</td>
-                    <td>02.03.2002</td>
-                    <td>7</td>
-                  </tr>
+                {profesori.map(element => (
+                    <tr key={element.ID}>
+                    <td>{element.brojKartice}</td>
+                    <td>{element.ime}</td>
+                    <td>{element.prezime}</td>
+                    <td>{element.prosecnaOcena}</td>
+                </tr>
+
+                    
+                ))}
+             
                 </tbody>
             </table>
             <hr />

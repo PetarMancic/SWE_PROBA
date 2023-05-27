@@ -18,13 +18,11 @@ const NavbarAdministrator=()=>{
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-            {/* <li ><Link to="/AdministratorProfil">Profil</Link></li>
-            <li><Link to="/AdministratorVratiStudente">Pregled studenata</Link></li>
-            <li><Link to="/AdministratorVratiProfesore">Pregled profesora</Link></li>
-            <li><Link to="/AdministratorVratiKodove">Pregled verifikacija</Link></li>
-            <li><Link to="/AdministratorVratiBrojeveKartica">Pregled prijavljenih ispita</Link></li>
-            <li><Link to="/AdministratorVratiPredmete">Pregled predmeta</Link></li>
-        <li><Link to="/AdministratorVratiIspite">Pregled svih ispita</Link></li>*/}
+             <li ><Link to="/AdministratorProfil">Profil</Link></li>
+            
+            <li><Link to="/AdministratorVratiPrijavljeneIspite">Pregled prijavljenih ispita</Link></li>
+            
+            <li><Link to="/AdministratorVratiIspite">Pregled svih ispita</Link></li>
             <li><Link to="/AdministratorDodajPredmet">Dodaj predmet</Link></li> 
             <li><Link to="/AdministratorVerifikacioniKod">Dodaj verifikaciju</Link></li>
             <li><Link to="/AdministratorDodajBrojKartice">Dodaj karticu</Link></li>

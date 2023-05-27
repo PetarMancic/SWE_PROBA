@@ -5,7 +5,7 @@ import Table from 'react-bootstrap/Table';
 import Polozeni from "./Informacije/Polozeni";
 import Prijavljeni from "./Informacije/Prijavljeni";
 import Espb from "./Informacije/Espb";
-import {Route,Routes} from 'react-router-dom'
+import {Route,Routes, useNavigate} from 'react-router-dom'
 import { useRef, useState, useEffect, useContext } from 'react';
 import AuthContext from "../context/AuthProvider";
 
@@ -19,7 +19,6 @@ import Login from '../Login/Login';
 import { useSelector, useDispatch } from 'react-redux';
 import { userSliceActions } from '../store';
 import { profSliceActions } from '../store';
-import { Navigate } from 'react-router-dom';
 
 
 const ProfileStudent=(props)=>{
@@ -38,20 +37,22 @@ const ProfileStudent=(props)=>{
   const smer=useSelector(state=>state.studentPodaci.uSmer);
   const dispatch=useDispatch();
  
-    
+  // I Petar si istoto gresil, navigate je nekvija import i to ne trebata, treba samo ovo useNavigate
+  // Sa ovim useNavigate koristimo hook taj i dodeljujemo promenljivoj pufla npr moze i navigata si razumel? Da Pozzz Otisal sam Ce se vimo br
+    const pufla = useNavigate();
 /////////////////////////////////////////////////////////////////////
 const [nav,setNav]=useState(0);
 const polozeniHandler=()=>{
- // setNav(1);
- Navigate('/Polozeni');
+  setNav(1);
+ 
 
 }
 const prijavljeniHandler=()=>{
-  //setNav(2);
-  Navigate('/Prijavljeni');
+ setNav(2);
+ 
 }
 const ESPBHandler=()=>{
-  Navigate('/Espb');
+ setNav(3);
 
 }
 const sakrijHandler=()=>{

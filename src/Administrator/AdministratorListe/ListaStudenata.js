@@ -1,4 +1,7 @@
+import { useSelector } from "react-redux";
+
 const ListaStudenata=()=>{
+  const studenti=useSelector(state=>state.adminPodaci.aStudenti);
     return(
         
             <div class="w3-container">
@@ -10,36 +13,18 @@ const ListaStudenata=()=>{
                   <th>Godina studija</th>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Fizka</td>
-                    <td>10</td>
-                    <td>02.03.2002</td>
-                    <td>7</td>
-                  </tr>
-                  <tr>
-                    <td>Fizka</td>
-                    <td>10</td>
-                    <td>02.03.2002</td>
-                    <td>7</td>
-                  </tr>
-                  <tr>
-                    <td>Fizka</td>
-                    <td>10</td>
-                    <td>02.03.2002</td>
-                    <td>7</td>
-                  </tr>
-                  <tr>
-                    <td>Fizka</td>
-                    <td>10</td>
-                    <td>02.03.2002</td>
-                    <td>7</td>
-                  </tr>
-                  <tr>
-                    <td>Fizka</td>
-                    <td>10</td>
-                    <td>02.03.2002</td>
-                    <td>7</td>
-                  </tr>
+                {studenti.map(element => (
+                    <tr key={element.ID}>
+                    <td>{element.brojIndeksa}</td>
+                    <td>{element.ime}</td>
+                    <td>{element.prezime}</td>
+                    <td>{element.godina}</td>
+                    
+                </tr>
+
+                    
+                ))}
+              
                 </tbody>
             </table>
             <hr />

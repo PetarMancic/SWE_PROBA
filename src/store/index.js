@@ -15,7 +15,14 @@ const initialState={
     uDatumRodjenja: "",
     uJmbg: "",
     uSmer:"",
-    token:""
+    token:"",
+    uEspb:0,
+    uPolozeni:[{id:'123',predmet:'Predmet7',ocena:'9',datumPolaganja:'4.8.2020',espb:'6'}],
+    uPrijavljeni:[{id:'123',predmet:'predmet7',semestar:'8',tip:'obavezni',brojPrijava:'0'}],
+    uProfesori:[{label:'Dragan',value:1},{label:'Ladan',value:2},{label:'Zedan',value:3}],
+    uPredmeti:[{label:'AOR1',value:1},{label:'AOR2',value:2},{label:'AOR3',value:3}],
+    uBuduciIzborni:[{label:'Teorija igara',value:'Teorija igara'},{label:'Multimedija',value:'Multimedija'},{label:'Dbd',value:'Dbd'}],
+   
 }
 const userSlice=createSlice({name:'studentPodaci',
 initialState:initialState,
@@ -61,10 +68,63 @@ reducers:{
     },
     userToken(state,action){
         state.token=action.payload;
+    },
+    userEspb(state,action)
+    {
+        state.uEspb=action.payload;
+    },
+    userProfesori(state,action)
+    {
+        state.uProfesori=action.payload;
+    },
+    userPredmeti(state,action)
+    {
+        state.uPredmeti=action.payload;
+    },
+    userBuduciIzborni(state,action)
+    {
+        state.uBuduciIzborni=action.payload;
     }
 
 }
 });
+const initialPredmeti={
+    ime:'Izborni',
+    tip:'i',
+    profesor:'Dragan',
+    
+    komentar:[{ime:'Ucenik',prezime:'Ucenic',tip:'predmet',ocena:'9',komentar:'Lagan je'}]
+};
+const predmetiSlice=createSlice({name:'predmetPodaci',
+initialState:initialPredmeti,
+reducers:{
+   predmetiIme(state,action)
+   {
+        state.ime=action.payload;
+   },
+   predmetiTip(state,action)
+   {
+        state.tip=action.payload;
+   },
+   predmetiProfesor(state,action)
+   {
+        state.profesor=action.payload;
+   },
+   predmetiOcena(state,action)
+   {
+        state.ocena=action.payload;
+   },
+   predmetiProfesor(state,action)
+   {
+        state.profesor=action.payload;
+   },
+   predmetiKomentar(state,action)
+   {
+        state.komentar=action.payload;
+   }
+}
+});
+
 
 const initialStateProf={
     profIme: "",
@@ -77,7 +137,16 @@ const initialStateProf={
     profJmbg: "",
     profRadniStaz:"",
     profImeRoditelja: "",
-    token:""
+    token:"",
+    profComments:[{ime:'',
+    prezime:'Lagan',
+    tema:'',
+    komentar:'Dobro predava brt'}],
+    Predmet:{
+        ime:'Aor',
+    
+
+    }
    
 };
 
@@ -121,6 +190,10 @@ const profSlice=createSlice({
         },
         postaviToken(state=initialStateProf,action){
               state.token=action.payload;
+        },
+        postaviKomentar(state,action)
+        {
+            state.profComments=action.payload;
         }
         
         
@@ -128,22 +201,22 @@ const profSlice=createSlice({
 
 
     }
-})
+});
 
 const initialStateAdministrator={
     aID: "",
-    aUsername: "",
+    aUsername: "username",
     aPassword: "",
-    aStudenti: "",
-    aProfesori: "",
-    aPredmeti: "",
-    aKodovi: "",
-    aKartice: "",
+    aStudenti: [{id:'100',brojIndeksa:'172834',ime:'Rajko',prezime:'Rajkovic',godina:'4'}],
+    aProfesori: [{id:'1',brojKatrice:'1',ime:'Dragan',prezime:'Dragan',prosecnaOcena:'7'},{id:'1',brojKatrice:'1',ime:'Dragan',prezime:'Dragan',prosecnaOcena:'7'},{id:'1',brojKatrice:'1',ime:'Dragan',prezime:'Dragan',prosecnaOcena:'7'},{}],
+    aPredmeti: ["Predmet1","Predmet2","Predmet3"],
+    aKodovi: [{tip:'',kod:''}],
+    aKartice: ["","",""],
     
     token:""
 }
 const adminSlice=createSlice({name:'administratorPodaci',
-initialState:initialState,
+initialState:initialStateAdministrator,
 reducers:{
     adminUsername(state,action){
         state.aUsername=action.payload;
@@ -176,14 +249,17 @@ reducers:{
 
 }
 });
+
 const store=configureStore({
     reducer:{profesorPodaci:profSlice.reducer,
-        studentPodaci:userSlice.reducer,adminPodaci:adminSlice.reducer},
+        studentPodaci:userSlice.reducer,adminPodaci:adminSlice.reducer,predmetPodaci:predmetiSlice.reducer},
 });
 /*const store=configureStore({
     reducer:rootReducer
 })*/
-export const  userSliceActions=userSlice.actions;
 export const profSliceActions=profSlice.actions;
+export const  userSliceActions=userSlice.actions;
 export const adminSliceActions=adminSlice.actions;
+export const predmetPodaciActions=predmetiSlice.actions;
+
 export default store;
