@@ -29,6 +29,9 @@ const RegisterStudent = (props) => {
     const [datumRodjenja, setdatumRodjenja] = useState('');
     const [jmbg, setJmbg] = useState('');
 
+    const [godStudija,setGodStudija]=useState('');
+    const [smer1,setSmer1]=useState('');
+
     const [verifikacioniKod, setverifikacioniKod] = useState('');
 
     let smer = undefined;
@@ -65,19 +68,39 @@ const RegisterStudent = (props) => {
     { value: '4', label: 'IV' }
     ];
 
+   const [smer2,setsmer2]=useState();
+
+    const handlerZaGodine = (event) => {
+        const selectedValue = event.target.value;
+        setSelectedOption(selectedValue);
+        setGodStudija(selectedValue);
+
+        console.log(selectedValue);
+      };
+
+      const handlerZaSmer = (event) => {
+        const selectedValue = event.target.value;
+        setsmer2(selectedValue);
+        console.log(selectedValue);
+      };
+
 
     const smerHandler = (event) => {
         setSmerInput(true)
         smer = event.value;
+       // setSmer1(event.target.value);
         console.log("Izabrano", smer);
+        const selectedValue = event.target.options[event.target.selectedIndex].value;
+        console.log(selectedValue);
 
 
-
+        
     };
     const godineHandler = (event) => {
-        setgodStudijaInput(true)
+        setgodStudijaInput(true);
         godina = event.value;
-        console.log("Izabrano", godina);
+        console.log("Izabrano", event.target.value);
+       // setGodStudija(event.targer.value);
 
 
 
@@ -273,8 +296,8 @@ const RegisterStudent = (props) => {
 
 
 
-
-        if (zaustavi == true) {
+console.log(zaustavi);
+        if (zaustavi == false) {
             return;
         }
         const obj = {
@@ -284,14 +307,15 @@ const RegisterStudent = (props) => {
             Email: email,
             Password: pass,
             BrojIndexa: parseInt(brojIndeksa),
-            TrenutnaGodinaStudija: parseInt(godina),
+            TrenutnaGodinaStudija: parseInt(godStudija),
             ImeRoditelja: imeRod,
            
             DatumRodjenja: datumRodjenja,
             JMBG: jmbg,
-            Smer: smer
+            Smer: smer2
         };
 
+        console.log(obj);
         console.log(JSON.stringify(obj));
         axios.post(`/student/${verifikacioniKod}`, obj, {
             headers: {
@@ -403,11 +427,18 @@ const RegisterStudent = (props) => {
 
 
                     <label htmlFor="godinStudija"> Izaberite godinu studija</label>
+        
+        <select value={selectedOption} onChange={handlerZaGodine}>
+        <option style={{color:"black"}} value="1">I</option>
+        <option  style={{color:"black"}} value="2">II</option>
+        <option style={{color:"black"}} value="3">III</option>
+      </select>
+                    {/* <Select options={godine} placeholder='Odaberite' onChange={godineHandler} className={` crni-tekst  ${!smerInput ? 'pozadina' : ''}`}>
 
-                    <Select options={godine} placeholder='Odaberite' onChange={godineHandler} className={` crni-tekst  ${!smerInput ? 'pozadina' : ''}`}>
 
+                    </Select> */}
 
-                    </Select>
+                    
 
 
                     <label htmlFor="Ime roditelja ">IME RODITELJA</label>
@@ -440,10 +471,16 @@ const RegisterStudent = (props) => {
 
                     <label htmlFor="smer"> SMER</label>
 
-                    <Select options={smerovi} placeholder='Odaberite smer' onChange={smerHandler} className={` crni-tekst  ${!smerInput ? 'pozadina' : ''}`}>
+                    <select value={selectedOption} onChange={handlerZaSmer}>
+        <option style={{color:"black"}} value="Elektroenergetika">Elektroenergetika</option>
+        <option  style={{color:"black"}} value="Racunarstvo i informatika">Racunarstvo i informatika</option>
+        <option style={{color:"black"}} value="opcija3">Opcija 3</option>
+      </select>
+
+                    {/* <Select options={smerovi} placeholder='Odaberite smer' onChange={smerHandler} className={` crni-tekst  ${!smerInput ? 'pozadina' : ''}`}>
 
 
-                    </Select>
+                    </Select> */}
 
 
 
