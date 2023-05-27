@@ -1,35 +1,36 @@
 import React from 'react';
 import './Navbar.css';
+import { Link } from 'react-router-dom';
 
 const NavbarProfesor=()=>{
-    return(
-      <div>
-        petar
+  return(
+     
+    <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <Link class="navbar-brand" to="/home">Home</Link>
       </div>
-//     <nav class="navbar navbar-inverse" >
-//   <div class="container-fluid">
-//     <div class="navbar-header">
-//       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-//         <span class="icon-bar"></span>
-//         <span class="icon-bar"></span>
-//         <span class="icon-bar"></span>                        
-//       </button>
-//       <a class="navbar-brand active" href="#">Home</a>
-//     </div>
-//     <div class="collapse navbar-collapse" id="myNavbar">
-//       <ul class="nav navbar-nav">
-//         <li ><a href="#">Profil</a></li>
-//         <li><a href="#">Upisi ocenu</a></li>
-//         <li><a href="#">Pogledaj komentare i ocene o sebi</a></li>
-//         <li><a href="#">Pogledaj komentare i ocene o predmetu</a></li>
-//       </ul>
-//       <ul class="nav navbar-nav navbar-right">
-//         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
-//       </ul>
-//     </div>
-//   </div>
-// </nav>
-    );
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li ><Link to="/profil">Profil</Link></li>
+          <li><Link to="/poi">Prijavi ispit</Link></li>
+          <li><Link to="/komentari">Posalji komentar</Link></li>
+          <li><Link to="/pogledaj">Pregledaj komentare</Link></li>
+          <li><Link to='/izbor'>Izaberi izborni predmet</Link></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><Link to="/kuca"><span class="glyphicon glyphicon-log-in"></span> Log out</Link></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  );
 
 }
 export default NavbarProfesor;

@@ -20,6 +20,8 @@ import PrijaviIspit from './Student/PrijaviIspit';
 import Komentari from './Student/Komentari';
 import PogledajKomentare from './Student/PogledajKomentare';
 import IzborPredmeta from './Student/IzborPredmeta';
+import AdministratorVratiIspite from './Administrator/Komponente/AdministratorVratiIspite';
+import AdministratorDodajPredmet from './Administrator/Komponente/AdmnistratorDodajPredmet';
 function App() {
   return (
    
@@ -27,11 +29,12 @@ function App() {
     
       {/* <ProfesorProfil> </ProfesorProfil>  */}
       {/* <ProfileAdministrator/> */}
-      <NavbarStudent/>
+      {/* <NavbarStudent/> */}
+      <NavbarAdministrator/>
       
       
   <Routes>
-    <Route path="/" index={true} element={<Login/>} />
+    <Route path="/" index={true} element={<HomeAdministrator/>} />
     <Route path="/Home" element={<Home />}/>
 
     <Route path="/registerStudent" element={<RegisterStudent />} />
@@ -47,8 +50,8 @@ function App() {
     <Route path="/AdministratorProfil"element={<ProfileAdministrator/>}/>
     <Route path="/AdministratorHome"element={<HomeAdministrator/>}/>
     <Route  path="/AdministratorVratiPrijavljeneIspite"element={<Login/>}/>        
-    <Route path="/AdministratorVratiIspite"element={<Login/>}/>
-    <Route path="/AdministratorDodajPredmet"element={<Login/>}/> 
+    <Route path="/AdministratorVratiIspite"element={<AdministratorVratiIspite/>}/>
+    <Route path="/AdministratorDodajPredmet"element={<AdministratorDodajPredmet/>}/> 
     <Route path="/AdministratorVerifikacioniKod"element={<Login/>}/>
     <Route path="/AdministratorDodajBrojKartice"element={<Login/>}/>
     <Route path="/AdministratorDodeliIspite"element={<Login/>}/>

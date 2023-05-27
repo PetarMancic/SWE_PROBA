@@ -22,12 +22,13 @@ const NavbarAdministrator=()=>{
             
             <li><Link to="/AdministratorVratiPrijavljeneIspite">Pregled prijavljenih ispita</Link></li>
             
-            <li><Link to="/AdministratorVratiIspite">Pregled svih ispita</Link></li>
+            <li><Link to="/AdministratorVratiIspite">Pregled svih predmeta</Link></li>
             <li><Link to="/AdministratorDodajPredmet">Dodaj predmet</Link></li> 
-            <li><Link to="/AdministratorVerifikacioniKod">Dodaj verifikaciju</Link></li>
-            <li><Link to="/AdministratorDodajBrojKartice">Dodaj karticu</Link></li>
-            <li><Link to="/AdministratorDodeliIspite">Dodaj ispite</Link></li>
-            <li><Link to="/AdministratorObrisiNalog">Obrisi nalog</Link></li>
+            {/* <li><Link to="/AdministratorVerifikacioniKod">Dodaj verifikaciju</Link></li> */}
+            {/* <li><Link to="/AdministratorDodajBrojKartice">Dodaj karticu</Link></li> */}
+            {/* <li><Link to="/AdministratorDodeliIspite">Dodaj ispite</Link></li> */}
+            <li><Link to="/AdministratorObrisiNalog">Obrisi nalog studenta </Link></li>
+            <li><Link to="/AdministratorObrisiNalog">Obrisi nalog profesora </Link></li>
          
           </ul>
           <ul class="nav navbar-nav navbar-right">
