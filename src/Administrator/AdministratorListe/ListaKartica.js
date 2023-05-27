@@ -1,4 +1,7 @@
+import { useSelector } from "react-redux";
+
 const ListaKartica=()=>{
+  const kartice=useSelector(state=>state.adminPodaci.aKartice);
     return(
         
             <div class="w3-container ">
@@ -9,26 +12,16 @@ const ListaKartica=()=>{
                  
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Fizka</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td>Fizka</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td>Fizka</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td>Fizka</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td>Fizka</td>
-                    <td>10</td>
-                  </tr>
+                {kartice.map(element => (
+                    <tr key={element.id}>
+                    <td>{element.Broj}</td>
+                    <td>{element.Profesor}</td>
+                    
+                </tr>
+
+                    
+                ))}
+              
                 </tbody>
             </table>
             <hr />

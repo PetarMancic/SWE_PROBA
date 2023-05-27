@@ -19,8 +19,9 @@ const NavbarStudent=()=>{
           <ul class="nav navbar-nav">
             <li ><Link to="/profil">Profil</Link></li>
             <li><Link to="/poi">Prijavi ispit</Link></li>
-            <li><Link to="/salji">Posalji komentar</Link></li>
+            <li><Link to="/komentari">Posalji komentar</Link></li>
             <li><Link to="/pogledaj">Pregledaj komentare</Link></li>
+            <li><Link to='/izbor'>Izaberi izborni predmet</Link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><Link to="/kuca"><span class="glyphicon glyphicon-log-in"></span> Log out</Link></li>

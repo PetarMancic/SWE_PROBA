@@ -1,7 +1,7 @@
 import { adminSliceActions } from '../../store/index';
 import { useSelector, useDispatch } from 'react-redux';
 const ListaPredmeta=()=>{
-    const predmeti=useSelector(state=>state.administratorPodaci.aPredmeti);
+    const predmeti=useSelector(state=>state.adminPodaci.aPredmeti);
     return(
         
             <div class="w3-container">
@@ -13,14 +13,15 @@ const ListaPredmeta=()=>{
                   <th>Profesor</th>
                 </thead>
                 <tbody>
-                {predmeti.map((objekat)=>(
-                    <tr key={objekat.ID}>
-                        <td>{objekat.Naziv}</td>
-                        <td>{objekat.Espb}</td>
-                        <td>{objekat.Semestar}</td>
-                        <td>{objekat.Profesor}</td>
-                    </tr>
-    
+                {predmeti.map(element => (
+                    <tr key={element.id}>
+                    <td>{element.naziv}</td>
+                    <td>{element.espb}</td>
+                    <td>{element.semestar}</td>
+                    <td>{element.profesor}</td>
+                </tr>
+
+                    
                 ))}
                 </tbody>
             </table>

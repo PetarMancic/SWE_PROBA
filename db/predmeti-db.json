@@ -1,0 +1,52 @@
+{
+    "predmeti":[
+        {
+            "id":1,
+            "ime":"Izborni1",
+            "tip":"i",
+            "profesor":"Dragan",
+            
+            "komentari":[
+                {
+                    "ime":"Ucenik",
+                    "prezime":"Ucenic",
+                    "tip":"predmet",
+                    "ocena":"9",
+                    "komentar":"Lagan je"
+                },
+                {
+                    "ime":"Stipendijas",
+                    "prezime":"Pufla",
+                    "tip":"predmet",
+                    "ocena":"10",
+                    "komentar":"Imao sam maks"
+                }
+            ]    
+        },
+        {
+            "id":2,
+            "ime":"Izborni2",
+            "tip":"o",
+            "profesor":"Goran",
+            
+            "komentari":[
+                {
+                    "ime":"Dragan",
+                    "prezime":"Draganovic",
+                    "tip":"predmet",
+                    "ocena":"8",
+                    "komentar":"Tezak"
+                },
+                {
+                    "ime":"Pufla",
+                    "prezime":"Puflovic",
+                    "tip":"predmet",
+                    "ocena":"9",
+                    "komentar":"Za malo maks"
+                }
+            ]
+
+        }
+    ]
+
+}
