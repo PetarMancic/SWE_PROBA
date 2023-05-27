@@ -195,11 +195,45 @@ const profSlice=createSlice({
         {
             state.profComments=action.payload;
         }
+
         
+    }
+})
         
 
 
 
+
+const initialStatePredmet={
+    predmetNaziv: "",
+    predmetESPB: "",
+    predmetSmer: "",
+    predmetGodina: "",
+    predmetOpis: ""
+    
+};
+  
+
+const predmetSlice=createSlice({
+    name:'predmetPodaci',
+    initialState:initialStatePredmet,
+    reducers:
+    {
+        postaviNaziv(state,action){
+            state.predmetNaziv=action.payload;
+        },
+        postaviESPB(state,action){
+            state.predmetESPB=action.payload;
+        },
+        postaviSMER(state,action){
+            state.predmetSmer=action.payload;
+        },
+        postavigODINU(state,action){
+            state.predmetGodina=action.payload;
+        },
+        postaviOpis(state,action){
+            state.predmetOpis=action.payload;
+        }
     }
 });
 
