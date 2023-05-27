@@ -54,9 +54,15 @@
     text-decoration: underline; /* Podcrtavanje teksta */
     transform: scale(1.1); /* Povećanje veličine */
   }
-  
+  .PovecajEffect:hover{
+    transform: scale(1.1); /* Povećanje veličine */
+  }
   .mojaKlasa
   {
     display: flex;
     flex-direction: row;
+  }
+  .Naslov {
+    color: white;
+    font-size: 24px;
   }

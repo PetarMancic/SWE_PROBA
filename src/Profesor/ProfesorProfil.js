@@ -104,7 +104,7 @@ const  handleKomentare=async ()=>
   return (
 
 
-    <div class="w3-content w3-margin-top" style={{ maxWidth: "1400px", position: 'absolute', top: '35px', width: '1000%' }} >
+    <div class="w3-content w3-margin-top back" style={{ maxWidth: "1400px", position: 'absolute', top: '35px', width: '1000%' }} >
 
 
       <div class="w3-row-padding">
@@ -119,9 +119,9 @@ const  handleKomentare=async ()=>
               {<img src={PictureWoman}
                 style={{ position: 'relative', height: '140px' }} className="img-rounded" />}
 
-              <h2 class="w3-large"><h1><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>{ime} {ImeRoditelja}{prezime}</h1></h2>
+              <h2 class="w3-large Naslov"><h1><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>{ime} {ImeRoditelja}{prezime}</h1></h2>
 
-              <h3>ID kartice:{brojKartice}</h3>
+              <h3 className="Naslov">ID kartice:{brojKartice}</h3>
               <br />
               {/* <h4>Smer:{smer}</h4> */}
               <br />
@@ -131,31 +131,31 @@ const  handleKomentare=async ()=>
               <br />
               <hr />
 
-              <h1 class="w3-large"><h1><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Licni podaci</h1></h1>
+              <h1 class="w3-large  Naslov PovecajEffect"><h1><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal" ></i>Licni podaci</h1></h1>
               <div className="row">
-                <div className="col-sm-6"><h3>JMBG</h3></div>
+                <div className="col-sm-6 Naslov"><h3>JMBG</h3></div>
 
-                <div className="col-sm-6"><h3>{JMBG}</h3></div>
+                <div className="col-sm-6 Naslov"><h3>{JMBG}</h3></div>
 
               </div>
               <div className="row">
-                <div className="col-sm-6"><h3>Datum rodjenja</h3></div>
+                <div className="col-sm-6 Naslov"><h3>Datum rodjenja</h3></div>
 
-                <div className="col-sm-6"><h3>{DatumRodjenja}</h3></div>
-
-              </div>
-
-              <div className="row">
-                <div className="col-sm-6"><h3>Ime roditelja</h3></div>
-
-                <div className="col-sm-6"><h3>{ImeRoditelja}</h3></div>
+                <div className="col-sm-6 Naslov"><h3>{DatumRodjenja}</h3></div>
 
               </div>
 
               <div className="row">
-                <div className="col-sm-6"><h3>Telefon</h3></div>
+                <div className="col-sm-6 Naslov"><h3>Ime roditelja</h3></div>
 
-                <div className="col-sm-6"><h3>{profBrojTelefona}</h3></div>
+                <div className="col-sm-6 Naslov"><h3>{ImeRoditelja}</h3></div>
+
+              </div>
+
+              <div className="row">
+                <div className="col-sm-6 Naslov"><h3>Telefon</h3></div>
+
+                <div className="col-sm-6 Naslov "><h3>{profBrojTelefona}</h3></div>
 
               </div>
               <br />
@@ -167,22 +167,23 @@ const  handleKomentare=async ()=>
 
         <div class="w3-twothird">
           <div class="w3-container w3-card login-form">
-            <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Dodatno</h2>
+            <h2 class="w3-padding-16 Naslov PovecajEffect"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Dodatno</h2>
+            <hr style={{height: '3px' }}/>
             <div class="w3-container">
-              <h5 class="w3-opacity"><b>Radni staz</b></h5>
-              <h6 class="w3-text-teal">{RadniStaz}</h6>
+              <h5 class=" Naslov PovecajEffect"><b>Radni staz</b></h5>
+              <h6 class="w3-text-teal Naslov">{RadniStaz}</h6>
+
+              <hr />
+            </div> 
+            <div class="w3-container">
+              <h5 class=" Naslov PovecajEffect" ><b>Email</b></h5>
+              <h6 class="w3-text-teal"><i class=""></i>{Email}</h6>
 
               <hr />
             </div>
             <div class="w3-container">
-              <h5 class="w3-opacity"><b>Email</b></h5>
-              <h6 class="w3-text-teal"><i class="w3-opacityt"></i>{Email}</h6>
-
-              <hr />
-            </div>
-            <div class="w3-container">
-              <h5 class="w3-opacity"><b>Kontakt</b></h5>
-              <h6 class="w3-text-teal"><i class="fa-fw w3-margin-right"></i>{profBrojTelefona}</h6>
+              <h5 class=" Naslov PovecajEffect"><b>Kontakt</b></h5>
+              <h6 class="w3-text-teal Naslov"><i class="fa-fw w3-margin-right"></i>{profBrojTelefona}</h6>
               <br />
             </div>
           </div>
