@@ -203,18 +203,19 @@ const RegisterProfesor = (props) => {
 
 
         const obj = {
-            ime: ime,
-            prezime: prezime,
-            idBrojKartice: idBrojKartice,
-            username: user,
-            password: pass,
-            Email: email,
+            Ime: ime,
+            Prezime: prezime,
+            IdBrojKartice: idBrojKartice,
+            Email:email,
+            Password: pass,
             DatumRodjenja: datumRodjenja,
             JMBG: JMBG,
             RadniStaz: radniStaz,
-            ImeRoditelja: imeR
+            ImeRoditelja: imeR,
+            ProsecnaOcena:0
 
         };
+        console.log(obj);
 
 
 
