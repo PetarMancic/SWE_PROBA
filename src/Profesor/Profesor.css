@@ -66,3 +66,42 @@
     color: white;
     font-size: 24px;
   }
+
+  /* .row
+  {
+    display: flex;
+    
+  } */
+
+  .spoljni
+  {
+    display: grid;
+  grid-template-columns: 1fr 1fr;
+  }
+
+  .levi
+  {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px; /* Opciono: dodatni razmak između elemenata */
+  }
+
+  
+  .desni
+  {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px; /* Opciono: dodatni razmak između elemenata */
+  }
+
+  .odvoji
+  {
+    margin-bottom: 50px;
+  }
+
+  .dugmence
+{
+  width: 400px;
+  text-align: center;
+}
+  

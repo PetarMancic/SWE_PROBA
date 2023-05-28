@@ -22,6 +22,8 @@ import PogledajKomentare from './Student/PogledajKomentare';
 import IzborPredmeta from './Student/IzborPredmeta';
 import AdministratorVratiIspite from './Administrator/Komponente/AdministratorVratiIspite';
 import AdministratorDodajPredmet from './Administrator/Komponente/AdmnistratorDodajPredmet';
+import AdministratorObrisiNalogStudenta from './Administrator/Komponente/AdministratorObrisiNalogStudenta';
+
 function App() {
   return (
    
@@ -30,10 +32,12 @@ function App() {
       {/* <ProfesorProfil> </ProfesorProfil>  */}
       {/* <ProfileAdministrator/> */}
       {/* <NavbarStudent/> */}
-      <NavbarAdministrator/>
+     
+       <NavbarAdministrator/> 
       
       
   <Routes>
+ 
     <Route path="/" index={true} element={<HomeAdministrator/>} />
     <Route path="/Home" element={<Home />}/>
 
@@ -55,7 +59,7 @@ function App() {
     <Route path="/AdministratorVerifikacioniKod"element={<Login/>}/>
     <Route path="/AdministratorDodajBrojKartice"element={<Login/>}/>
     <Route path="/AdministratorDodeliIspite"element={<Login/>}/>
-    <Route path="/AdministratorObrisiNalog"element={<Login/>}/>
+    <Route path="/AdministratorObrisiNalogStudenta"element={<AdministratorObrisiNalogStudenta/>}/>
          
 
     

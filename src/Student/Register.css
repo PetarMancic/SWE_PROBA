@@ -68,3 +68,34 @@ height: 40px;
 {
   padding: 10px;
 }
+
+.redovi
+{
+  display:flex;
+  flex-direction: row;
+}
+
+.desni
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px; /* Opciono: dodatni razmak između elemenata */
+}
+
+.levi
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px; /* Opciono: dodatni razmak između elemenata */
+}
+
+.spoljni
+{
+display: grid;
+grid-template-columns: 1fr 1fr;
+}
+
+.dugmence
+{
+  width:400;
+}

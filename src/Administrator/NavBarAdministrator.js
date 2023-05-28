@@ -27,7 +27,7 @@ const NavbarAdministrator=()=>{
             {/* <li><Link to="/AdministratorVerifikacioniKod">Dodaj verifikaciju</Link></li> */}
             {/* <li><Link to="/AdministratorDodajBrojKartice">Dodaj karticu</Link></li> */}
             {/* <li><Link to="/AdministratorDodeliIspite">Dodaj ispite</Link></li> */}
-            <li><Link to="/AdministratorObrisiNalog">Obrisi nalog studenta </Link></li>
+            <li><Link to="/AdministratorObrisiNalogStudenta">Obrisi nalog studenta </Link></li>
             <li><Link to="/AdministratorObrisiNalog">Obrisi nalog profesora </Link></li>
          
           </ul>

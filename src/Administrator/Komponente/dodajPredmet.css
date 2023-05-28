@@ -4,3 +4,14 @@
     width: 200px;
     background-color: white;
 }
+
+.donji
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.tekst
+{
+    font-size: 20px;
+}

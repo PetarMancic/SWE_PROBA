@@ -306,18 +306,20 @@ console.log(zaustavi);
             BrojTelefona: brTel,
             Email: email,
             Password: pass,
+            Prosek:0,
             BrojIndexa: parseInt(brojIndeksa),
             TrenutnaGodinaStudija: parseInt(godStudija),
             ImeRoditelja: imeRod,
-           
             DatumRodjenja: datumRodjenja,
             JMBG: jmbg,
-            Smer: smer2
+            Smer: smer2,
+            trenutniBrojOcena:0
+           
         };
 
         console.log(obj);
         console.log(JSON.stringify(obj));
-        axios.post(`/student/${verifikacioniKod}`, obj, {
+        axios.post(`/student/dodajStudenta/${verifikacioniKod}`, obj, {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -350,155 +352,165 @@ console.log(zaustavi);
 
 
     return (
-        <div>
-            {uspesnaReg === 0 && <Login />}
-
-            {uspesnaReg === 1 && (
-
-                <form className="login-form" >
-                    <img className="index" src={Slika}></img>
-
-                    <h1>Register to E-index</h1>
-                    <h2>Please enter your data</h2>
-
-
-
-                    <label htmlFor="ime">IME</label>
-                    <input
-                        id="ime"
-                        type="text"
-                        onChange={imeHandler}
-                        className={`inpuT ${!imeInput ? 'pozadina' : ''}`}
-
-
-
-                    />
-                    <label htmlFor="prezime"> PREZIME</label>
-                    <input
-                        id="prezime"
-                        type="text"
-                        onChange={prezimeHandler}
-                        className={`inpuT ${!prezimeInput ? 'pozadina' : ''}`}
-                    />
-
-                    <label htmlFor="brojTelefona"> BROJ TELEFONA</label>
-                    <input
-                        id="brojTelefona"
-                        type="text"
-                        onChange={brojTelefonaHandler}
-                        className={`inpuT ${!brTelInput ? 'pozadina' : ''}`}
-                    />
-
-                    <label htmlFor="email"> EMAIL</label>
-                    <input
-                        id="email"
-                        type="email"
-                        onChange={EmailHandler}
-                        className={`inpuT ${!emailInput ? 'pozadina' : ''}`}
-                    />
-
-                    <label htmlFor="pwd"> PASSWORD</label>
-                    <input
-                        id="password"
-                        type="password"
-                        onChange={passHandler}
-                        className={`inpuT ${!passInput ? 'pozadina' : ''}`}
-
-                    />
-
-                    <label htmlFor="brojIndeksa">BROJ INDEKSA</label>
-                    <input
-                        id="BROJiNDEKSA"
-                        type="number"
-                        onChange={brojIndeksaHandler}
-                        className={`inpuT ${!brojIndeksaInput ? 'pozadina' : ''}`}
-
-                    />
-
-                    <label htmlFor="brojIndeksa">VERIFIKACIONI KOD</label>
-                    <input
-                        id="verifikacioniKOD"
-                        type="number"
-                        onChange={verifikacioniKodHandler}
-                        // className={`inpuT ${!brojIndeksaInput ? 'pozadina' : ''}`}
-
-                    />
-
-
-
-                    <label htmlFor="godinStudija"> Izaberite godinu studija</label>
         
-        <select value={selectedOption} onChange={handlerZaGodine}>
-        <option style={{color:"black"}} value="1">I</option>
-        <option  style={{color:"black"}} value="2">II</option>
-        <option style={{color:"black"}} value="3">III</option>
-      </select>
-                    {/* <Select options={godine} placeholder='Odaberite' onChange={godineHandler} className={` crni-tekst  ${!smerInput ? 'pozadina' : ''}`}>
+        <div className="redovi">
+        {uspesnaReg === 0 && <Login />}
+
+        {uspesnaReg === 1 && (
+            
+            <form className="login-form" >
+
+                
+                <img className="index" src={Slika}></img>
+
+                <h1>Register to E-index</h1>
+                <h2>Please enter your data</h2>
 
 
-                    </Select> */}
 
+                <div className="spoljni"> 
+                <div className="levi"> 
+
+                <label htmlFor="ime">IME</label>
+                <label htmlFor="prezime"> PREZIME</label>
+                <input
+                    id="ime"
+                    type="text"
+                    onChange={imeHandler}
+                    className={`inpuT ${!imeInput ? 'pozadina' : ''}`}
+
+
+
+                />
+                <input
+                    id="prezime"
+                    type="text"
+                    onChange={prezimeHandler}
+                    className={`inpuT ${!prezimeInput ? 'pozadina' : ''}`}
+                />
+
+                <label htmlFor="brojTelefona"> BROJ TELEFONA</label>
+                <label htmlFor="email"> EMAIL</label>
+                <input
+                    id="brojTelefona"
+                    type="text"
+                    onChange={brojTelefonaHandler}
+                    className={`inpuT ${!brTelInput ? 'pozadina' : ''}`}
+                />
+
+                <input
+                    id="email"
+                    type="email"
+                    onChange={EmailHandler}
+                    className={`inpuT ${!emailInput ? 'pozadina' : ''}`}
+                />
+
+                <label htmlFor="pwd"> PASSWORD</label>
+                <label htmlFor="brojIndeksa">BROJ INDEKSA</label>
+                <input
+                    id="password"
+                    type="password"
+                    onChange={passHandler}
+                    className={`inpuT ${!passInput ? 'pozadina' : ''}`}
                     
-
-
-                    <label htmlFor="Ime roditelja ">IME RODITELJA</label>
-                    <input
-                        id="imeRoditelja"
-                        type="text"
-                        onChange={imeRoditeljaHandler}
-                        className={`inpuT ${!imeRodInput ? 'pozadina' : ''}`}
-
                     />
-                    <label htmlFor="datumRodjenja"> DATUM RODJENJA</label>
-                    <input
-                        id="datumRodjenja"
+                  
+                <input
+                    id="BROJiNDEKSA"
+                    type="number"
+                    onChange={brojIndeksaHandler}
+                    className={`inpuT ${!brojIndeksaInput ? 'pozadina' : ''}`}
 
-                        type="text"
-                        onChange={DatumRodjenjaHandler}
-                        className={` border inpuT ${!datumRodjenjaInput ? 'pozadina' : ''}`}
+                />
+                </div>
+                <div className="desni">
+                <label htmlFor="brojIndeksa">VERIFIKACIONI KOD</label>
+                <label htmlFor="godinStudija"> Izaberite godinu studija</label>
+                <input
+                    id="verifikacioniKOD"
+                    type="number"
+                    onChange={verifikacioniKodHandler}
+                    // className={`inpuT ${!brojIndeksaInput ? 'pozadina' : ''}`}
 
-                    />
-
-                    <label htmlFor="jmbg"> JMBG</label>
-                    <input
-                        id="jmbg"
-
-                        type="text"
-                        onChange={JMBGHandler}
-                        className={` border inpuT ${!jmbgInput ? 'pozadina' : ''}`}
-
-                    />
-
-                    <label htmlFor="smer"> SMER</label>
-
-                    <select value={selectedOption} onChange={handlerZaSmer}>
-        <option style={{color:"black"}} value="Elektroenergetika">Elektroenergetika</option>
-        <option  style={{color:"black"}} value="Racunarstvo i informatika">Racunarstvo i informatika</option>
-        <option style={{color:"black"}} value="opcija3">Opcija 3</option>
-      </select>
-
-                    {/* <Select options={smerovi} placeholder='Odaberite smer' onChange={smerHandler} className={` crni-tekst  ${!smerInput ? 'pozadina' : ''}`}>
-
-
-                    </Select> */}
+                />
 
 
 
+    
+    <select value={selectedOption} onChange={handlerZaGodine}>
+    <option style={{color:"black"}} value="1">I</option>
+    <option  style={{color:"black"}} value="2">II</option>
+    <option style={{color:"black"}} value="3">III</option>
+  </select>
+                {/* <Select options={godine} placeholder='Odaberite' onChange={godineHandler} className={` crni-tekst  ${!smerInput ? 'pozadina' : ''}`}>
+
+
+                </Select> */}
+
+                
+
+
+                <label htmlFor="Ime roditelja ">IME RODITELJA</label>
+                <label htmlFor="datumRodjenja"> DATUM RODJENJA</label>
+                <input
+                    id="imeRoditelja"
+                    type="text"
+                    onChange={imeRoditeljaHandler}
+                    className={`inpuT ${!imeRodInput ? 'pozadina' : ''}`}
+
+                />
+                <input
+                    id="datumRodjenja"
+
+                    type="text"
+                    onChange={DatumRodjenjaHandler}
+                    className={` border inpuT ${!datumRodjenjaInput ? 'pozadina' : ''}`}
+
+                />
+
+                <label htmlFor="jmbg"> JMBG</label>
+                <label htmlFor="smer"> SMER</label>
+                <input
+                    id="jmbg"
+
+                    type="text"
+                    onChange={JMBGHandler}
+                    className={` border inpuT ${!jmbgInput ? 'pozadina' : ''}`}
+
+                />
+
+
+                <select value={selectedOption} onChange={handlerZaSmer}>
+    <option style={{color:"black"}} value="Elektroenergetika">Elektroenergetika</option>
+    <option  style={{color:"black"}} value="Racunarstvo i informatika">Racunarstvo i informatika</option>
+    <option style={{color:"black"}} value="opcija3">Opcija 3</option>
+  </select>
+
+                {/* <Select options={smerovi} placeholder='Odaberite smer' onChange={smerHandler} className={` crni-tekst  ${!smerInput ? 'pozadina' : ''}`}>
+
+
+                </Select> */}
 
 
 
 
 
 
-                    <button onClick={clickHandler}> Register now</button>
-                    <label id="goBackLabel" onClick={Nazad}>GO BACK</label>
 
 
 
-                </form>
-            )}
-            {uspesnaReg === 2 && (<UspesnaReg ugasiProzor={ugasiHandler} />)}
-        </div>
+
+
+                </div>
+                </div>
+                <div>
+                <button onClick={clickHandler} className="dugmence"> Register now</button>
+                </div>
+                <label id="goBackLabel" onClick={Nazad}>GO BACK</label>
+            </form>
+        )}
+        {uspesnaReg === 2 && (<UspesnaReg ugasiProzor={ugasiHandler} />)}
+    </div>
 
     )
 }

@@ -255,19 +255,23 @@ const RegisterProfesor = (props) => {
                 <form className="login-form" >
                     <img className="index" src={Slika}></img>
                     <h1>Register to E-index</h1>
-                    <h2>Please enter your data</h2>
+                    <h2 classname="odvoji">Please enter your data</h2>
+
+                    <div className="spoljni">
+
+                    <div className="levi">
 
                     <label htmlFor="ime">IME</label>
+                    <label htmlFor="prezime"> PREZIME</label>
                     <input
                         id="ime"
                         type="text"
                         onChange={imeHandler}
                         className={`inpuT ${!imeInput ? 'pozadina' : ''}`}
+                        />
 
 
 
-                    />
-                    <label htmlFor="prezime"> PREZIME</label>
                     <input
                         id="prezime"
                         type="text"
@@ -277,6 +281,7 @@ const RegisterProfesor = (props) => {
                     />
 
                     <label htmlFor="brojkartice">ID BROJA KARTICE</label>
+                    <label htmlFor="username"> Username</label>
                     <input
                         id="brojKartice"
                         type="number"
@@ -285,7 +290,6 @@ const RegisterProfesor = (props) => {
 
 
                     />
-                    <label htmlFor="username"> Username</label>
                     <input
                         id="username"
                         type="email"
@@ -296,6 +300,7 @@ const RegisterProfesor = (props) => {
                     />
 
                     <label htmlFor="pwd"> Password</label>
+                    <label htmlFor="pwd"> </label>
                     <input
                         id="password"
                         type="password"
@@ -304,16 +309,18 @@ const RegisterProfesor = (props) => {
 
 
                     />
+                    </div>
+                    <div className="desni">
                     <label htmlFor="Email"> Email</label>
+                    <label htmlFor="date"> Datum Rodjenja</label>
                     <input
                         id="email"
                         type="email"
                         onChange={emailHandler}
                         className={`inpuT ${!emailInput ? 'pozadina' : ''}`}
-
-
-                    />
-                    <label htmlFor="date"> Datum Rodjenja</label>
+                        
+                        
+                        />
                     <input
                         id="date"
                         type="string"
@@ -321,10 +328,10 @@ const RegisterProfesor = (props) => {
                         max={'12/12/1998'}
                         onChange={DatumRodjenjaHandler}
                         className={`inpuT ${!datumRodjenjaInput ? 'pozadina' : ''}`}
+                        />
 
-
-                    />
                     <label htmlFor="jmbg"> JMBG</label>
+                    <label htmlFor="rs"> Radni Staz</label>
                     <input
                         id="jmbg"
                         type="number"
@@ -334,7 +341,6 @@ const RegisterProfesor = (props) => {
 
 
                     />
-                    <label htmlFor="rs"> Radni Staz</label>
                     <input
                         id="radnistaz"
                         type="number"
@@ -344,31 +350,36 @@ const RegisterProfesor = (props) => {
 
 
                     />
+                    
                     <label htmlFor="ir"> Ime Roditelja</label>
+                    <label htmlFor="ir">  </label>
+
                     <input
                         id="imeRod"
                         type="text"
                         onChange={imeRHandler}
                         className={`inpuT ${!imeRInput ? 'pozadina' : ''}`}
-
-
-                    />
-
+                        />
 
 
 
-                    <button onClick={clickHandler}> Register now</button>
+
+
+
+
+
+
+                    </div>
+            </div>
+            <div>
+                    <button onClick={clickHandler} className="dugmence"> Register now</button>
+                    </div>
                     <label id="goBackLabel" onClick={Nazad}>GO BACK</label>
-
-
-
-
                 </form>
             }
             {uspesnaReg === 0 && <Login> </Login>}
 
             {uspesnaReg === 2 && <UspesnaReg ugasiProzor={ugasiFormu}> </UspesnaReg>}
-
         </>
     )
 }
